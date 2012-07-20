@@ -16,8 +16,10 @@
 @property (nonatomic, strong, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
++ (SMStoreController *)storeControllerWithStoreURL:(NSURL *)storeURL 
+                                      andModelName:(NSString *)modelName;
+
 - (NSManagedObjectContext *)threadSafeManagedObjectContext;
-- (NSBundle *)frameworkBundle;
 - (NSURL *)applicationDocumentsDirectory;
 
 @end

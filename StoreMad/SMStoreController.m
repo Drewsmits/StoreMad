@@ -20,6 +20,17 @@
             managedObjectModel,
             persistentStoreCoordinator;
 
++ (SMStoreController *)storeControllerWithStoreURL:(NSURL *)storeURL 
+                                      andModelName:(NSString *)modelName
+{
+    SMStoreController *controller = [[self alloc] init];
+    controller.storeURL = storeURL;
+    controller.momdName = modelName;
+    return controller;
+}
+
+#pragma mark
+
 - (void)deleteStore 
 {	
     @synchronized(self) {
@@ -76,7 +87,7 @@
     if (managedObjectModel != nil) {
         return managedObjectModel;
     }
-    NSURL *modelURL = [[self frameworkBundle] URLForResource:self.momdName withExtension:@"momd"];
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:self.momdName withExtension:@"momd"];
     
     NSAssert(modelURL, @"ModelURL was nil!  Could not find resource named %@.momd", self.momdName);
     
@@ -149,11 +160,6 @@
 }
 
 #pragma mark - File Directories
-
-- (NSBundle *)frameworkBundle {
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    return bundle;
-}
 
 - (NSURL *)applicationDocumentsDirectory {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
