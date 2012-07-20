@@ -28,10 +28,6 @@
 
 @implementation NSManagedObjectContext (StoreMad)
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 - (void)handleErrors:(NSError *)error
 {
     // Forget where I snagged this from

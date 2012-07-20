@@ -27,6 +27,11 @@
 
 @interface NSManagedObjectContext (StoreMad)
 
+/**
+ Creates a new managed object context based on the current contexts persistent store.
+ When you save with the thread safe copy, it will merge the changes on the main 
+ thread as long as the copy you created the thread safe copy from is still around.
+ */
 - (NSManagedObjectContext *)threadSafeCopy;
 
 - (NSManagedObject *)objectForURI:(NSURL *)objectURI;
