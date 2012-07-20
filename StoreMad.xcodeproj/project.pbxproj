@@ -30,15 +30,15 @@
 /* Begin PBXFileReference section */
 		DB0DE4A015B9BB5F007F382F /* libStoreMad.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libStoreMad.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB0DE4A315B9BB5F007F382F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		DB0DE4A715B9BB5F007F382F /* StoreMad-Prefix.pch */ = {isa = PBXFileReference; path = "StoreMad-Prefix.pch"; sourceTree = "<group>"; };
-		DB0DE4A815B9BB5F007F382F /* StoreMad.h */ = {isa = PBXFileReference; path = StoreMad.h; sourceTree = "<group>"; };
+		DB0DE4A715B9BB5F007F382F /* StoreMad-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StoreMad-Prefix.pch"; sourceTree = "<group>"; };
+		DB0DE4A815B9BB5F007F382F /* StoreMad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreMad.h; sourceTree = "<group>"; };
 		DB0DE4A915B9BB5F007F382F /* StoreMad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreMad.m; sourceTree = "<group>"; };
 		DB0DE4B015B9BB5F007F382F /* StoreMadTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoreMadTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB0DE4B115B9BB5F007F382F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		DB0DE4B315B9BB5F007F382F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		DB0DE4BB15B9BB5F007F382F /* StoreMadTests-Info.plist */ = {isa = PBXFileReference; path = "StoreMadTests-Info.plist"; sourceTree = "<group>"; };
+		DB0DE4BB15B9BB5F007F382F /* StoreMadTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StoreMadTests-Info.plist"; sourceTree = "<group>"; };
 		DB0DE4BD15B9BB60007F382F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		DB0DE4BF15B9BB60007F382F /* StoreMadTests.h */ = {isa = PBXFileReference; path = StoreMadTests.h; sourceTree = "<group>"; };
+		DB0DE4BF15B9BB60007F382F /* StoreMadTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreMadTests.h; sourceTree = "<group>"; };
 		DB0DE4C015B9BB60007F382F /* StoreMadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreMadTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
