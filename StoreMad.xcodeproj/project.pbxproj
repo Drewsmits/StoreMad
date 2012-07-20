@@ -1,0 +1,403 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DB0DE4A415B9BB5F007F382F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0DE4A315B9BB5F007F382F /* Foundation.framework */; };
+		DB0DE4AA15B9BB5F007F382F /* StoreMad.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0DE4A915B9BB5F007F382F /* StoreMad.m */; };
+		DB0DE4B215B9BB5F007F382F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0DE4B115B9BB5F007F382F /* SenTestingKit.framework */; };
+		DB0DE4B415B9BB5F007F382F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0DE4B315B9BB5F007F382F /* UIKit.framework */; };
+		DB0DE4B515B9BB5F007F382F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0DE4A315B9BB5F007F382F /* Foundation.framework */; };
+		DB0DE4B815B9BB5F007F382F /* libStoreMad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0DE4A015B9BB5F007F382F /* libStoreMad.a */; };
+		DB0DE4BE15B9BB60007F382F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DB0DE4BC15B9BB60007F382F /* InfoPlist.strings */; };
+		DB0DE4C115B9BB60007F382F /* StoreMadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0DE4C015B9BB60007F382F /* StoreMadTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DB0DE4B615B9BB5F007F382F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB0DE49715B9BB5F007F382F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DB0DE49F15B9BB5F007F382F;
+			remoteInfo = StoreMad;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DB0DE4A015B9BB5F007F382F /* libStoreMad.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libStoreMad.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB0DE4A315B9BB5F007F382F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DB0DE4A715B9BB5F007F382F /* StoreMad-Prefix.pch */ = {isa = PBXFileReference; path = "StoreMad-Prefix.pch"; sourceTree = "<group>"; };
+		DB0DE4A815B9BB5F007F382F /* StoreMad.h */ = {isa = PBXFileReference; path = StoreMad.h; sourceTree = "<group>"; };
+		DB0DE4A915B9BB5F007F382F /* StoreMad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreMad.m; sourceTree = "<group>"; };
+		DB0DE4B015B9BB5F007F382F /* StoreMadTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoreMadTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB0DE4B115B9BB5F007F382F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		DB0DE4B315B9BB5F007F382F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		DB0DE4BB15B9BB5F007F382F /* StoreMadTests-Info.plist */ = {isa = PBXFileReference; path = "StoreMadTests-Info.plist"; sourceTree = "<group>"; };
+		DB0DE4BD15B9BB60007F382F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DB0DE4BF15B9BB60007F382F /* StoreMadTests.h */ = {isa = PBXFileReference; path = StoreMadTests.h; sourceTree = "<group>"; };
+		DB0DE4C015B9BB60007F382F /* StoreMadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreMadTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DB0DE49D15B9BB5F007F382F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB0DE4A415B9BB5F007F382F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB0DE4AC15B9BB5F007F382F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB0DE4B215B9BB5F007F382F /* SenTestingKit.framework in Frameworks */,
+				DB0DE4B415B9BB5F007F382F /* UIKit.framework in Frameworks */,
+				DB0DE4B515B9BB5F007F382F /* Foundation.framework in Frameworks */,
+				DB0DE4B815B9BB5F007F382F /* libStoreMad.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DB0DE49515B9BB5F007F382F = {
+			isa = PBXGroup;
+			children = (
+				DB0DE4A515B9BB5F007F382F /* StoreMad */,
+				DB0DE4B915B9BB5F007F382F /* StoreMadTests */,
+				DB0DE4A215B9BB5F007F382F /* Frameworks */,
+				DB0DE4A115B9BB5F007F382F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DB0DE4A115B9BB5F007F382F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB0DE4A015B9BB5F007F382F /* libStoreMad.a */,
+				DB0DE4B015B9BB5F007F382F /* StoreMadTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DB0DE4A215B9BB5F007F382F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DB0DE4A315B9BB5F007F382F /* Foundation.framework */,
+				DB0DE4B115B9BB5F007F382F /* SenTestingKit.framework */,
+				DB0DE4B315B9BB5F007F382F /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB0DE4A515B9BB5F007F382F /* StoreMad */ = {
+			isa = PBXGroup;
+			children = (
+				DB0DE4A815B9BB5F007F382F /* StoreMad.h */,
+				DB0DE4A915B9BB5F007F382F /* StoreMad.m */,
+				DB0DE4A615B9BB5F007F382F /* Supporting Files */,
+			);
+			path = StoreMad;
+			sourceTree = "<group>";
+		};
+		DB0DE4A615B9BB5F007F382F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DB0DE4A715B9BB5F007F382F /* StoreMad-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DB0DE4B915B9BB5F007F382F /* StoreMadTests */ = {
+			isa = PBXGroup;
+			children = (
+				DB0DE4BF15B9BB60007F382F /* StoreMadTests.h */,
+				DB0DE4C015B9BB60007F382F /* StoreMadTests.m */,
+				DB0DE4BA15B9BB5F007F382F /* Supporting Files */,
+			);
+			path = StoreMadTests;
+			sourceTree = "<group>";
+		};
+		DB0DE4BA15B9BB5F007F382F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DB0DE4BB15B9BB5F007F382F /* StoreMadTests-Info.plist */,
+				DB0DE4BC15B9BB60007F382F /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		DB0DE49E15B9BB5F007F382F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		DB0DE49F15B9BB5F007F382F /* StoreMad */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB0DE4C415B9BB60007F382F /* Build configuration list for PBXNativeTarget "StoreMad" */;
+			buildPhases = (
+				DB0DE49C15B9BB5F007F382F /* Sources */,
+				DB0DE49D15B9BB5F007F382F /* Frameworks */,
+				DB0DE49E15B9BB5F007F382F /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StoreMad;
+			productName = StoreMad;
+			productReference = DB0DE4A015B9BB5F007F382F /* libStoreMad.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		DB0DE4AF15B9BB5F007F382F /* StoreMadTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB0DE4C715B9BB60007F382F /* Build configuration list for PBXNativeTarget "StoreMadTests" */;
+			buildPhases = (
+				DB0DE4AB15B9BB5F007F382F /* Sources */,
+				DB0DE4AC15B9BB5F007F382F /* Frameworks */,
+				DB0DE4AD15B9BB5F007F382F /* Resources */,
+				DB0DE4AE15B9BB5F007F382F /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB0DE4B715B9BB5F007F382F /* PBXTargetDependency */,
+			);
+			name = StoreMadTests;
+			productName = StoreMadTests;
+			productReference = DB0DE4B015B9BB5F007F382F /* StoreMadTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DB0DE49715B9BB5F007F382F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = eGraphs;
+			};
+			buildConfigurationList = DB0DE49A15B9BB5F007F382F /* Build configuration list for PBXProject "StoreMad" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DB0DE49515B9BB5F007F382F;
+			productRefGroup = DB0DE4A115B9BB5F007F382F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DB0DE49F15B9BB5F007F382F /* StoreMad */,
+				DB0DE4AF15B9BB5F007F382F /* StoreMadTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DB0DE4AD15B9BB5F007F382F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB0DE4BE15B9BB60007F382F /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DB0DE4AE15B9BB5F007F382F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DB0DE49C15B9BB5F007F382F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB0DE4AA15B9BB5F007F382F /* StoreMad.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB0DE4AB15B9BB5F007F382F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB0DE4C115B9BB60007F382F /* StoreMadTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DB0DE4B715B9BB5F007F382F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DB0DE49F15B9BB5F007F382F /* StoreMad */;
+			targetProxy = DB0DE4B615B9BB5F007F382F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DB0DE4BC15B9BB60007F382F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DB0DE4BD15B9BB60007F382F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DB0DE4C215B9BB60007F382F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		DB0DE4C315B9BB60007F382F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DB0DE4C515B9BB60007F382F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/StoreMad.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StoreMad/StoreMad-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		DB0DE4C615B9BB60007F382F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/StoreMad.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StoreMad/StoreMad-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		DB0DE4C815B9BB60007F382F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StoreMad/StoreMad-Prefix.pch";
+				INFOPLIST_FILE = "StoreMadTests/StoreMadTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		DB0DE4C915B9BB60007F382F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StoreMad/StoreMad-Prefix.pch";
+				INFOPLIST_FILE = "StoreMadTests/StoreMadTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DB0DE49A15B9BB5F007F382F /* Build configuration list for PBXProject "StoreMad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB0DE4C215B9BB60007F382F /* Debug */,
+				DB0DE4C315B9BB60007F382F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB0DE4C415B9BB60007F382F /* Build configuration list for PBXNativeTarget "StoreMad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB0DE4C515B9BB60007F382F /* Debug */,
+				DB0DE4C615B9BB60007F382F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DB0DE4C715B9BB60007F382F /* Build configuration list for PBXNativeTarget "StoreMadTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB0DE4C815B9BB60007F382F /* Debug */,
+				DB0DE4C915B9BB60007F382F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DB0DE49715B9BB5F007F382F /* Project object */;
+}
