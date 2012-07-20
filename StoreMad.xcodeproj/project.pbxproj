@@ -15,6 +15,13 @@
 		DB0DE4B815B9BB5F007F382F /* libStoreMad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0DE4A015B9BB5F007F382F /* libStoreMad.a */; };
 		DB0DE4BE15B9BB60007F382F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DB0DE4BC15B9BB60007F382F /* InfoPlist.strings */; };
 		DB0DE4C115B9BB60007F382F /* StoreMadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0DE4C015B9BB60007F382F /* StoreMadTests.m */; };
+		DB0DE4E615B9BDC6007F382F /* SMStoreController.h in Headers */ = {isa = PBXBuildFile; fileRef = DB0DE4E415B9BDC6007F382F /* SMStoreController.h */; };
+		DB0DE4E715B9BDC6007F382F /* SMStoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0DE4E515B9BDC6007F382F /* SMStoreController.m */; };
+		DB0DE4E915B9BDD4007F382F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0DE4E815B9BDD4007F382F /* CoreData.framework */; };
+		DB0DE55215B9CCEF007F382F /* NSManagedObject+StoreMad.h in Headers */ = {isa = PBXBuildFile; fileRef = DB0DE55015B9CCEE007F382F /* NSManagedObject+StoreMad.h */; };
+		DB0DE55315B9CCEF007F382F /* NSManagedObject+StoreMad.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0DE55115B9CCEF007F382F /* NSManagedObject+StoreMad.m */; };
+		DB0DE55615B9CE1B007F382F /* NSManagedObjectContext+StoreMad.h in Headers */ = {isa = PBXBuildFile; fileRef = DB0DE55415B9CE1A007F382F /* NSManagedObjectContext+StoreMad.h */; };
+		DB0DE55715B9CE1B007F382F /* NSManagedObjectContext+StoreMad.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0DE55515B9CE1A007F382F /* NSManagedObjectContext+StoreMad.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +47,13 @@
 		DB0DE4BD15B9BB60007F382F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DB0DE4BF15B9BB60007F382F /* StoreMadTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreMadTests.h; sourceTree = "<group>"; };
 		DB0DE4C015B9BB60007F382F /* StoreMadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreMadTests.m; sourceTree = "<group>"; };
+		DB0DE4E415B9BDC6007F382F /* SMStoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMStoreController.h; sourceTree = "<group>"; };
+		DB0DE4E515B9BDC6007F382F /* SMStoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMStoreController.m; sourceTree = "<group>"; };
+		DB0DE4E815B9BDD4007F382F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		DB0DE55015B9CCEE007F382F /* NSManagedObject+StoreMad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+StoreMad.h"; sourceTree = "<group>"; };
+		DB0DE55115B9CCEF007F382F /* NSManagedObject+StoreMad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+StoreMad.m"; sourceTree = "<group>"; };
+		DB0DE55415B9CE1A007F382F /* NSManagedObjectContext+StoreMad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+StoreMad.h"; sourceTree = "<group>"; };
+		DB0DE55515B9CE1A007F382F /* NSManagedObjectContext+StoreMad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+StoreMad.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB0DE4E915B9BDD4007F382F /* CoreData.framework in Frameworks */,
 				DB0DE4A415B9BB5F007F382F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -87,6 +102,7 @@
 		DB0DE4A215B9BB5F007F382F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DB0DE4E815B9BDD4007F382F /* CoreData.framework */,
 				DB0DE4A315B9BB5F007F382F /* Foundation.framework */,
 				DB0DE4B115B9BB5F007F382F /* SenTestingKit.framework */,
 				DB0DE4B315B9BB5F007F382F /* UIKit.framework */,
@@ -99,6 +115,12 @@
 			children = (
 				DB0DE4A815B9BB5F007F382F /* StoreMad.h */,
 				DB0DE4A915B9BB5F007F382F /* StoreMad.m */,
+				DB0DE4E415B9BDC6007F382F /* SMStoreController.h */,
+				DB0DE4E515B9BDC6007F382F /* SMStoreController.m */,
+				DB0DE55015B9CCEE007F382F /* NSManagedObject+StoreMad.h */,
+				DB0DE55115B9CCEF007F382F /* NSManagedObject+StoreMad.m */,
+				DB0DE55415B9CE1A007F382F /* NSManagedObjectContext+StoreMad.h */,
+				DB0DE55515B9CE1A007F382F /* NSManagedObjectContext+StoreMad.m */,
 				DB0DE4A615B9BB5F007F382F /* Supporting Files */,
 			);
 			path = StoreMad;
@@ -138,6 +160,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB0DE4E615B9BDC6007F382F /* SMStoreController.h in Headers */,
+				DB0DE55215B9CCEF007F382F /* NSManagedObject+StoreMad.h in Headers */,
+				DB0DE55615B9CE1B007F382F /* NSManagedObjectContext+StoreMad.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +265,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB0DE4AA15B9BB5F007F382F /* StoreMad.m in Sources */,
+				DB0DE4E715B9BDC6007F382F /* SMStoreController.m in Sources */,
+				DB0DE55315B9CCEF007F382F /* NSManagedObject+StoreMad.m in Sources */,
+				DB0DE55715B9CE1B007F382F /* NSManagedObjectContext+StoreMad.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#import "SMStoreController.h"
+#import "NSManagedObject+StoreMad.h"
+#import "NSManagedObjectContext+StoreMad.h"
+
 @interface StoreMad : NSObject
 
 @end
