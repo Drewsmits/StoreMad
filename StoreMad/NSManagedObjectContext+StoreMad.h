@@ -37,6 +37,8 @@
 - (NSManagedObject *)objectForURI:(NSURL *)objectURI;
 - (void)deleteObjectAtURI:(NSURL *)objectURI;
 
+- (void)deleteObjects:(NSArray *)objects;
+
 - (NSArray *)executeFetchRequest:(NSFetchRequest *)request;
 - (NSManagedObject *)executeFetchRequestAndReturnFirstObject:(NSFetchRequest *)request;
 - (NSUInteger)countForFetchRequest:(NSFetchRequest *)request;

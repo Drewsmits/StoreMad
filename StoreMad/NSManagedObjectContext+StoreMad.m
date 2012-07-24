@@ -114,6 +114,15 @@
     return [self executeFetchRequestAndReturnFirstObject:request];
 }
 
+#pragma mark - Delete
+
+- (void)deleteObjects:(NSArray *)objects 
+{
+    for (NSManagedObject *object in objects) {
+        [self deleteObject:object];
+    }
+}
+
 - (void)deleteObjectAtURI:(NSURL *)objectURI 
 {
     NSManagedObject *object = [self objectForURI:objectURI];

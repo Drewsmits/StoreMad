@@ -32,21 +32,39 @@
 @implementation SMStoreController
 
 @synthesize storeURL,
-            momdName,
+            modelURL,
             managedObjectContext,
             managedObjectModel,
             persistentStoreCoordinator;
 
 + (SMStoreController *)storeControllerWithStoreURL:(NSURL *)storeURL 
-                                      andModelName:(NSString *)modelName
+                                       andModelURL:(NSURL *)modelURL
 {
     SMStoreController *controller = [[self alloc] init];
     controller.storeURL = storeURL;
-    controller.momdName = modelName;
+    controller.modelURL = modelURL;
     return controller;
 }
 
 #pragma mark
+
+- (void)reset
+{
+    @synchronized(self) {
+        
+        // Delete SQlite
+        [self deleteStore];
+     
+        // Rest URLs
+        self.storeURL = nil;
+        self.modelURL = nil;
+        
+        // Nil local variables
+        managedObjectContext = nil;
+        managedObjectModel = nil;
+        persistentStoreCoordinator = nil;
+    }
+}
 
 - (void)deleteStore 
 {	
@@ -61,25 +79,35 @@
     }
 }
 
+- (void)saveContext
+{
+    NSError *error = nil;
+    NSManagedObjectContext *context = self.managedObjectContext;
+    if (context != nil)
+    {
+        if ([context hasChanges] && ![context save:&error])
+        {
+            /*
+             Replace this implementation with code to handle the error appropriately.
+             
+             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
+             */
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        } 
+    }   
+}
+
 #pragma mark - CoreData Stack
 
 - (NSManagedObjectContext *)threadSafeManagedObjectContext
-{
-    // Grab the main coordinator
-    NSPersistentStoreCoordinator *coord = [self.managedObjectContext persistentStoreCoordinator];
-    
+{    
     // Create new context with default concurrency type
-    NSManagedObjectContext *newContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
-    [newContext setPersistentStoreCoordinator:coord];
+    NSManagedObjectContext *newContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    [newContext setParentContext:self.managedObjectContext];
     
     // Optimization
     [newContext setUndoManager:nil];
-    
-    // Observer saves from this context
-    [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(contextDidSave:) 
-                                                 name:NSManagedObjectContextDidSaveNotification 
-                                               object:newContext];
     
     return newContext;
 }
@@ -92,7 +120,7 @@
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
-        managedObjectContext = [[NSManagedObjectContext alloc] init];
+        managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
         [managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
     
@@ -104,11 +132,10 @@
     if (managedObjectModel != nil) {
         return managedObjectModel;
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:self.momdName withExtension:@"momd"];
     
-    NSAssert(modelURL, @"ModelURL was nil!  Could not find resource named %@.momd", self.momdName);
+    NSAssert(modelURL, @"ModelURL was nil!  Could not find resource");
     
-    managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
+    managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:self.modelURL];    
     return managedObjectModel;
 }
 
@@ -160,20 +187,6 @@
     }    
     
     return persistentStoreCoordinator;
-}
-
-- (void)contextDidSave:(NSNotification *)notification {
-    SEL selector = @selector(mergeChangesFromContextDidSaveNotification:);
-    
-    NSManagedObjectContext *threadContext = (NSManagedObjectContext *)notification.object;
-    
-    [self.managedObjectContext performSelectorOnMainThread:selector 
-                                                withObject:notification 
-                                             waitUntilDone:NO];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self 
-                                                    name:NSManagedObjectContextDidSaveNotification 
-                                                  object:threadContext];
 }
 
 #pragma mark - File Directories
