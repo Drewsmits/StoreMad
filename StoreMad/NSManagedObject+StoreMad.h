@@ -32,4 +32,6 @@
 
 + (id)createInContext:(NSManagedObjectContext *)context;
 
+- (void)deleteObject;
+
 @end

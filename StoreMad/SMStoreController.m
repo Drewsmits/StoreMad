@@ -25,6 +25,9 @@
 
 #import "SMStoreController.h"
 
+#import <UIKit/UIApplication.h>
+#import "NSManagedObjectContext+StoreMad.h"
+
 @interface SMStoreController ()
 
 @end
@@ -36,6 +39,11 @@
             managedObjectContext,
             managedObjectModel,
             persistentStoreCoordinator;
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 + (SMStoreController *)storeControllerWithStoreURL:(NSURL *)storeURL 
                                        andModelURL:(NSURL *)modelURL
@@ -51,13 +59,8 @@
 - (void)reset
 {
     @synchronized(self) {
-        
         // Delete SQlite
         [self deleteStore];
-     
-        // Rest URLs
-        self.storeURL = nil;
-        self.modelURL = nil;
         
         // Nil local variables
         managedObjectContext = nil;
@@ -81,21 +84,32 @@
 
 - (void)saveContext
 {
-    NSError *error = nil;
-    NSManagedObjectContext *context = self.managedObjectContext;
-    if (context != nil)
-    {
-        if ([context hasChanges] && ![context save:&error])
-        {
-            /*
-             Replace this implementation with code to handle the error appropriately.
-             
-             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-             */
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        } 
-    }   
+    [self.managedObjectContext queueBlockSave];
+}
+
+- (void)shouldSaveOnAppStateChanges:(BOOL)shouldSave
+{
+    if (!shouldSave) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self 
+                                                        name:UIApplicationDidEnterBackgroundNotification
+                                                      object:nil];
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self 
+                                                        name:UIApplicationWillTerminateNotification
+                                                      object:nil];
+        
+        return;
+    }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(saveContext)
+                                                 name:UIApplicationDidEnterBackgroundNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(saveContext) 
+                                                 name:UIApplicationWillTerminateNotification 
+                                               object:nil];
 }
 
 #pragma mark - CoreData Stack

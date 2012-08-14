@@ -34,10 +34,14 @@
  */
 - (NSManagedObjectContext *)threadSafeCopy;
 
+- (void)queueBlockSave;
+- (void)queueBlockSaveAndWait;
+- (void)queueBlockSaveOnParentContext;
+
 - (NSManagedObject *)objectForURI:(NSURL *)objectURI;
 - (void)deleteObjectAtURI:(NSURL *)objectURI;
-
 - (void)deleteObjects:(NSArray *)objects;
+- (void)queueDeleteObject:(NSManagedObject *)object;
 
 - (NSArray *)executeFetchRequest:(NSFetchRequest *)request;
 - (NSManagedObject *)executeFetchRequestAndReturnFirstObject:(NSFetchRequest *)request;

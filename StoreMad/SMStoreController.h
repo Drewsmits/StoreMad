@@ -43,6 +43,7 @@
 - (void)reset;
 - (void)deleteStore;
 - (void)saveContext;
+- (void)shouldSaveOnAppStateChanges:(BOOL)shouldSave;
 
 /**
  Returns a new NSManagedObjectContext with a concurrency type of NSPrivateQueueConcurrencyType

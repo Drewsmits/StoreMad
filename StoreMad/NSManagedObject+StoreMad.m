@@ -67,4 +67,9 @@
     return obj;
 }
 
+- (void)deleteObject
+{
+    [self.managedObjectContext deleteObject:self];
+}
+
 @end

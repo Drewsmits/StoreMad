@@ -56,39 +56,48 @@
 #pragma mark - Thread
 
 - (NSManagedObjectContext *)threadSafeCopy
-{
-    // Grab the main coordinator
-    NSPersistentStoreCoordinator *coord = [self persistentStoreCoordinator];
-    
+{    
     // Create new context with default concurrency type
-    NSManagedObjectContext *newContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
-    [newContext setPersistentStoreCoordinator:coord];
+    NSManagedObjectContext *newContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    [newContext setParentContext:self];
     
     // Optimization.  No undos in background thread.
     [newContext setUndoManager:nil];
     
-    // Observer saves from this context.  The context this was called from needs
-    // to live long enough to get these merge changes.
-    [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(threadSafeCopyDidSave:) 
-                                                 name:NSManagedObjectContextDidSaveNotification 
-                                               object:newContext];
-    
     return newContext;
 }
 
-- (void)threadSafeCopyDidSave:(NSNotification *)notification {
-    SEL selector = @selector(mergeChangesFromContextDidSaveNotification:);
-    
-    NSManagedObjectContext *threadContext = (NSManagedObjectContext *)notification.object;
-    
-    [self performSelectorOnMainThread:selector 
-                           withObject:notification 
-                        waitUntilDone:NO];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self 
-                                                    name:NSManagedObjectContextDidSaveNotification 
-                                                  object:threadContext];
+- (void)queueBlockSave
+{
+    __block NSError *error = nil;
+    [self performBlock:^{
+        [self save:&error];
+        if (error) {
+            [self handleErrors:error];
+        }
+    }];
+}
+
+- (void)queueBlockSaveAndWait
+{
+    __block NSError *error = nil;
+    [self performBlockAndWait:^{
+        [self save:&error];
+        if (error) {
+            [self handleErrors:error];
+        }
+    }];
+}
+
+- (void)queueBlockSaveOnParentContext
+{
+    __block NSError *error = nil;
+    [self.parentContext performBlock:^{
+        [self save:&error];
+        if (error) {
+            [self handleErrors:error];
+        }
+    }];
 }
 
 #pragma mark - URI Helpers
@@ -118,24 +127,39 @@
 
 - (void)deleteObjects:(NSArray *)objects 
 {
-    for (NSManagedObject *object in objects) {
-        [self deleteObject:object];
-    }
+    [self performBlockAndWait:^ {
+        for (NSManagedObject *object in objects) {
+            [self deleteObject:object];
+        }
+    }];
 }
 
-- (void)deleteObjectAtURI:(NSURL *)objectURI 
+- (void)deleteObjectAtURI:(NSURL *)objectURI
 {
     NSManagedObject *object = [self objectForURI:objectURI];
-    [self deleteObject:object];
+    [self performBlockAndWait:^ {
+        [self deleteObject:object];
+    }];
+}
+
+- (void)queueDeleteObject:(NSManagedObject *)object
+{
+    [self performBlockAndWait:^ {
+        [self deleteObject:object];
+    }];
 }
 
 #pragma mark - Fetching
      
 - (NSArray *)executeFetchRequest:(NSFetchRequest *)request
 {
-    NSError *error = nil;
-    NSArray *results = [self executeFetchRequest:request error:&error];
-    [self handleErrors:error];
+    __block NSError *error = nil;
+    __block NSArray *results = nil;
+    [self performBlockAndWait:^{
+        results = [self executeFetchRequest:request error:&error];
+        [self handleErrors:error];
+    }];
+    
     return results;
 }
 
@@ -152,10 +176,14 @@
     // Optimization?  I'd imagine it doesn't include these when counting, but
     // should test.
     request.includesPropertyValues = NO;
+        
+    __block NSError *error = nil;
+    __block NSUInteger count = 0;
+    [self performBlockAndWait:^{
+        count = [self countForFetchRequest:request error:&error];
+        [self handleErrors:error];
+    }];
     
-    NSError *error = nil;
-    NSUInteger count = [self countForFetchRequest:request error:&error];
-    [self handleErrors:error];
     return count;
 }
 
