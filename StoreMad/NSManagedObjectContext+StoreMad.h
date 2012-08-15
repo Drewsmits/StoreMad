@@ -58,4 +58,6 @@
 - (NSFetchRequest *)fetchRequestForObject:(NSManagedObject *)object;
 - (NSFetchRequest *)findAllFetchRequestForObject:(NSManagedObject *)object;
 
+- (NSManagedObject *)insertNewObjectForEntityNamed:(NSString *)entityName;
+
 @end

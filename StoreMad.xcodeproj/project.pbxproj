@@ -14,7 +14,6 @@
 		DB0DE4B515B9BB5F007F382F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0DE4A315B9BB5F007F382F /* Foundation.framework */; };
 		DB0DE4B815B9BB5F007F382F /* libStoreMad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0DE4A015B9BB5F007F382F /* libStoreMad.a */; };
 		DB0DE4BE15B9BB60007F382F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DB0DE4BC15B9BB60007F382F /* InfoPlist.strings */; };
-		DB0DE4C115B9BB60007F382F /* StoreMadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0DE4C015B9BB60007F382F /* StoreMadTests.m */; };
 		DB0DE4E615B9BDC6007F382F /* SMStoreController.h in Headers */ = {isa = PBXBuildFile; fileRef = DB0DE4E415B9BDC6007F382F /* SMStoreController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB0DE4E715B9BDC6007F382F /* SMStoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0DE4E515B9BDC6007F382F /* SMStoreController.m */; };
 		DB0DE4E915B9BDD4007F382F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0DE4E815B9BDD4007F382F /* CoreData.framework */; };
@@ -23,6 +22,10 @@
 		DB0DE55615B9CE1B007F382F /* NSManagedObjectContext+StoreMad.h in Headers */ = {isa = PBXBuildFile; fileRef = DB0DE55415B9CE1A007F382F /* NSManagedObjectContext+StoreMad.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB0DE55715B9CE1B007F382F /* NSManagedObjectContext+StoreMad.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0DE55515B9CE1A007F382F /* NSManagedObjectContext+StoreMad.m */; };
 		DB0DE59115B9DDDB007F382F /* StoreMad.h in Headers */ = {isa = PBXBuildFile; fileRef = DB0DE4A815B9BB5F007F382F /* StoreMad.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DB9D043A15DC082D0035FC30 /* StoreMadBaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9D043915DC082D0035FC30 /* StoreMadBaseTest.m */; };
+		DB9D043E15DC0B290035FC30 /* StoreMadTests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB9D043C15DC0B290035FC30 /* StoreMadTests.xcdatamodeld */; };
+		DB9D044115DC0DD70035FC30 /* StoreMadContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9D044015DC0DD70035FC30 /* StoreMadContextTests.m */; };
+		DB9D044215DC0E300035FC30 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0DE4E815B9BDD4007F382F /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,8 +49,6 @@
 		DB0DE4B315B9BB5F007F382F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		DB0DE4BB15B9BB5F007F382F /* StoreMadTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StoreMadTests-Info.plist"; sourceTree = "<group>"; };
 		DB0DE4BD15B9BB60007F382F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		DB0DE4BF15B9BB60007F382F /* StoreMadTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreMadTests.h; sourceTree = "<group>"; };
-		DB0DE4C015B9BB60007F382F /* StoreMadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreMadTests.m; sourceTree = "<group>"; };
 		DB0DE4E415B9BDC6007F382F /* SMStoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMStoreController.h; sourceTree = "<group>"; };
 		DB0DE4E515B9BDC6007F382F /* SMStoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMStoreController.m; sourceTree = "<group>"; };
 		DB0DE4E815B9BDD4007F382F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -55,6 +56,11 @@
 		DB0DE55115B9CCEF007F382F /* NSManagedObject+StoreMad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+StoreMad.m"; sourceTree = "<group>"; };
 		DB0DE55415B9CE1A007F382F /* NSManagedObjectContext+StoreMad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+StoreMad.h"; sourceTree = "<group>"; };
 		DB0DE55515B9CE1A007F382F /* NSManagedObjectContext+StoreMad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+StoreMad.m"; sourceTree = "<group>"; };
+		DB9D043815DC082D0035FC30 /* StoreMadBaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreMadBaseTest.h; sourceTree = "<group>"; };
+		DB9D043915DC082D0035FC30 /* StoreMadBaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreMadBaseTest.m; sourceTree = "<group>"; };
+		DB9D043D15DC0B290035FC30 /* StoreMadTests.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StoreMadTests.xcdatamodel; sourceTree = "<group>"; };
+		DB9D043F15DC0DD70035FC30 /* StoreMadContextTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreMadContextTests.h; sourceTree = "<group>"; };
+		DB9D044015DC0DD70035FC30 /* StoreMadContextTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreMadContextTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,8 +78,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB0DE4B215B9BB5F007F382F /* SenTestingKit.framework in Frameworks */,
-				DB0DE4B415B9BB5F007F382F /* UIKit.framework in Frameworks */,
 				DB0DE4B515B9BB5F007F382F /* Foundation.framework in Frameworks */,
+				DB9D044215DC0E300035FC30 /* CoreData.framework in Frameworks */,
+				DB0DE4B415B9BB5F007F382F /* UIKit.framework in Frameworks */,
 				DB0DE4B815B9BB5F007F382F /* libStoreMad.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,8 +145,11 @@
 		DB0DE4B915B9BB5F007F382F /* StoreMadTests */ = {
 			isa = PBXGroup;
 			children = (
-				DB0DE4BF15B9BB60007F382F /* StoreMadTests.h */,
-				DB0DE4C015B9BB60007F382F /* StoreMadTests.m */,
+				DB9D043815DC082D0035FC30 /* StoreMadBaseTest.h */,
+				DB9D043915DC082D0035FC30 /* StoreMadBaseTest.m */,
+				DB9D043F15DC0DD70035FC30 /* StoreMadContextTests.h */,
+				DB9D044015DC0DD70035FC30 /* StoreMadContextTests.m */,
+				DB9D043C15DC0B290035FC30 /* StoreMadTests.xcdatamodeld */,
 				DB0DE4BA15B9BB5F007F382F /* Supporting Files */,
 			);
 			path = StoreMadTests;
@@ -277,7 +287,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB0DE4C115B9BB60007F382F /* StoreMadTests.m in Sources */,
+				DB9D043A15DC082D0035FC30 /* StoreMadBaseTest.m in Sources */,
+				DB9D043E15DC0B290035FC30 /* StoreMadTests.xcdatamodeld in Sources */,
+				DB9D044115DC0DD70035FC30 /* StoreMadContextTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +395,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StoreMad/StoreMad-Prefix.pch";
 				INFOPLIST_FILE = "StoreMadTests/StoreMadTests-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -398,6 +411,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StoreMad/StoreMad-Prefix.pch";
 				INFOPLIST_FILE = "StoreMadTests/StoreMadTests-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -434,6 +448,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DB9D043C15DC0B290035FC30 /* StoreMadTests.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DB9D043D15DC0B290035FC30 /* StoreMadTests.xcdatamodel */,
+			);
+			currentVersion = DB9D043D15DC0B290035FC30 /* StoreMadTests.xcdatamodel */;
+			path = StoreMadTests.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DB0DE49715B9BB5F007F382F /* Project object */;
 }

@@ -111,6 +111,7 @@
     if (![objectForID isFault]) return objectForID;
     
     NSFetchRequest *request = [self fetchRequestForObject:objectForID];
+    if (!request) return nil;
     
     // Predicate for fetching self.  Code is faster than string predicate equivalent of 
     // [NSPredicate predicateWithFormat:@"SELF = %@", objectForID];
@@ -208,8 +209,13 @@
 {
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:objectName 
                                                          inManagedObjectContext:self];
+    
+    // Fetch request must have an entity
+    if (!entityDescription) return nil;
+    
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entityDescription];
+    
     return request;
 }
 
@@ -238,6 +244,17 @@
 - (NSFetchRequest *)findAllFetchRequestForObject:(NSManagedObject *)object
 {
     return [self findAllFetchRequestForObjectNamed:object.description];
+}
+
+#pragma mark - Create
+
+- (NSManagedObject *)insertNewObjectForEntityNamed:(NSString *)entityName
+{
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:self];
+    if (!entity) return nil;
+    
+    NSManagedObject *object = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:self];
+    return object;
 }
 
 @end
