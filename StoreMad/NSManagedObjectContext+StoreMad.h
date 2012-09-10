@@ -34,6 +34,8 @@
  */
 - (NSManagedObjectContext *)threadSafeCopy;
 
+- (void)handleErrors:(NSError *)error;
+
 - (void)queueBlockSave;
 - (void)queueBlockSaveAndWait;
 - (void)queueBlockSaveOnParentContext;

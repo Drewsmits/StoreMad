@@ -3,7 +3,7 @@
 //  StoreMad
 //
 //  Created by Andrew Smith on 8/15/12.
-//  Copyright (c) 2012 eGraphs. All rights reserved.
+//  Copyright (c) 2012 Andrew B. Smith. All rights reserved.
 //
 
 #import "StoreMadContextTests.h"

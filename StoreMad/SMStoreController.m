@@ -34,9 +34,7 @@
 
 @implementation SMStoreController
 
-@synthesize storeURL,
-            modelURL,
-            managedObjectContext,
+@synthesize managedObjectContext,
             managedObjectModel,
             persistentStoreCoordinator;
 
@@ -66,6 +64,9 @@
         managedObjectContext = nil;
         managedObjectModel = nil;
         persistentStoreCoordinator = nil;
+        
+        // Rebuild
+        [self managedObjectContext];
     }
 }
 
@@ -84,7 +85,7 @@
 
 - (void)saveContext
 {
-    [self.managedObjectContext queueBlockSave];
+    [self.managedObjectContext queueBlockSaveAndWait];
 }
 
 - (void)shouldSaveOnAppStateChanges:(BOOL)shouldSave
@@ -147,7 +148,7 @@
         return managedObjectModel;
     }
     
-    NSAssert(modelURL, @"ModelURL was nil!  Could not find resource");
+    NSAssert(_modelURL, @"ModelURL was nil!  Could not find resource");
     
     managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:self.modelURL];    
     return managedObjectModel;
@@ -190,12 +191,18 @@
         
         NSLog(@"The model used to open the store is incompatable with the one used to create the store! Performing lightweight migration.");
         
-        NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
-                                 [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+        NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption : @(YES),
+                                  NSInferMappingModelAutomaticallyOption       : @(YES)};
         
         if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:self.storeURL options:options error:&error]) {
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();  
+            
+            // probably shouldn't do this??
+            [[NSFileManager defaultManager] removeItemAtURL:self.storeURL error:nil];
+
+            if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:self.storeURL options:options error:&error]) {
+                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+                abort();
+            }
         }
         
     }    

@@ -192,7 +192,7 @@
                       withRequest:(NSFetchRequest *)request
 {
     // This could be really slow.  Use carefully.
-    [request setPropertiesToFetch:[NSArray arrayWithObject:propertyName]];
+    [request setPropertiesToFetch:@[propertyName]];
     NSArray *results = [self executeFetchRequest:request];
     
     NSMutableArray *propertyValuesList = [NSMutableArray arrayWithCapacity:results.count];

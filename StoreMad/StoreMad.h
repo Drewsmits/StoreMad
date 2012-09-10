@@ -31,4 +31,8 @@
 
 @interface StoreMad : NSObject
 
++ (SMStoreController *)newStoreControllerWithName:(NSString *)storeName storeURL:(NSURL *)storeURL modelURL:(NSURL *)modelURL;
++ (SMStoreController *)storeControllerNamed:(NSString *)storeName;
++ (NSManagedObjectContext *)contextForStoreControllerNamed:(NSString *)storeName;
+
 @end

@@ -27,4 +27,33 @@
 
 @implementation StoreMad
 
+static NSMutableDictionary *storeControllers = nil;
+
++(void) initialize
+{
+    if (!storeControllers) {
+        storeControllers = [[NSMutableDictionary alloc] init];
+    }
+}
+
++ (SMStoreController *)newStoreControllerWithName:(NSString *)storeName
+                                         storeURL:(NSURL *)storeURL
+                                         modelURL:(NSURL *)modelURL
+{
+    SMStoreController *storeController = [SMStoreController storeControllerWithStoreURL:storeURL andModelURL:modelURL];
+    [storeControllers setValue:storeController forKey:storeName];
+    return storeController;
+}
+
++ (SMStoreController *)storeControllerNamed:(NSString *)storeName
+{
+    return (SMStoreController *)[storeControllers valueForKey:storeName]  ;
+}
+
++ (NSManagedObjectContext *)contextForStoreControllerNamed:(NSString *)storeName
+{
+    SMStoreController *controller = [self storeControllerNamed:storeName];
+    return controller.managedObjectContext;
+}
+
 @end
