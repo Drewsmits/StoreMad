@@ -29,13 +29,14 @@
 
 @property (copy) NSURL *storeURL;
 @property (copy) NSURL *modelURL;
+@property (nonatomic, readonly) NSMutableDictionary *contextObservers;
 
 /**
  Initialized with NSMainQueueConcurrencyType.  Meant as the main thread store.
  */
-@property (strong, readonly) NSManagedObjectContext *managedObjectContext;
-@property (strong, readonly) NSManagedObjectModel *managedObjectModel;
-@property (strong, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, readonly) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 + (SMStoreController *)storeControllerWithStoreURL:(NSURL *)storeURL 
                                        andModelURL:(NSURL *)modelURL;
@@ -44,6 +45,12 @@
 - (void)deleteStore;
 - (void)saveContext;
 - (void)shouldSaveOnAppStateChanges:(BOOL)shouldSave;
+
+- (void)addContextDidSaveObserverNamed:(NSString *)name
+           forObjectsMatchingPredicate:(NSPredicate *)predicate
+                          didSaveBlock:(void (^)())didSaveBlock;
+
+- (void)removeContextDidSaveObserverNamed:(NSString *)name;
 
 /**
  Returns a new NSManagedObjectContext with a concurrency type of NSPrivateQueueConcurrencyType

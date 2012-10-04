@@ -27,6 +27,7 @@
 
 #import <UIKit/UIApplication.h>
 #import "NSManagedObjectContext+StoreMad.h"
+#import "SMContextObserver.h"
 
 @interface SMStoreController ()
 
@@ -34,9 +35,9 @@
 
 @implementation SMStoreController
 
-@synthesize managedObjectContext,
-            managedObjectModel,
-            persistentStoreCoordinator;
+@synthesize managedObjectContext = _managedObjectContext,
+            managedObjectModel = _managedObjectModel,
+            persistentStoreCoordinator = _persistentStoreCoordinator;
 
 - (void)dealloc
 {
@@ -46,10 +47,19 @@
 + (SMStoreController *)storeControllerWithStoreURL:(NSURL *)storeURL 
                                        andModelURL:(NSURL *)modelURL
 {
-    SMStoreController *controller = [[self alloc] init];
+    SMStoreController *controller = [self new];
     controller.storeURL = storeURL;
     controller.modelURL = modelURL;
     return controller;
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _contextObservers = [NSMutableDictionary new];
+    }
+    return self;
 }
 
 #pragma mark
@@ -61,9 +71,9 @@
         [self deleteStore];
         
         // Nil local variables
-        managedObjectContext = nil;
-        managedObjectModel = nil;
-        persistentStoreCoordinator = nil;
+        _managedObjectContext = nil;
+        _managedObjectModel = nil;
+        _persistentStoreCoordinator = nil;
         
         // Rebuild
         [self managedObjectContext];
@@ -113,6 +123,26 @@
                                                object:nil];
 }
 
+#pragma mark - Observer
+
+- (void)addContextDidSaveObserverNamed:(NSString *)name
+           forObjectsMatchingPredicate:(NSPredicate *)predicate
+                          didSaveBlock:(void (^)())didSaveBlock
+{
+    SMContextObserver *observer = [SMContextObserver new];
+    observer.name = name;
+    observer.predicate = predicate;
+    observer.context = self.managedObjectContext;
+    observer.didSaveBlock = didSaveBlock;
+    [observer startObservingSaveNotifications];
+    [_contextObservers setValue:observer forKey:name];
+}
+
+- (void)removeContextDidSaveObserverNamed:(NSString *)name
+{
+    [_contextObservers removeObjectForKey:name];
+}
+
 #pragma mark - CoreData Stack
 
 - (NSManagedObjectContext *)threadSafeManagedObjectContext
@@ -129,41 +159,41 @@
 
 - (NSManagedObjectContext *)managedObjectContext 
 {
-    if (managedObjectContext != nil) {
-        return managedObjectContext;
+    if (_managedObjectContext != nil) {
+        return _managedObjectContext;
     }
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
-        managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-        [managedObjectContext setPersistentStoreCoordinator:coordinator];
+        _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+        [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
     
-    return managedObjectContext;
+    return _managedObjectContext;
 }
 
 - (NSManagedObjectModel *)managedObjectModel
 {
-    if (managedObjectModel != nil) {
-        return managedObjectModel;
+    if (_managedObjectModel != nil) {
+        return _managedObjectModel;
     }
     
     NSAssert(_modelURL, @"ModelURL was nil!  Could not find resource");
     
-    managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:self.modelURL];    
-    return managedObjectModel;
+    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:self.modelURL];
+    return _managedObjectModel;
 }
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator 
 {
-    if (persistentStoreCoordinator != nil) {
-        return persistentStoreCoordinator;
+    if (_persistentStoreCoordinator != nil) {
+        return _persistentStoreCoordinator;
     }
     
     NSError *error = nil;
-    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     
-    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:self.storeURL options:nil error:&error])
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:self.storeURL options:nil error:&error])
     {
         /*
          Replace this implementation with code to handle the error appropriately.
@@ -194,12 +224,12 @@
         NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption : @(YES),
                                   NSInferMappingModelAutomaticallyOption       : @(YES)};
         
-        if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:self.storeURL options:options error:&error]) {
+        if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:self.storeURL options:options error:&error]) {
             
-            // probably shouldn't do this??
+            // probably shouldn't do this??!
             //[[NSFileManager defaultManager] removeItemAtURL:self.storeURL error:nil];
 
-            if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:self.storeURL options:options error:&error]) {
+            if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:self.storeURL options:options error:&error]) {
                 NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
                 abort();
             }
@@ -207,7 +237,7 @@
         
     }    
     
-    return persistentStoreCoordinator;
+    return _persistentStoreCoordinator;
 }
 
 #pragma mark - File Directories

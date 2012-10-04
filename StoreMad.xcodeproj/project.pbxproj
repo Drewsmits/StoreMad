@@ -28,6 +28,8 @@
 		DB9D043E15DC0B290035FC30 /* StoreMadTests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB9D043C15DC0B290035FC30 /* StoreMadTests.xcdatamodeld */; };
 		DB9D044115DC0DD70035FC30 /* StoreMadContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9D044015DC0DD70035FC30 /* StoreMadContextTests.m */; };
 		DB9D044215DC0E300035FC30 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0DE4E815B9BDD4007F382F /* CoreData.framework */; };
+		DBD7709A161D302E00853D7C /* SMContextObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = DBD77098161D302E00853D7C /* SMContextObserver.h */; };
+		DBD7709B161D302E00853D7C /* SMContextObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD77099161D302E00853D7C /* SMContextObserver.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		DB9D043D15DC0B290035FC30 /* StoreMadTests.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StoreMadTests.xcdatamodel; sourceTree = "<group>"; };
 		DB9D043F15DC0DD70035FC30 /* StoreMadContextTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreMadContextTests.h; sourceTree = "<group>"; };
 		DB9D044015DC0DD70035FC30 /* StoreMadContextTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreMadContextTests.m; sourceTree = "<group>"; };
+		DBD77098161D302E00853D7C /* SMContextObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMContextObserver.h; sourceTree = "<group>"; };
+		DBD77099161D302E00853D7C /* SMContextObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMContextObserver.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +135,8 @@
 				DB0DE4A915B9BB5F007F382F /* StoreMad.m */,
 				DB0DE4E415B9BDC6007F382F /* SMStoreController.h */,
 				DB0DE4E515B9BDC6007F382F /* SMStoreController.m */,
+				DBD77098161D302E00853D7C /* SMContextObserver.h */,
+				DBD77099161D302E00853D7C /* SMContextObserver.m */,
 				DB0DE55015B9CCEE007F382F /* NSManagedObject+StoreMad.h */,
 				DB0DE55115B9CCEF007F382F /* NSManagedObject+StoreMad.m */,
 				DB0DE55415B9CE1A007F382F /* NSManagedObjectContext+StoreMad.h */,
@@ -193,6 +199,7 @@
 				DB0DE55215B9CCEF007F382F /* NSManagedObject+StoreMad.h in Headers */,
 				DB0DE55615B9CE1B007F382F /* NSManagedObjectContext+StoreMad.h in Headers */,
 				DB0DE59115B9DDDB007F382F /* StoreMad.h in Headers */,
+				DBD7709A161D302E00853D7C /* SMContextObserver.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +305,7 @@
 				DB0DE4E715B9BDC6007F382F /* SMStoreController.m in Sources */,
 				DB0DE55315B9CCEF007F382F /* NSManagedObject+StoreMad.m in Sources */,
 				DB0DE55715B9CE1B007F382F /* NSManagedObjectContext+StoreMad.m in Sources */,
+				DBD7709B161D302E00853D7C /* SMContextObserver.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
