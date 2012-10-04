@@ -23,4 +23,21 @@
     STAssertNil(object, @"Object should be nil!");
 }
 
+- (void)testDeleteObjectAtURI
+{
+    STFail(@"pow");
+}
+
+- (void)testDeleteObjects
+{
+    
+}
+
+- (void)testQueueDeleteObject
+
+//- (void)deleteObjectAtURI:(NSURL *)objectURI;
+//- (void)deleteObjects:(NSArray *)objects;
+//- (void)queueDeleteObject:(NSManagedObject *)object;
+
+
 @end

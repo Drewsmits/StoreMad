@@ -197,7 +197,7 @@
         if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:self.storeURL options:options error:&error]) {
             
             // probably shouldn't do this??
-            [[NSFileManager defaultManager] removeItemAtURL:self.storeURL error:nil];
+            //[[NSFileManager defaultManager] removeItemAtURL:self.storeURL error:nil];
 
             if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:self.storeURL options:options error:&error]) {
                 NSLog(@"Unresolved error %@, %@", error, [error userInfo]);

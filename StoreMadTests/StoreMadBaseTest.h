@@ -17,4 +17,6 @@
     SMStoreController *storeController;
 }
 
+@property (readonly) NSManagedObjectContext *testContext;
+
 @end

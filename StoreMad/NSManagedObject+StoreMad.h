@@ -22,16 +22,47 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
+// FAD = "From Apple Docs"
 
 #import <CoreData/CoreData.h>
 
 @interface NSManagedObject (StoreMad)
 
+/**
+ Shortcut to the objects URI.
+ 
+ FAD: "An NSURL object containing a URI that provides an archiveable reference to the
+ object which the receiver represents."
+ */
 @property (nonatomic, readonly) NSURL *objectURI;
+
+/**
+ Sometimes CoreData will fault a particular instance, while there is still
+ the same object in the store.  Check to see if there is a clone.
+ 
+ FAD: "The method (isDeleted) returns YES if Core Data will ask the persistent store to delete
+ the object during the next save operation. It may return NO at other times,
+ particularly after the object has been deleted. The immediacy with which
+ it will stop returning YES depends on where the object is in the process of being deleted."
+ */
 @property (nonatomic, readonly) BOOL hasBeenDeleted;
 
+/**
+ Checks the objectID to see if it is permanent.
+ 
+ FAD: "New objects inserted into a managed object context are assigned a temporary ID
+ which is replaced with a permanent one once the object gets saved to a persistent store."
+ */
+@property (nonatomic, readonly) BOOL hasBeenSaved;
+
+/**
+ Queues and waits on an object insertion block for the objects class.
+ */
 + (id)createInContext:(NSManagedObjectContext *)context;
 
+/**
+ Queues and waits a block to delete the object in it's current context
+ */
 - (void)deleteObject;
 
 @end

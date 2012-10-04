@@ -24,6 +24,7 @@
 //
 
 #import "NSManagedObject+StoreMad.h"
+#import "NSManagedObjectContext+StoreMad.h"
 
 @implementation NSManagedObject (StoreMad)
 
@@ -56,20 +57,27 @@
     }
 }
 
+- (BOOL)hasBeenSaved
+{
+    return !self.objectID.isTemporaryID;
+}
+
 + (id)createInContext:(NSManagedObjectContext *)context
-{            
-    NSEntityDescription *entity = [NSEntityDescription entityForName:[self description] 
-                                              inManagedObjectContext:context];
-    
-    id obj = [[self alloc] initWithEntity:entity 
-           insertIntoManagedObjectContext:context];
-    
+{
+    __block id obj;
+    [context performBlockAndWait:^{
+        NSEntityDescription *entity = [NSEntityDescription entityForName:[self description] 
+                                                  inManagedObjectContext:context];
+        
+        obj = [[self alloc] initWithEntity:entity 
+            insertIntoManagedObjectContext:context];
+    }];
     return obj;
 }
 
 - (void)deleteObject
 {
-    [self.managedObjectContext deleteObject:self];
+    [self.managedObjectContext queueDeleteObject:self];
 }
 
 @end

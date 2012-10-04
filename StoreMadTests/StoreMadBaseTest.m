@@ -25,4 +25,9 @@
     storeController = nil;
 }
 
+- (NSManagedObjectContext *)testContext
+{
+    return storeController.managedObjectContext;
+}
+
 @end
