@@ -25,19 +25,29 @@
 
 - (void)testDeleteObjectAtURI
 {
-    STFail(@"pow");
+    NSManagedObject *employee = [storeController.managedObjectContext insertNewObjectForEntityNamed:@"Employee"];
+    [storeController.managedObjectContext deleteObjectAtURI:employee.objectURI];
+    STAssertTrue([employee hasBeenDeleted], @"Object should be deleted");
 }
 
 - (void)testDeleteObjects
 {
-    
+    NSManagedObject *employee1 = [storeController.managedObjectContext insertNewObjectForEntityNamed:@"Employee"];
+    NSManagedObject *employee2 = [storeController.managedObjectContext insertNewObjectForEntityNamed:@"Employee"];
+    NSManagedObject *employee3 = [storeController.managedObjectContext insertNewObjectForEntityNamed:@"Employee"];
+
+    [storeController.managedObjectContext deleteObjects:@[employee1, employee2, employee3]];
+
+    STAssertTrue([employee1 hasBeenDeleted], @"Object should be deleted");
+    STAssertTrue([employee2 hasBeenDeleted], @"Object should be deleted");
+    STAssertTrue([employee3 hasBeenDeleted], @"Object should be deleted");
 }
 
 - (void)testQueueDeleteObject
-
-//- (void)deleteObjectAtURI:(NSURL *)objectURI;
-//- (void)deleteObjects:(NSArray *)objects;
-//- (void)queueDeleteObject:(NSManagedObject *)object;
-
+{
+    NSManagedObject *employee = [storeController.managedObjectContext insertNewObjectForEntityNamed:@"Employee"];
+    [storeController.managedObjectContext queueDeleteObject:employee];
+    STAssertTrue([employee hasBeenDeleted], @"Object should be deleted");
+}
 
 @end

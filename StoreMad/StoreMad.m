@@ -29,7 +29,7 @@
 
 static NSMutableDictionary *storeControllers = nil;
 
-+(void) initialize
++ (void) initialize
 {
     if (!storeControllers) {
         storeControllers = [[NSMutableDictionary alloc] init];

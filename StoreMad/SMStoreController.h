@@ -24,12 +24,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SMContextObserver.h"
 
 @interface SMStoreController : NSObject
 
 @property (copy) NSURL *storeURL;
 @property (copy) NSURL *modelURL;
-@property (nonatomic, readonly) NSMutableDictionary *contextObservers;
+@property (nonatomic, readonly) NSMutableSet *contextObservers;
 
 /**
  Initialized with NSMainQueueConcurrencyType.  Meant as the main thread store.
@@ -46,11 +47,11 @@
 - (void)saveContext;
 - (void)shouldSaveOnAppStateChanges:(BOOL)shouldSave;
 
-- (void)addContextDidSaveObserverNamed:(NSString *)name
-           forObjectsMatchingPredicate:(NSPredicate *)predicate
-                          didSaveBlock:(void (^)())didSaveBlock;
+- (void)addContextObserver:(SMContextObserver *)contextObserver;
+- (void)removeContextObserver:(SMContextObserver *)contextObserver;
 
-- (void)removeContextDidSaveObserverNamed:(NSString *)name;
+- (void)stopAllContextObservers;
+- (void)startAllContextObservers;
 
 /**
  Returns a new NSManagedObjectContext with a concurrency type of NSPrivateQueueConcurrencyType

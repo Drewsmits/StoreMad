@@ -57,7 +57,7 @@
 {
     self = [super init];
     if (self) {
-        _contextObservers = [NSMutableDictionary new];
+        _contextObservers = [NSMutableSet new];
     }
     return self;
 }
@@ -77,6 +77,10 @@
         
         // Rebuild
         [self managedObjectContext];
+        
+        // Observers
+        _contextObservers = nil;
+        _contextObservers = [NSMutableSet new];
     }
 }
 
@@ -125,22 +129,31 @@
 
 #pragma mark - Observer
 
-- (void)addContextDidSaveObserverNamed:(NSString *)name
-           forObjectsMatchingPredicate:(NSPredicate *)predicate
-                          didSaveBlock:(void (^)())didSaveBlock
+- (void)addContextObserver:(SMContextObserver *)contextObserver
 {
-    SMContextObserver *observer = [SMContextObserver new];
-    observer.name = name;
-    observer.predicate = predicate;
-    observer.context = self.managedObjectContext;
-    observer.didSaveBlock = didSaveBlock;
-    [observer startObservingSaveNotifications];
-    [_contextObservers setValue:observer forKey:name];
+    if (!contextObserver) return;
+    [contextObserver startObservingNotifications];
+    [self.contextObservers addObject:contextObserver];
 }
 
-- (void)removeContextDidSaveObserverNamed:(NSString *)name
+- (void)removeContextObserver:(SMContextObserver *)contextObserver
 {
-    [_contextObservers removeObjectForKey:name];
+    [contextObserver stopObservingNotifications];
+    [self.contextObservers removeObject:contextObserver];
+}
+
+- (void)stopAllContextObservers
+{
+    [self.contextObservers enumerateObjectsUsingBlock:^(SMContextObserver *obj, BOOL *stop) {
+        [obj stopObservingNotifications];
+    }];
+}
+
+- (void)startAllContextObservers
+{
+    [self.contextObservers enumerateObjectsUsingBlock:^(SMContextObserver *obj, BOOL *stop) {
+        [obj startObservingNotifications];
+    }];
 }
 
 #pragma mark - CoreData Stack

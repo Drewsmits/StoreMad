@@ -26,6 +26,8 @@
 #import <Foundation/Foundation.h>
 
 #import "SMStoreController.h"
+#import "SMContextObserver.h"
+#import "SMTableViewDataSource.h"
 #import "NSManagedObject+StoreMad.h"
 #import "NSManagedObjectContext+StoreMad.h"
 

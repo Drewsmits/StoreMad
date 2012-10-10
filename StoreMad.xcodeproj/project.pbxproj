@@ -22,13 +22,16 @@
 		DB0DE55615B9CE1B007F382F /* NSManagedObjectContext+StoreMad.h in Headers */ = {isa = PBXBuildFile; fileRef = DB0DE55415B9CE1A007F382F /* NSManagedObjectContext+StoreMad.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB0DE55715B9CE1B007F382F /* NSManagedObjectContext+StoreMad.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0DE55515B9CE1A007F382F /* NSManagedObjectContext+StoreMad.m */; };
 		DB0DE59115B9DDDB007F382F /* StoreMad.h in Headers */ = {isa = PBXBuildFile; fileRef = DB0DE4A815B9BB5F007F382F /* StoreMad.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DB7BF649161E2E0400EAAE5E /* SMTableViewDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = DB7BF647161E2E0400EAAE5E /* SMTableViewDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DB7BF64A161E2E0400EAAE5E /* SMTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7BF648161E2E0400EAAE5E /* SMTableViewDataSource.m */; };
+		DB9343091624F1AD0084C6FC /* StoreMadContextObserverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9343081624F1AD0084C6FC /* StoreMadContextObserverTests.m */; };
 		DB9A837D16165FE000910CEB /* StoreMadObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9A837C16165FE000910CEB /* StoreMadObjectTests.m */; };
 		DB9A83811616609A00910CEB /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9A83801616609A00910CEB /* Employee.m */; };
 		DB9D043A15DC082D0035FC30 /* StoreMadBaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9D043915DC082D0035FC30 /* StoreMadBaseTest.m */; };
 		DB9D043E15DC0B290035FC30 /* StoreMadTests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB9D043C15DC0B290035FC30 /* StoreMadTests.xcdatamodeld */; };
 		DB9D044115DC0DD70035FC30 /* StoreMadContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9D044015DC0DD70035FC30 /* StoreMadContextTests.m */; };
 		DB9D044215DC0E300035FC30 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0DE4E815B9BDD4007F382F /* CoreData.framework */; };
-		DBD7709A161D302E00853D7C /* SMContextObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = DBD77098161D302E00853D7C /* SMContextObserver.h */; };
+		DBD7709A161D302E00853D7C /* SMContextObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = DBD77098161D302E00853D7C /* SMContextObserver.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DBD7709B161D302E00853D7C /* SMContextObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD77099161D302E00853D7C /* SMContextObserver.m */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +63,10 @@
 		DB0DE55115B9CCEF007F382F /* NSManagedObject+StoreMad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+StoreMad.m"; sourceTree = "<group>"; };
 		DB0DE55415B9CE1A007F382F /* NSManagedObjectContext+StoreMad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+StoreMad.h"; sourceTree = "<group>"; };
 		DB0DE55515B9CE1A007F382F /* NSManagedObjectContext+StoreMad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+StoreMad.m"; sourceTree = "<group>"; };
+		DB7BF647161E2E0400EAAE5E /* SMTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTableViewDataSource.h; sourceTree = "<group>"; };
+		DB7BF648161E2E0400EAAE5E /* SMTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTableViewDataSource.m; sourceTree = "<group>"; };
+		DB9343071624F1AD0084C6FC /* StoreMadContextObserverTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreMadContextObserverTests.h; sourceTree = "<group>"; };
+		DB9343081624F1AD0084C6FC /* StoreMadContextObserverTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreMadContextObserverTests.m; sourceTree = "<group>"; };
 		DB9A837B16165FE000910CEB /* StoreMadObjectTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreMadObjectTests.h; sourceTree = "<group>"; };
 		DB9A837C16165FE000910CEB /* StoreMadObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreMadObjectTests.m; sourceTree = "<group>"; };
 		DB9A837F1616609A00910CEB /* Employee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee.h; sourceTree = "<group>"; };
@@ -131,16 +138,18 @@
 		DB0DE4A515B9BB5F007F382F /* StoreMad */ = {
 			isa = PBXGroup;
 			children = (
-				DB0DE4A815B9BB5F007F382F /* StoreMad.h */,
-				DB0DE4A915B9BB5F007F382F /* StoreMad.m */,
-				DB0DE4E415B9BDC6007F382F /* SMStoreController.h */,
-				DB0DE4E515B9BDC6007F382F /* SMStoreController.m */,
-				DBD77098161D302E00853D7C /* SMContextObserver.h */,
-				DBD77099161D302E00853D7C /* SMContextObserver.m */,
 				DB0DE55015B9CCEE007F382F /* NSManagedObject+StoreMad.h */,
 				DB0DE55115B9CCEF007F382F /* NSManagedObject+StoreMad.m */,
 				DB0DE55415B9CE1A007F382F /* NSManagedObjectContext+StoreMad.h */,
 				DB0DE55515B9CE1A007F382F /* NSManagedObjectContext+StoreMad.m */,
+				DBD77098161D302E00853D7C /* SMContextObserver.h */,
+				DBD77099161D302E00853D7C /* SMContextObserver.m */,
+				DB0DE4E415B9BDC6007F382F /* SMStoreController.h */,
+				DB0DE4E515B9BDC6007F382F /* SMStoreController.m */,
+				DB7BF647161E2E0400EAAE5E /* SMTableViewDataSource.h */,
+				DB7BF648161E2E0400EAAE5E /* SMTableViewDataSource.m */,
+				DB0DE4A815B9BB5F007F382F /* StoreMad.h */,
+				DB0DE4A915B9BB5F007F382F /* StoreMad.m */,
 				DB0DE4A615B9BB5F007F382F /* Supporting Files */,
 			);
 			path = StoreMad;
@@ -164,6 +173,8 @@
 				DB9A837C16165FE000910CEB /* StoreMadObjectTests.m */,
 				DB9D043F15DC0DD70035FC30 /* StoreMadContextTests.h */,
 				DB9D044015DC0DD70035FC30 /* StoreMadContextTests.m */,
+				DB9343071624F1AD0084C6FC /* StoreMadContextObserverTests.h */,
+				DB9343081624F1AD0084C6FC /* StoreMadContextObserverTests.m */,
 				DB9D043C15DC0B290035FC30 /* StoreMadTests.xcdatamodeld */,
 				DB0DE4BA15B9BB5F007F382F /* Supporting Files */,
 			);
@@ -200,6 +211,7 @@
 				DB0DE55615B9CE1B007F382F /* NSManagedObjectContext+StoreMad.h in Headers */,
 				DB0DE59115B9DDDB007F382F /* StoreMad.h in Headers */,
 				DBD7709A161D302E00853D7C /* SMContextObserver.h in Headers */,
+				DB7BF649161E2E0400EAAE5E /* SMTableViewDataSource.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +318,7 @@
 				DB0DE55315B9CCEF007F382F /* NSManagedObject+StoreMad.m in Sources */,
 				DB0DE55715B9CE1B007F382F /* NSManagedObjectContext+StoreMad.m in Sources */,
 				DBD7709B161D302E00853D7C /* SMContextObserver.m in Sources */,
+				DB7BF64A161E2E0400EAAE5E /* SMTableViewDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +331,7 @@
 				DB9D044115DC0DD70035FC30 /* StoreMadContextTests.m in Sources */,
 				DB9A837D16165FE000910CEB /* StoreMadObjectTests.m in Sources */,
 				DB9A83811616609A00910CEB /* Employee.m in Sources */,
+				DB9343091624F1AD0084C6FC /* StoreMadContextObserverTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

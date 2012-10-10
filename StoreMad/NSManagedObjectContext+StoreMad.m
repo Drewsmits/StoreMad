@@ -238,7 +238,7 @@
 
 - (NSFetchRequest *)fetchRequestForObject:(NSManagedObject *)object
 {
-    return [self fetchRequestForObjectNamed:object.description];
+    return [self fetchRequestForObjectNamed:object.entity.name];
 }
 
 - (NSFetchRequest *)findAllFetchRequestForObject:(NSManagedObject *)object

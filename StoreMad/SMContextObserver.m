@@ -27,56 +27,76 @@
 
 @implementation SMContextObserver
 
+@synthesize notificationName = _notificationName;
+
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)performObserverBlock:(SMContextObserverBlock)block
-             forNotification:(NSNotification *)notification
+- (void)startObservingNotifications
 {
+    // Bail if no notifaction name
+    NSAssert(self.notificationName, @"SMContextObserver requires a non-nil notification name");
+    if (!self.notificationName) return;
+    
+    // Bail if no context
+    NSAssert(self.context, @"SMContextObserver requires a non-nil context");
+    if (!self.context) return;
+    
+    // Standard notification center
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(processContextNotification:)
+                                                 name:self.notificationName
+                                               object:self.context];
+}
+
+- (void)stopObservingNotifications
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)processContextNotification:(NSNotification *)notification
+{
+    // Bail if no work block
+    if (!self.workBlock) return;
+    
+    // Grab objects from notification.  These are standard keys, as defined by docs
     NSSet *updatedObjects  = [[notification userInfo] objectForKey:NSUpdatedObjectsKey];
     NSSet *insertedObjects = [[notification userInfo] objectForKey:NSInsertedObjectsKey];
     NSSet *deletedObjects  = [[notification userInfo] objectForKey:NSDeletedObjectsKey];
     
+    // Filter sets using predicate
+    if (!self.predicate) self.predicate = [NSPredicate predicateWithFormat:@"1 = 1"];
+    
     NSSet *updatedObjectsFiltered  = [updatedObjects filteredSetUsingPredicate:self.predicate];
     NSSet *insertedObjectsFiltered = [insertedObjects filteredSetUsingPredicate:self.predicate];
     NSSet *deletedObjectsFiltered  = [deletedObjects filteredSetUsingPredicate:self.predicate];
-
-    if (updatedObjects.count == 0 && insertedObjects.count == 0 && deletedObjects.count == 0) return;
     
-    block(updatedObjectsFiltered, insertedObjectsFiltered, deletedObjectsFiltered);
+    // If there is nothing, bail.  Might want to pull this out.  Might be a situation where we want
+    // to know if there are no objects.
+    if (updatedObjectsFiltered.count == 0 && insertedObjectsFiltered.count == 0 && deletedObjectsFiltered.count == 0) return;
+    
+    // Perform work
+    self.workBlock(updatedObjectsFiltered, insertedObjectsFiltered, deletedObjectsFiltered);
 }
 
-#pragma mark - Save
-
-- (void)startObservingSaveNotifications
+- (void)setNotificationName:(NSString *)notificationName
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(contextDidSave:)
-                                                 name:NSManagedObjectContextDidSaveNotification
-                                               object:self.context];
+    // Only allow observation of standard context notifications
+    NSArray *validNotifications = @[NSManagedObjectContextWillSaveNotification,
+                                    NSManagedObjectContextDidSaveNotification,
+                                    NSManagedObjectContextObjectsDidChangeNotification];
+    
+    BOOL valid = [validNotifications containsObject:notificationName];
+    NSAssert(valid, @"Notification name must be a valide NSManagedObjectContext notification type.");
+    if (!valid) return;
+    _notificationName = [notificationName copy];
 }
 
-- (void)contextDidSave:(NSNotification *)notification
+- (NSString *)notificationName
 {
-    [self performObserverBlock:self.didSaveBlock forNotification:notification];
-}
-
-#pragma mark - Change
-
-- (void)startObservingChangeNotifications
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(contextDidChange:)
-                                                 name:NSManagedObjectContextObjectsDidChangeNotification
-                                               object:self.context];
-}
-
-
-- (void)contextDidChange:(NSNotification *)notification
-{
-    [self performObserverBlock:self.didChangeBlock forNotification:notification];
+    return _notificationName;
 }
 
 @end
