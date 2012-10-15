@@ -9,27 +9,31 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@protocol SMTableView <NSObject>
+@protocol SMTableViewController <NSObject>
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
 
 @interface SMTableViewDataSource : NSObject <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, weak) UITableViewController *tableViewController;
 
-- (void)setupWithTableView:(UITableView *)tableView
-              fetchRequest:(NSFetchRequest *)fetchRequest
-                   context:(NSManagedObjectContext *)context
-        sectionNameKeyPath:(NSString *)sectionNameKeyPath
-                 cacheName:(NSString *)cacheName;
+- (void)setupWithTableViewController:(UITableViewController *)tableViewController
+                        fetchRequest:(NSFetchRequest *)fetchRequest
+                             context:(NSManagedObjectContext *)context
+                  sectionNameKeyPath:(NSString *)sectionNameKeyPath
+                           cacheName:(NSString *)cacheName;
 
 - (void)performFetch;
+
+- (id)objectAtIndexPath:(NSIndexPath *)index;
 
 - (NSInteger)numberOfSections;
 - (NSInteger)numberOfRowsInSection:(NSInteger)section;
 - (NSString *)titleForHeaderInSection:(NSInteger)section;
 - (NSArray *)sectionIndexTitles;
 - (NSInteger)sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index;
+
+- (BOOL)isEmpty;
 
 @end

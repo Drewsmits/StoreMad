@@ -10,14 +10,14 @@
 
 @implementation SMTableViewDataSource
 
-- (void)setupWithTableView:(UITableView *)tableView
-              fetchRequest:(NSFetchRequest *)fetchRequest
-                   context:(NSManagedObjectContext *)context
-        sectionNameKeyPath:(NSString *)sectionNameKeyPath
-                 cacheName:(NSString *)cacheName
+- (void)setupWithTableViewController:(UITableViewController *)tableViewController
+                        fetchRequest:(NSFetchRequest *)fetchRequest
+                             context:(NSManagedObjectContext *)context
+                  sectionNameKeyPath:(NSString *)sectionNameKeyPath
+                           cacheName:(NSString *)cacheName
 {
-    BOOL tableViewConforms = [tableView conformsToProtocol:@protocol(SMTableView)];
-    NSAssert(!tableViewConforms, @"Tableview must conform to SMTableView protocol!");
+    BOOL tableViewConforms = [tableViewController conformsToProtocol:@protocol(SMTableViewController)];
+    NSAssert(tableViewConforms, @"TableViewController must conform to SMTableViewController protocol!");
     if (!tableViewConforms) return;
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
@@ -25,11 +25,18 @@
                                                                           sectionNameKeyPath:sectionNameKeyPath
                                                                                    cacheName:cacheName];
     self.fetchedResultsController.delegate = self;
+    
+    self.tableViewController = tableViewController;
 }
 
 - (void)performFetch
 {
     [self.fetchedResultsController performFetch:nil];
+}
+
+- (id)objectAtIndexPath:(NSIndexPath *)index
+{
+    return [self.fetchedResultsController objectAtIndexPath:index];
 }
 
 #pragma mark - Table view data source helpers
@@ -65,17 +72,19 @@
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
-    [self.tableView beginUpdates];
+    UITableView *tableView = self.tableViewController.tableView;
+
+    [tableView beginUpdates];
     
     // Update sections
-    for (int i = self.tableView.numberOfSections; i < controller.sections.count; i++) {
-        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:i] withRowAnimation:UITableViewRowAnimationFade];
+    for (int i = tableView.numberOfSections; i < controller.sections.count; i++) {
+        [tableView insertSections:[NSIndexSet indexSetWithIndex:i] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
 {
-    UITableView *tableView = self.tableView;
+    UITableView *tableView = self.tableViewController.tableView;
     
     //    NSLog(@"sections:%i", controller.sections.count);
     //    NSLog(@"section:%i row:%i", indexPath.section, indexPath.row);
@@ -84,29 +93,31 @@
     
     switch(type) {
         case NSFetchedResultsChangeInsert:
-            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
         case NSFetchedResultsChangeDelete:
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
         case NSFetchedResultsChangeUpdate:
-            [(id<SMTableView>)self.tableView configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [(id<SMTableViewController>)self.tableViewController configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
         case NSFetchedResultsChangeMove:
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
 {
+    UITableView *tableView = self.tableViewController.tableView;
+
     switch(type) {
         case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
             break;
         case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
             break;
         case NSFetchedResultsChangeMove:
             break;
@@ -118,8 +129,12 @@
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableView endUpdates];
+    [self.tableViewController.tableView endUpdates];
 }
 
-
+- (BOOL)isEmpty
+{
+    return (self.fetchedResultsController.fetchedObjects.count < 1);
+}
+        
 @end
