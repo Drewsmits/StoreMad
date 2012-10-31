@@ -132,6 +132,7 @@
 - (void)addContextObserver:(SMContextObserver *)contextObserver
 {
     if (!contextObserver) return;
+    contextObserver.context = self.managedObjectContext;
     [contextObserver startObservingNotifications];
     [self.contextObservers addObject:contextObserver];
 }
@@ -140,6 +141,16 @@
 {
     [contextObserver stopObservingNotifications];
     [self.contextObservers removeObject:contextObserver];
+}
+
+- (SMContextObserver *)addContextDidSaveObserverWithWorkBlock:(SMContextObserverBlock)workBlock
+{
+    SMContextObserver *observer = [SMContextObserver new];
+    observer.notificationName = NSManagedObjectContextDidSaveNotification;
+    observer.predicate = [NSPredicate predicateWithFormat:@"1 == 1"];
+    observer.workBlock = workBlock;
+    [self addContextObserver:observer];
+    return observer;
 }
 
 - (void)stopAllContextObservers

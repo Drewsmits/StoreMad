@@ -29,10 +29,10 @@ typedef void (^SMContextObserverBlock)(NSSet *updateObjects, NSSet *insertedOjec
 
 @interface SMContextObserver : NSObject
 
-@property (nonatomic, strong) NSPredicate *predicate;
 @property (nonatomic, strong) NSManagedObjectContext *context;
+@property (nonatomic, strong) NSPredicate *predicate;
 @property (nonatomic, copy) NSString *notificationName;
-@property (copy) SMContextObserverBlock workBlock;
+@property (nonatomic, copy) SMContextObserverBlock workBlock;
 
 - (void)startObservingNotifications;
 - (void)stopObservingNotifications;

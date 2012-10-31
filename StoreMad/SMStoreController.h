@@ -49,6 +49,7 @@
 
 - (void)addContextObserver:(SMContextObserver *)contextObserver;
 - (void)removeContextObserver:(SMContextObserver *)contextObserver;
+- (SMContextObserver *)addContextDidSaveObserverWithWorkBlock:(SMContextObserverBlock)workBlock;
 
 - (void)stopAllContextObservers;
 - (void)startAllContextObservers;

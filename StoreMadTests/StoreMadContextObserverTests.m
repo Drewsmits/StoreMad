@@ -81,7 +81,32 @@
     
     wasNotified = NO;
     
-    [storeController.managedObjectContext insertNewObjectForEntityNamed:@"Department'"];
+    [storeController.managedObjectContext insertNewObjectForEntityNamed:@"Department"];
+    [storeController.managedObjectContext queueBlockSaveAndWait];
+    
+    STAssertFalse(wasNotified, @"Work block should not run");
+}
+
+- (void)testAddSaveObserver
+{
+    __block BOOL wasNotified = NO;
+    SMContextObserverBlock workBlock = ^(NSSet *updateObjects, NSSet *insertedOjects, NSSet *deletedObjects)
+    {
+        wasNotified = YES;
+    };
+    
+    SMContextObserver *observer = [storeController addContextDidSaveObserverWithWorkBlock:workBlock];
+    
+    [storeController.managedObjectContext insertNewObjectForEntityNamed:@"Employee"];
+    [storeController.managedObjectContext queueBlockSaveAndWait];
+    
+    STAssertTrue(wasNotified, @"Work block should run");
+    
+    [storeController removeContextObserver:observer];
+    
+    wasNotified = NO;
+    
+    [storeController.managedObjectContext insertNewObjectForEntityNamed:@"Department"];
     [storeController.managedObjectContext queueBlockSaveAndWait];
     
     STAssertFalse(wasNotified, @"Work block should not run");

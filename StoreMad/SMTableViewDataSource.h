@@ -25,6 +25,7 @@
                            cacheName:(NSString *)cacheName;
 
 - (void)performFetch;
+- (void)performFetchWithNewFetchRequest:(NSFetchRequest *)fetchRequest;
 
 - (id)objectAtIndexPath:(NSIndexPath *)index;
 

@@ -34,6 +34,17 @@
     [self.fetchedResultsController performFetch:nil];
 }
 
+- (void)performFetchWithNewFetchRequest:(NSFetchRequest *)fetchRequest
+{
+    [NSFetchedResultsController deleteCacheWithName:self.fetchedResultsController.cacheName];
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                        managedObjectContext:self.fetchedResultsController.managedObjectContext
+                                                                          sectionNameKeyPath:self.fetchedResultsController.sectionNameKeyPath
+                                                                                   cacheName:self.fetchedResultsController.cacheName];
+    [self performFetch];
+}
+
 - (id)objectAtIndexPath:(NSIndexPath *)index
 {
     return [self.fetchedResultsController objectAtIndexPath:index];
