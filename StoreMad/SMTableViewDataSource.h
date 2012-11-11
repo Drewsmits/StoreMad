@@ -11,14 +11,16 @@
 
 @protocol SMTableViewController <NSObject>
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+@optional
+- (void)showEmptyTableView;
 @end
 
 @interface SMTableViewDataSource : NSObject <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, weak) UITableViewController *tableViewController;
+@property (nonatomic, weak) UIViewController *tableViewController;
 
-- (void)setupWithTableViewController:(UITableViewController *)tableViewController
+- (void)setupWithTableViewController:(UIViewController *)tableViewController
                         fetchRequest:(NSFetchRequest *)fetchRequest
                              context:(NSManagedObjectContext *)context
                   sectionNameKeyPath:(NSString *)sectionNameKeyPath

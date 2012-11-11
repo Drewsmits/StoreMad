@@ -154,8 +154,9 @@
      
 - (NSArray *)executeFetchRequest:(NSFetchRequest *)request
 {
-    __block NSError *error = nil;
-    __block NSArray *results = nil;
+    __block NSError *error;
+    __block NSArray *results;
+    
     [self performBlockAndWait:^{
         results = [self executeFetchRequest:request error:&error];
         [self handleErrors:error];

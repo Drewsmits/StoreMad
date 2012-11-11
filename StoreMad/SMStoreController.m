@@ -139,6 +139,7 @@
 
 - (void)removeContextObserver:(SMContextObserver *)contextObserver
 {
+    if (!contextObserver) return;
     [contextObserver stopObservingNotifications];
     [self.contextObservers removeObject:contextObserver];
 }

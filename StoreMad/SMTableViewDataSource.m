@@ -10,7 +10,7 @@
 
 @implementation SMTableViewDataSource
 
-- (void)setupWithTableViewController:(UITableViewController *)tableViewController
+- (void)setupWithTableViewController:(UIViewController *)tableViewController
                         fetchRequest:(NSFetchRequest *)fetchRequest
                              context:(NSManagedObjectContext *)context
                   sectionNameKeyPath:(NSString *)sectionNameKeyPath
@@ -83,7 +83,8 @@
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
-    UITableView *tableView = self.tableViewController.tableView;
+    if (![self.tableViewController respondsToSelector:@selector(tableView)]) return;
+    UITableView *tableView = (UITableView *)[self.tableViewController valueForKey:@"tableView"];
 
     [tableView beginUpdates];
     
@@ -95,7 +96,8 @@
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
 {
-    UITableView *tableView = self.tableViewController.tableView;
+    if (![self.tableViewController respondsToSelector:@selector(tableView)]) return;
+    UITableView *tableView = (UITableView *)[self.tableViewController valueForKey:@"tableView"];
     
     //    NSLog(@"sections:%i", controller.sections.count);
     //    NSLog(@"section:%i row:%i", indexPath.section, indexPath.row);
@@ -121,7 +123,8 @@
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
 {
-    UITableView *tableView = self.tableViewController.tableView;
+    if (![self.tableViewController respondsToSelector:@selector(tableView)]) return;
+    UITableView *tableView = (UITableView *)[self.tableViewController valueForKey:@"tableView"];
 
     switch(type) {
         case NSFetchedResultsChangeInsert:
@@ -140,7 +143,14 @@
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableViewController.tableView endUpdates];
+    if (![self.tableViewController respondsToSelector:@selector(tableView)]) return;
+    UITableView *tableView = (UITableView *)[self.tableViewController valueForKey:@"tableView"];
+    [tableView endUpdates];
+    if ([self isEmpty]) {
+        if ([self.tableViewController respondsToSelector:@selector(showEmptyTableView)]) {
+            [self.tableViewController performSelector:@selector(showEmptyTableView)];
+        }
+    }
 }
 
 - (BOOL)isEmpty
