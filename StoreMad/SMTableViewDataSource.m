@@ -150,6 +150,10 @@
         if ([self.tableViewController respondsToSelector:@selector(showEmptyTableView)]) {
             [self.tableViewController performSelector:@selector(showEmptyTableView)];
         }
+    } else {
+        if ([self.tableViewController respondsToSelector:@selector(fetchResultsDidChange)]) {
+            [self.tableViewController performSelector:@selector(fetchResultsDidChange)];
+        }
     }
 }
 

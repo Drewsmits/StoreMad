@@ -12,6 +12,7 @@
 @protocol SMTableViewController <NSObject>
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @optional
+- (void)fetchResultsDidChange;
 - (void)showEmptyTableView;
 @end
 
