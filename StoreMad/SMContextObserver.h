@@ -23,8 +23,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
-
 typedef void (^SMContextObserverBlock)(NSSet *updateObjects, NSSet *insertedOjects, NSSet *deletedObjects);
 
 @interface SMContextObserver : NSObject

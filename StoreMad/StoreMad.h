@@ -23,8 +23,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
-
 #import "SMStoreController.h"
 #import "SMContextObserver.h"
 #import "SMTableViewDataSource.h"

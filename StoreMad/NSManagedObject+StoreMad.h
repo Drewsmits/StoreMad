@@ -24,8 +24,6 @@
 //
 // FAD = "From Apple Docs"
 
-#import <CoreData/CoreData.h>
-
 @interface NSManagedObject (StoreMad)
 
 /**

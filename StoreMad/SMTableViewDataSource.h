@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 eGraphs. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 @protocol SMTableViewController <NSObject>
