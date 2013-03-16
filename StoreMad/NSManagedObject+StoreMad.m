@@ -66,11 +66,7 @@
 {
     __block id obj;
     [context performBlockAndWait:^{
-        NSEntityDescription *entity = [NSEntityDescription entityForName:[self description] 
-                                                  inManagedObjectContext:context];
-        
-        obj = [[self alloc] initWithEntity:entity 
-            insertIntoManagedObjectContext:context];
+        obj = [context insertNewObjectForEntityNamed:[self description]];
     }];
     return obj;
 }

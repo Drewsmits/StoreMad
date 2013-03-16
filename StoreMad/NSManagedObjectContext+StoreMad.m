@@ -57,11 +57,15 @@
 
 - (NSManagedObjectContext *)threadSafeCopy
 {    
+    //
     // Create new context with default concurrency type
+    //
     NSManagedObjectContext *newContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     [newContext setParentContext:self];
     
+    //
     // Optimization.  No undos in background thread.
+    //
     [newContext setUndoManager:nil];
     
     return newContext;
@@ -121,6 +125,7 @@
                                                                            type:NSEqualToPredicateOperatorType
                                                                         options:0];
     [request setPredicate:predicate];
+    
     return [self executeFetchRequestAndReturnFirstObject:request];
 }
 
@@ -138,6 +143,7 @@
 - (void)deleteObjectAtURI:(NSURL *)objectURI
 {
     NSManagedObject *object = [self objectForURI:objectURI];
+    if (!object) return;
     [self performBlockAndWait:^ {
         [self deleteObject:object];
     }];
@@ -154,10 +160,10 @@
      
 - (NSArray *)executeFetchRequest:(NSFetchRequest *)request
 {
-    __block NSError *error;
     __block NSArray *results;
     
     [self performBlockAndWait:^{
+        NSError *error;
         results = [self executeFetchRequest:request error:&error];
         [self handleErrors:error];
     }];
@@ -179,9 +185,9 @@
     // should test.
     request.includesPropertyValues = NO;
         
-    __block NSError *error = nil;
     __block NSUInteger count = 0;
     [self performBlockAndWait:^{
+        NSError *error;
         count = [self countForFetchRequest:request error:&error];
         [self handleErrors:error];
     }];
