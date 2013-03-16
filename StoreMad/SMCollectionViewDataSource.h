@@ -9,22 +9,24 @@
 #import <UIKit/UIKit.h>
 
 @protocol SMCollectionViewControllerProtocol <NSObject>
-- (void)configureCollectionCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (void)configureCollectionCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @optional
 - (void)fetchResultsDidChange;
-- (void)showEmptyTableView;
 @end
+
+@protocol SMCollectionViewDataSourceDelegate;
 
 @interface SMCollectionViewDataSource : NSObject <NSFetchedResultsControllerDelegate>
 
+@property (nonatomic, weak) id <SMCollectionViewDataSourceDelegate> delegate;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, weak) UIViewController *collectionViewController;
+@property (nonatomic, weak) UICollectionView *collectionView;
 
-- (void)setupWithCollectionViewController:(UIViewController *)collectionViewController
-                             fetchRequest:(NSFetchRequest *)fetchRequest
-                                  context:(NSManagedObjectContext *)context
-                       sectionNameKeyPath:(NSString *)sectionNameKeyPath
-                                cacheName:(NSString *)cacheName;
+- (void)setupWithCollectionView:(UICollectionView *)collectionView
+                   fetchRequest:(NSFetchRequest *)fetchRequest
+                        context:(NSManagedObjectContext *)context
+             sectionNameKeyPath:(NSString *)sectionNameKeyPath
+                      cacheName:(NSString *)cacheName;
 
 - (void)performFetch;
 - (void)performFetchWithNewFetchRequest:(NSFetchRequest *)fetchRequest;
@@ -39,4 +41,8 @@
 
 - (BOOL)isEmpty;
 
+@end
+
+@protocol SMCollectionViewDataSourceDelegate <NSObject>
+- (void)dataSourceIsEmpty:(SMCollectionViewDataSource *)dataSource;
 @end
