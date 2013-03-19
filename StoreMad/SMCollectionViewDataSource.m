@@ -68,6 +68,15 @@
 
 - (NSInteger)numberOfSections
 {
+    //
+    // Report if empty
+    //
+    if (self.fetchedResultsController.fetchedObjects.count == 0) {
+        [self.delegate dataSource:self isEmpty:YES];
+    } else {
+        [self.delegate dataSource:self isEmpty:NO];
+    }
+    
     return self.fetchedResultsController.sections.count;
 }
 
@@ -218,12 +227,12 @@
         [self.objectChanges removeAllObjects];
     }
     
-    //
-    // Report empty
-    //
-    if (self.fetchedResultsController.fetchedObjects.count == 0) {
-        [self.delegate dataSourceIsEmpty:self];
-    }
+//    //
+//    // Report empty
+//    //
+//    if (self.fetchedResultsController.fetchedObjects.count == 0) {
+//        [self.delegate dataSourceIsEmpty:self];
+//    }
 }
 
 - (BOOL)shouldReloadCollectionViewToPreventKnownIssue

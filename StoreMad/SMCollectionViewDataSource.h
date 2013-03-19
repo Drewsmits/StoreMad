@@ -44,5 +44,5 @@
 @end
 
 @protocol SMCollectionViewDataSourceDelegate <NSObject>
-- (void)dataSourceIsEmpty:(SMCollectionViewDataSource *)dataSource;
+- (void)dataSource:(SMCollectionViewDataSource *)dataSource isEmpty:(BOOL)empty;
 @end
