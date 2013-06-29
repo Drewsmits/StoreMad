@@ -36,7 +36,7 @@
 
 /**
  Sometimes CoreData will fault a particular instance, while there is still
- the same object in the store.  Check to see if there is a clone.
+ the same object in the store.  This also checks to see if there is a clone.
  
  FAD: "The method (isDeleted) returns YES if Core Data will ask the persistent store to delete
  the object during the next save operation. It may return NO at other times,
@@ -54,13 +54,8 @@
 @property (nonatomic, readonly) BOOL hasBeenSaved;
 
 /**
- Queues and waits on an object insertion block for the objects class.
+ Inserts an object of the same type as the calling class name into the context.
  */
 + (id)createInContext:(NSManagedObjectContext *)context;
-
-/**
- Queues and waits a block to delete the object in it's current context
- */
-- (void)deleteObject;
 
 @end

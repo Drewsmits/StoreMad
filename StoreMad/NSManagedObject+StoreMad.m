@@ -34,21 +34,10 @@
 }
 
 - (BOOL)hasBeenDeleted 
-{    
-    /**
-     Sometimes CoreData will fault a particular instance, while there is still
-     the same object in the store.  Check to see if there is a clone.
-     
-     From Apple Docs:
-     "The method (isDeleted) returns YES if Core Data will ask the persistent store to delete
-     the object during the next save operation. It may return NO at other times,
-     particularly after the object has been deleted. The immediacy with which 
-     it will stop returning YES depends on where the object is in the process of being deleted."
-     */
-    
-    NSManagedObjectID   *objectID           = [self objectID];
-    NSManagedObject     *managedObjectClone = [[self managedObjectContext] existingObjectWithID:objectID 
-                                                                                          error:NULL];
+{
+    NSManagedObjectID *objectID           = [self objectID];
+    NSManagedObject   *managedObjectClone = [[self managedObjectContext] existingObjectWithID:objectID
+                                                                                        error:NULL];
     
     if (!managedObjectClone || [self isDeleted]) {
         return YES;
@@ -64,16 +53,7 @@
 
 + (id)createInContext:(NSManagedObjectContext *)context
 {
-    __block id obj;
-    [context performBlockAndWait:^{
-        obj = [context insertNewObjectForEntityNamed:[self description]];
-    }];
-    return obj;
-}
-
-- (void)deleteObject
-{
-    [self.managedObjectContext queueDeleteObject:self];
+    return [context insertNewObjectForEntityNamed:[self description]];
 }
 
 @end

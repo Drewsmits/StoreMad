@@ -71,36 +71,33 @@
     return newContext;
 }
 
+#pragma mark - Save
+
+- (void)save
+{
+    NSError *error;
+    [self save:&error];
+    [self handleErrors:error];
+}
+
 - (void)queueBlockSave
 {
-    __block NSError *error = nil;
     [self performBlock:^{
-        [self save:&error];
-        if (error) {
-            [self handleErrors:error];
-        }
+        [self save];
     }];
 }
 
 - (void)queueBlockSaveAndWait
 {
-    __block NSError *error = nil;
     [self performBlockAndWait:^{
-        [self save:&error];
-        if (error) {
-            [self handleErrors:error];
-        }
+        [self save];
     }];
 }
 
 - (void)queueBlockSaveOnParentContext
 {
-    __block NSError *error = nil;
     [self.parentContext performBlock:^{
-        [self save:&error];
-        if (error) {
-            [self handleErrors:error];
-        }
+        [self.parentContext save];
     }];
 }
 
@@ -111,63 +108,41 @@
     NSManagedObjectID *objectID = [[self persistentStoreCoordinator] managedObjectIDForURIRepresentation:objectURI];
     if (!objectID) return nil;
     
-    NSManagedObject *objectForID = [self objectWithID:objectID];
-    if (![objectForID isFault]) return objectForID;
+    // If the object cannot be fetched, or does not exist, or cannot be faulted, existingObjectWithID returns nil
+    NSError *error;
+    NSManagedObject *object = [self existingObjectWithID:objectID
+                                                   error:&error];
     
-    NSFetchRequest *request = [self fetchRequestForObject:objectForID];
-    if (!request) return nil;
+    [self handleErrors:error];
     
-    // Predicate for fetching self.  Code is faster than string predicate equivalent of 
-    // [NSPredicate predicateWithFormat:@"SELF = %@", objectForID];
-    NSPredicate *predicate = [NSComparisonPredicate predicateWithLeftExpression:[NSExpression expressionForEvaluatedObject] 
-                                                                rightExpression:[NSExpression expressionForConstantValue:objectForID]
-                                                                       modifier:NSDirectPredicateModifier
-                                                                           type:NSEqualToPredicateOperatorType
-                                                                        options:0];
-    [request setPredicate:predicate];
-    
-    return [self executeFetchRequestAndReturnFirstObject:request];
+    return object;
 }
 
 #pragma mark - Delete
 
 - (void)deleteObjects:(NSArray *)objects 
 {
-    [self performBlockAndWait:^ {
-        for (NSManagedObject *object in objects) {
-            [self deleteObject:object];
-        }
-    }];
+    for (NSManagedObject *object in objects) {
+        [self deleteObject:object];
+    }
 }
 
 - (void)deleteObjectAtURI:(NSURL *)objectURI
 {
     NSManagedObject *object = [self objectForURI:objectURI];
     if (!object) return;
-    [self performBlockAndWait:^ {
-        [self deleteObject:object];
-    }];
-}
-
-- (void)queueDeleteObject:(NSManagedObject *)object
-{
-    [self performBlockAndWait:^ {
-        [self deleteObject:object];
-    }];
+    [self deleteObject:object];
 }
 
 #pragma mark - Fetching
      
 - (NSArray *)executeFetchRequest:(NSFetchRequest *)request
-{
-    __block NSArray *results;
-    
-    [self performBlockAndWait:^{
-        NSError *error;
-        results = [self executeFetchRequest:request error:&error];
-        [self handleErrors:error];
-    }];
-    
+{    
+    NSError *error;
+    NSArray *results = [self executeFetchRequest:request error:&error];
+
+    [self handleErrors:error];
+
     return results;
 }
 
@@ -185,12 +160,10 @@
     // should test.
     request.includesPropertyValues = NO;
         
-    __block NSUInteger count = 0;
-    [self performBlockAndWait:^{
-        NSError *error;
-        count = [self countForFetchRequest:request error:&error];
-        [self handleErrors:error];
-    }];
+    NSError *error;
+    NSUInteger count = [self countForFetchRequest:request error:&error];
+    
+    [self handleErrors:error];
     
     return count;
 }
@@ -262,10 +235,13 @@
 
 - (NSManagedObject *)insertNewObjectForEntityNamed:(NSString *)entityName
 {
-    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:self];
+    // If entity is nil, initWithEntity will cause a crash. So make sure to bail.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
+                                              inManagedObjectContext:self];
     if (!entity) return nil;
     
-    NSManagedObject *object = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:self];
+    NSManagedObject *object = [[NSManagedObject alloc] initWithEntity:entity
+                                       insertIntoManagedObjectContext:self];
     return object;
 }
 

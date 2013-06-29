@@ -8,6 +8,12 @@
 
 #import "StoreMadBaseTest.h"
 
+@interface StoreMadBaseTest ()
+
+@property (nonatomic, strong) SMStoreController *storeController;
+
+@end
+
 @implementation StoreMadBaseTest
 
 - (void)setUp
@@ -15,19 +21,19 @@
     NSURL *storeURL = [[[NSBundle bundleForClass:[self class]] bundleURL] URLByAppendingPathComponent:@"StoreMadTests.sqlite"];
     NSURL *modelURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"StoreMadTests" withExtension:@"momd"];
 
-    storeController = [SMStoreController storeControllerWithStoreURL:storeURL
-                                                         andModelURL:modelURL];
+    self.storeController = [SMStoreController storeControllerWithStoreURL:storeURL
+                                                              andModelURL:modelURL];
 }
 
 - (void)tearDown
 {
-    [storeController reset];
-    storeController = nil;
+    [self.storeController reset];
+    _storeController = nil;
 }
 
 - (NSManagedObjectContext *)testContext
 {
-    return storeController.managedObjectContext;
+    return self.storeController.managedObjectContext;
 }
 
 @end

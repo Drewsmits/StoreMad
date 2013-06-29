@@ -13,10 +13,7 @@
 #import "NSManagedObjectContext+StoreMad.h"
 
 @interface StoreMadBaseTest : SenTestCase
-{
-    SMStoreController *storeController;
-}
 
-@property (readonly) NSManagedObjectContext *testContext;
+@property (nonatomic, readonly) NSManagedObjectContext *testContext;
 
 @end
