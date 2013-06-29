@@ -14,6 +14,7 @@
 
 @interface StoreMadBaseTest : SenTestCase
 
+@property (nonatomic, strong) SMStoreController *storeController;
 @property (nonatomic, readonly) NSManagedObjectContext *testContext;
 
 @end

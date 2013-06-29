@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1810" systemVersion="12C54" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Department" syncable="YES">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Department" representedClassName="Department" syncable="YES">
         <attribute name="departmentId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -10,7 +10,7 @@
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Employee" positionX="0" positionY="0" width="128" height="90"/>
         <element name="Department" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="Employee" positionX="0" positionY="0" width="128" height="90"/>
     </elements>
 </model>

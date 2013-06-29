@@ -8,12 +8,6 @@
 
 #import "StoreMadBaseTest.h"
 
-@interface StoreMadBaseTest ()
-
-@property (nonatomic, strong) SMStoreController *storeController;
-
-@end
-
 @implementation StoreMadBaseTest
 
 - (void)setUp

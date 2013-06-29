@@ -42,15 +42,12 @@
     Employee *object = [Employee createInContext:self.testContext];
 
     STAssertTrue([object isInserted], @"Object should be inserted");
+    STAssertFalse([object hasBeenSaved], @"Object should not be saved");
 }
 
-- (void)testDeleteObject
+- (void)testExecuteFetchRequest
 {
-    Employee *object = [Employee createInContext:self.testContext];
     
-    [object deleteObject];
-    
-    STAssertTrue(object.isDeleted, @"Object should be deleted");
 }
 
 @end

@@ -107,8 +107,9 @@
  NSFetchRequest *tweetFetch = [self findAllFetchRequestForObjectNamed:@"Tweet"];
  NSArray *result = [context allValuesForProperty:@"tweetId" withRequest:tweetFetch];
  
- <result = [1, 5, 25, 123, 82349, 29292, …] >
+ <result = [1, 5, 25, 123, 82349, 29292, … ] >
  
+ NOTE: Fetched properties will only include properties of objects that have been saved.
  */
 - (NSArray *)allValuesForProperty:(NSString *)propertyName 
                       withRequest:(NSFetchRequest *)request;
@@ -122,6 +123,10 @@
 /**
  Returns a fetch request that will find all of the objects of the given name. Adds a predicate that
  always returns YES for all objects. Fast way of fetching all objects for the given objectName.
+ 
+ NOTE: this includes a predicate with 1==1, which does nothing. However, NSFetchedResultsController
+ requires a predicate for it's fetch request, so use this instead of fetchRequestForObjectNamed with
+ no predicate.
  */
 - (NSFetchRequest *)findAllFetchRequestForObjectNamed:(NSString *)objectName;
 
@@ -133,6 +138,10 @@
 /**
  Returns a fetch request that will find all of the objects of the given name. Adds a predicate that
  always returns YES for all objects. Fast way of fetching all objects for the given objectName.
+ 
+ NOTE: this includes a predicate with 1==1, which does nothing. However, NSFetchedResultsController
+ requires a predicate for it's fetch request, so use this instead of fetchRequestForObjectNamed with
+ no predicate.
  */
 - (NSFetchRequest *)findAllFetchRequestForObjectClass:(Class)objectClass;
 

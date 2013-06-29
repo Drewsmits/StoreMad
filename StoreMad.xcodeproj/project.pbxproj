@@ -32,6 +32,7 @@
 		DB9D043E15DC0B290035FC30 /* StoreMadTests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB9D043C15DC0B290035FC30 /* StoreMadTests.xcdatamodeld */; };
 		DB9D044115DC0DD70035FC30 /* StoreMadContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9D044015DC0DD70035FC30 /* StoreMadContextTests.m */; };
 		DB9D044215DC0E300035FC30 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0DE4E815B9BDD4007F382F /* CoreData.framework */; };
+		DBBF6015177F9B22008694F1 /* Department.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBF6014177F9B22008694F1 /* Department.m */; };
 		DBD7709A161D302E00853D7C /* SMContextObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = DBD77098161D302E00853D7C /* SMContextObserver.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DBD7709B161D302E00853D7C /* SMContextObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD77099161D302E00853D7C /* SMContextObserver.m */; };
 /* End PBXBuildFile section */
@@ -78,6 +79,8 @@
 		DB9D043D15DC0B290035FC30 /* StoreMadTests.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StoreMadTests.xcdatamodel; sourceTree = "<group>"; };
 		DB9D043F15DC0DD70035FC30 /* StoreMadContextTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreMadContextTests.h; sourceTree = "<group>"; };
 		DB9D044015DC0DD70035FC30 /* StoreMadContextTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreMadContextTests.m; sourceTree = "<group>"; };
+		DBBF6013177F9B22008694F1 /* Department.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Department.h; sourceTree = "<group>"; };
+		DBBF6014177F9B22008694F1 /* Department.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Department.m; sourceTree = "<group>"; };
 		DBD77098161D302E00853D7C /* SMContextObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMContextObserver.h; sourceTree = "<group>"; };
 		DBD77099161D302E00853D7C /* SMContextObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMContextObserver.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -196,6 +199,8 @@
 		DB9A837E1616607000910CEB /* Test Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DBBF6013177F9B22008694F1 /* Department.h */,
+				DBBF6014177F9B22008694F1 /* Department.m */,
 				DB9A837F1616609A00910CEB /* Employee.h */,
 				DB9A83801616609A00910CEB /* Employee.m */,
 			);
@@ -336,6 +341,7 @@
 				DB9A837D16165FE000910CEB /* StoreMadObjectTests.m in Sources */,
 				DB9A83811616609A00910CEB /* Employee.m in Sources */,
 				DB9343091624F1AD0084C6FC /* StoreMadContextObserverTests.m in Sources */,
+				DBBF6015177F9B22008694F1 /* Department.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

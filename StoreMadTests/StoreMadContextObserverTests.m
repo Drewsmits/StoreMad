@@ -38,7 +38,7 @@
 {
     SMContextObserver *observer = [SMContextObserver new];
     observer.notificationName = NSManagedObjectContextDidSaveNotification;
-    observer.context = storeController.managedObjectContext;
+    observer.context = self.testContext;
     
     __block NSSet *insertedEmployees;
     __block BOOL wasNotified = NO;
@@ -48,11 +48,11 @@
         wasNotified = YES;
     };
     
-    [storeController addContextObserver:observer];
+    [self.storeController addContextObserver:observer];
     
-    NSManagedObject *employee = [storeController.managedObjectContext insertNewObjectForEntityNamed:@"Employee"];
+    NSManagedObject *employee = [self.testContext insertNewObjectForEntityNamed:@"Employee"];
     
-    [storeController.managedObjectContext queueBlockSaveAndWait];
+    [self.testContext queueBlockSaveAndWait];
     
     STAssertTrue([insertedEmployees containsObject:employee], @"Work block should run correctly");
 }
@@ -61,9 +61,10 @@
 {
     SMContextObserver *observer = [SMContextObserver new];
     observer.notificationName = NSManagedObjectContextDidSaveNotification;
-    observer.context = storeController.managedObjectContext;
+    observer.context = self.testContext;
     
-    NSEntityDescription *employeeEntity = [NSEntityDescription entityForName:@"Employee" inManagedObjectContext:storeController.managedObjectContext];
+    NSEntityDescription *employeeEntity = [NSEntityDescription entityForName:@"Employee"
+                                                      inManagedObjectContext:self.testContext];
     observer.predicate = [NSPredicate predicateWithFormat:@"entity == %@", employeeEntity];
     
     __block BOOL wasNotified = NO;
@@ -72,17 +73,17 @@
         wasNotified = YES;
     };
     
-    [storeController addContextObserver:observer];
+    [self.storeController addContextObserver:observer];
     
-    [storeController.managedObjectContext insertNewObjectForEntityNamed:@"Employee"];
-    [storeController.managedObjectContext queueBlockSaveAndWait];
+    [self.testContext insertNewObjectForEntityNamed:@"Employee"];
+    [self.testContext queueBlockSaveAndWait];
     
     STAssertTrue(wasNotified, @"Work block should run");
     
     wasNotified = NO;
     
-    [storeController.managedObjectContext insertNewObjectForEntityNamed:@"Department"];
-    [storeController.managedObjectContext queueBlockSaveAndWait];
+    [self.testContext insertNewObjectForEntityNamed:@"Department"];
+    [self.testContext queueBlockSaveAndWait];
     
     STAssertFalse(wasNotified, @"Work block should not run");
 }
@@ -95,19 +96,19 @@
         wasNotified = YES;
     };
     
-    SMContextObserver *observer = [storeController addContextDidSaveObserverWithWorkBlock:workBlock];
+    SMContextObserver *observer = [self.storeController addContextDidSaveObserverWithWorkBlock:workBlock];
     
-    [storeController.managedObjectContext insertNewObjectForEntityNamed:@"Employee"];
-    [storeController.managedObjectContext queueBlockSaveAndWait];
+    [self.testContext insertNewObjectForEntityNamed:@"Employee"];
+    [self.testContext queueBlockSaveAndWait];
     
     STAssertTrue(wasNotified, @"Work block should run");
     
-    [storeController removeContextObserver:observer];
+    [self.storeController removeContextObserver:observer];
     
     wasNotified = NO;
     
-    [storeController.managedObjectContext insertNewObjectForEntityNamed:@"Department"];
-    [storeController.managedObjectContext queueBlockSaveAndWait];
+    [self.testContext insertNewObjectForEntityNamed:@"Department"];
+    [self.testContext queueBlockSaveAndWait];
     
     STAssertFalse(wasNotified, @"Work block should not run");
 }
