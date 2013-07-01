@@ -11,6 +11,7 @@
 
 #import "SMStoreController.h"
 #import "SMContextObserver.h"
+#import "SMDataSource.h"
 #import "SMTableViewDataSource.h"
 #import "SMCollectionViewDataSource.h"
 #import "NSManagedObject+StoreMad.h"

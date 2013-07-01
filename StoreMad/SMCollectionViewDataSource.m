@@ -226,13 +226,6 @@
         [self.sectionChanges removeAllObjects];
         [self.objectChanges removeAllObjects];
     }
-    
-//    //
-//    // Report empty
-//    //
-//    if (self.fetchedResultsController.fetchedObjects.count == 0) {
-//        [self.delegate dataSourceIsEmpty:self];
-//    }
 }
 
 - (BOOL)shouldReloadCollectionViewToPreventKnownIssue

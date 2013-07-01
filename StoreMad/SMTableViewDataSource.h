@@ -7,36 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SMDataSource.h"
 
 @protocol SMTableViewController <NSObject>
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @optional
 - (void)fetchResultsDidChange;
-- (void)showEmptyTableView;
 @end
 
-@interface SMTableViewDataSource : NSObject <NSFetchedResultsControllerDelegate>
-
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, weak) UIViewController *tableViewController;
+@interface SMTableViewDataSource : SMDataSource
 
 - (void)setupWithTableViewController:(UIViewController *)tableViewController
                         fetchRequest:(NSFetchRequest *)fetchRequest
                              context:(NSManagedObjectContext *)context
                   sectionNameKeyPath:(NSString *)sectionNameKeyPath
                            cacheName:(NSString *)cacheName;
-
-- (void)performFetch;
-- (void)performFetchWithNewFetchRequest:(NSFetchRequest *)fetchRequest;
-
-- (id)objectAtIndexPath:(NSIndexPath *)index;
-
-- (NSInteger)numberOfSections;
-- (NSInteger)numberOfRowsInSection:(NSInteger)section;
-- (NSString *)titleForHeaderInSection:(NSInteger)section;
-- (NSArray *)sectionIndexTitles;
-- (NSInteger)sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index;
-
-- (BOOL)isEmpty;
 
 @end

@@ -10,12 +10,18 @@
 
 @implementation AppDelegate
 
++ (AppDelegate *)sharedInstance
+{
+    DEFINE_SHARED_INSTANCE_USING_BLOCK(^{
+        return [[UIApplication sharedApplication] delegate];
+    });
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+    // Create new store controller
+    self.storeController = [self newStoreController];
+    
     return YES;
 }
 
@@ -44,6 +50,28 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - StoreMad
+
+- (SMStoreController *)newStoreController
+{
+    // sqlite
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *applicationDocDirectory = [[fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSURL *storeURL = [applicationDocDirectory URLByAppendingPathComponent:@"StoreMadApp.sqlite"];
+
+    // momd
+    NSURL *modelURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"StoreMadApp" withExtension:@"momd"];
+    
+    SMStoreController *newStoreController = [SMStoreController storeControllerWithStoreURL:storeURL andModelURL:modelURL];
+    
+    //
+    // Context saves when app changes state
+    //
+    [newStoreController shouldSaveOnAppStateChanges:YES];
+    
+    return newStoreController;
 }
 
 @end

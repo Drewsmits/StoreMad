@@ -8,6 +8,13 @@
 
 #import "SMTableViewDataSource.h"
 
+@interface  SMTableViewDataSource ()
+
+@property (nonatomic, weak) UIViewController *tableViewController;
+@property (nonatomic, readonly) UITableView *tableView;
+
+@end
+
 @implementation SMTableViewDataSource
 
 - (void)setupWithTableViewController:(UIViewController *)tableViewController
@@ -20,118 +27,72 @@
     NSAssert(tableViewConforms, @"TableViewController must conform to SMTableViewController protocol!");
     if (!tableViewConforms) return;
     
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                        managedObjectContext:context
-                                                                          sectionNameKeyPath:sectionNameKeyPath
-                                                                                   cacheName:cacheName];
-    self.fetchedResultsController.delegate = self;
+    BOOL hasTableView = [tableViewController respondsToSelector:@selector(tableView)];
+    NSAssert(hasTableView, @"TableViewController must be a sublcass of UITableViewController!");
+    if (!hasTableView) return;
     
+    // Hold on to tableviewcontroller to respond to changes later
     self.tableViewController = tableViewController;
-}
-
-- (void)performFetch
-{
-    [self.fetchedResultsController performFetch:nil];
-}
-
-- (void)performFetchWithNewFetchRequest:(NSFetchRequest *)fetchRequest
-{
-    [NSFetchedResultsController deleteCacheWithName:self.fetchedResultsController.cacheName];
     
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                        managedObjectContext:self.fetchedResultsController.managedObjectContext
-                                                                          sectionNameKeyPath:self.fetchedResultsController.sectionNameKeyPath
-                                                                                   cacheName:self.fetchedResultsController.cacheName];
-    [self performFetch];
+    // Normal setup
+    [self setupWithFetchRequest:fetchRequest
+                        context:context
+             sectionNameKeyPath:sectionNameKeyPath
+                      cacheName:cacheName];
 }
 
-- (id)objectAtIndexPath:(NSIndexPath *)index
+- (UITableView *)tableView
 {
-    return [self.fetchedResultsController objectAtIndexPath:index];
-}
-
-#pragma mark - Table view data source helpers
-
-- (NSInteger)numberOfSections
-{
-    return self.fetchedResultsController.sections.count;
-}
-
-- (NSInteger)numberOfRowsInSection:(NSInteger)section
-{
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-    return [sectionInfo numberOfObjects];
-}
-
-- (NSString *)titleForHeaderInSection:(NSInteger)section
-{
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-    return [sectionInfo name];
-}
-
-- (NSArray *)sectionIndexTitles
-{
-    return [self.fetchedResultsController sectionIndexTitles];
-}
-
-- (NSInteger)sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
-{
-    return [self.fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
+    if (![self.tableViewController respondsToSelector:@selector(tableView)]) {
+        return nil;
+    } else {
+        return (UITableView *)[self.tableViewController valueForKey:@"tableView"];
+    }
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
-    if (![self.tableViewController respondsToSelector:@selector(tableView)]) return;
-    UITableView *tableView = (UITableView *)[self.tableViewController valueForKey:@"tableView"];
-
-    [tableView beginUpdates];
+    [self.tableView beginUpdates];
     
     // Update sections
-    for (int i = tableView.numberOfSections; i < controller.sections.count; i++) {
-        [tableView insertSections:[NSIndexSet indexSetWithIndex:i] withRowAnimation:UITableViewRowAnimationFade];
+    for (int i = self.tableView.numberOfSections; i < controller.sections.count; i++) {
+        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:i]
+                      withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
 {
-    if (![self.tableViewController respondsToSelector:@selector(tableView)]) return;
-    UITableView *tableView = (UITableView *)[self.tableViewController valueForKey:@"tableView"];
-    
-    //    NSLog(@"sections:%i", controller.sections.count);
-    //    NSLog(@"section:%i row:%i", indexPath.section, indexPath.row);
-    //    NSLog(@"new section:%i new row:%i", newIndexPath.section, newIndexPath.row);
-    //    NSLog(@"table sections:%i", self.tableView.numberOfSections);
-    
     switch(type) {
         case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
         case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
         case NSFetchedResultsChangeUpdate:
-            [(id<SMTableViewController>)self.tableViewController configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [(id<SMTableViewController>)self.tableViewController configureCell:[self.tableView cellForRowAtIndexPath:indexPath]
+                                                                   atIndexPath:indexPath];
             break;
         case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
 {
-    if (![self.tableViewController respondsToSelector:@selector(tableView)]) return;
-    UITableView *tableView = (UITableView *)[self.tableViewController valueForKey:@"tableView"];
-
     switch(type) {
         case NSFetchedResultsChangeInsert:
-            [tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                          withRowAnimation:UITableViewRowAnimationFade];
             break;
         case NSFetchedResultsChangeDelete:
-            [tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                          withRowAnimation:UITableViewRowAnimationFade];
             break;
         case NSFetchedResultsChangeMove:
             break;
@@ -142,24 +103,13 @@
     }
 }
 
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    if (![self.tableViewController respondsToSelector:@selector(tableView)]) return;
-    UITableView *tableView = (UITableView *)[self.tableViewController valueForKey:@"tableView"];
-    [tableView endUpdates];
-    if ([self isEmpty]) {
-        if ([self.tableViewController respondsToSelector:@selector(showEmptyTableView)]) {
-            [self.tableViewController performSelector:@selector(showEmptyTableView)];
-        }
-    } else {
-        if ([self.tableViewController respondsToSelector:@selector(fetchResultsDidChange)]) {
-            [self.tableViewController performSelector:@selector(fetchResultsDidChange)];
-        }
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView endUpdates];
+    
+    if ([self.tableViewController respondsToSelector:@selector(fetchResultsDidChange)]) {
+        [self.tableViewController performSelector:@selector(fetchResultsDidChange)];
     }
 }
 
-- (BOOL)isEmpty
-{
-    return (self.fetchedResultsController.fetchedObjects.count < 1);
-}
-        
 @end
