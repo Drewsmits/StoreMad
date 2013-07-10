@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EmployeeTableViewController.h"
 
-@interface RootViewController : UITableViewController <SMTableViewController>
+@interface RootViewController : EmployeeTableViewController
 
 @end

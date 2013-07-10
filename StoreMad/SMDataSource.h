@@ -10,7 +10,7 @@
 
 @protocol SMDataSourceDelegate;
 
-@interface SMDataSource : NSObject
+@interface SMDataSource : NSObject <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, weak) id <SMDataSourceDelegate> dataSourceDelegate;

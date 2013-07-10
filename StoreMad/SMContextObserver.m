@@ -75,7 +75,9 @@
     
     // If there is nothing, bail.  Might want to pull this out.  Might be a situation where we want
     // to know if there are no objects.
-    if (updatedObjectsFiltered.count == 0 && insertedObjectsFiltered.count == 0 && deletedObjectsFiltered.count == 0) return;
+    if (updatedObjectsFiltered.count == 0
+        && insertedObjectsFiltered.count == 0
+        && deletedObjectsFiltered.count == 0) return;
     
     // Perform work
     self.workBlock(updatedObjectsFiltered, insertedObjectsFiltered, deletedObjectsFiltered);

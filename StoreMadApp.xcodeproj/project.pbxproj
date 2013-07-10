@@ -10,6 +10,13 @@
 		DB7273CA1781CFCC00CE5D7E /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7273C91781CFCC00CE5D7E /* RootViewController.m */; };
 		DB7273CC1781CFE400CE5D7E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB7273CB1781CFE400CE5D7E /* MainStoryboard.storyboard */; };
 		DB7273D01781D07600CE5D7E /* StoreMadApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB7273CE1781D07600CE5D7E /* StoreMadApp.xcdatamodeld */; };
+		DB7273DC1781DC8000CE5D7E /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7273DB1781DC8000CE5D7E /* Employee.m */; };
+		DB7273E11781DCAF00CE5D7E /* EmployeeController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7273E01781DCAF00CE5D7E /* EmployeeController.m */; };
+		DB7273E51781DDC000CE5D7E /* EmployeeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7273E41781DDC000CE5D7E /* EmployeeTableViewController.m */; };
+		DB7273EA178B22E700CE5D7E /* EmployeeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7273E9178B22E700CE5D7E /* EmployeeTableViewCell.m */; };
+		DB7273EE178B2C0400CE5D7E /* EmployeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7273ED178B2C0400CE5D7E /* EmployeeViewController.m */; };
+		DB7273F0178B2FF900CE5D7E /* EmployeeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB7273EF178B2FF900CE5D7E /* EmployeeViewController.storyboard */; };
+		DB7273F4178B35EF00CE5D7E /* EmployeeFireOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7273F3178B35EF00CE5D7E /* EmployeeFireOperation.m */; };
 		DBBF5FE5177F7A0B008694F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBF5FE4177F7A0B008694F1 /* UIKit.framework */; };
 		DBBF5FE7177F7A0B008694F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBF5FE6177F7A0B008694F1 /* Foundation.framework */; };
 		DBBF5FE9177F7A0B008694F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBF5FE8177F7A0B008694F1 /* CoreGraphics.framework */; };
@@ -53,6 +60,19 @@
 		DB7273CB1781CFE400CE5D7E /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		DB7273CF1781D07600CE5D7E /* StoreMadApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StoreMadApp.xcdatamodel; sourceTree = "<group>"; };
 		DB7273D81781DBAA00CE5D7E /* CommonMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonMacros.h; sourceTree = "<group>"; };
+		DB7273DA1781DC8000CE5D7E /* Employee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee.h; sourceTree = "<group>"; };
+		DB7273DB1781DC8000CE5D7E /* Employee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee.m; sourceTree = "<group>"; };
+		DB7273DF1781DCAF00CE5D7E /* EmployeeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeeController.h; sourceTree = "<group>"; };
+		DB7273E01781DCAF00CE5D7E /* EmployeeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeeController.m; sourceTree = "<group>"; };
+		DB7273E31781DDC000CE5D7E /* EmployeeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeeTableViewController.h; sourceTree = "<group>"; };
+		DB7273E41781DDC000CE5D7E /* EmployeeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeeTableViewController.m; sourceTree = "<group>"; };
+		DB7273E8178B22E700CE5D7E /* EmployeeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeeTableViewCell.h; sourceTree = "<group>"; };
+		DB7273E9178B22E700CE5D7E /* EmployeeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeeTableViewCell.m; sourceTree = "<group>"; };
+		DB7273EC178B2C0400CE5D7E /* EmployeeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeeViewController.h; sourceTree = "<group>"; };
+		DB7273ED178B2C0400CE5D7E /* EmployeeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeeViewController.m; sourceTree = "<group>"; };
+		DB7273EF178B2FF900CE5D7E /* EmployeeViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EmployeeViewController.storyboard; sourceTree = "<group>"; };
+		DB7273F2178B35EF00CE5D7E /* EmployeeFireOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeeFireOperation.h; sourceTree = "<group>"; };
+		DB7273F3178B35EF00CE5D7E /* EmployeeFireOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeeFireOperation.m; sourceTree = "<group>"; };
 		DBBF5FE1177F7A0B008694F1 /* StoreMadApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreMadApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBBF5FE4177F7A0B008694F1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DBBF5FE6177F7A0B008694F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -103,6 +123,74 @@
 			name = "Core Data";
 			sourceTree = "<group>";
 		};
+		DB7273D91781DC1C00CE5D7E /* Employee */ = {
+			isa = PBXGroup;
+			children = (
+				DB7273E7178B22CE00CE5D7E /* Cell */,
+				DB7273DE1781DC9D00CE5D7E /* Controller */,
+				DB7273DD1781DC9800CE5D7E /* Model */,
+				DB7273F1178B35D400CE5D7E /* Operation */,
+				DB7273E61781DDC500CE5D7E /* Table View */,
+				DB7273EB178B2BF000CE5D7E /* View Controller */,
+			);
+			name = Employee;
+			sourceTree = "<group>";
+		};
+		DB7273DD1781DC9800CE5D7E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DB7273DA1781DC8000CE5D7E /* Employee.h */,
+				DB7273DB1781DC8000CE5D7E /* Employee.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		DB7273DE1781DC9D00CE5D7E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DB7273DF1781DCAF00CE5D7E /* EmployeeController.h */,
+				DB7273E01781DCAF00CE5D7E /* EmployeeController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		DB7273E61781DDC500CE5D7E /* Table View */ = {
+			isa = PBXGroup;
+			children = (
+				DB7273E31781DDC000CE5D7E /* EmployeeTableViewController.h */,
+				DB7273E41781DDC000CE5D7E /* EmployeeTableViewController.m */,
+			);
+			name = "Table View";
+			sourceTree = "<group>";
+		};
+		DB7273E7178B22CE00CE5D7E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DB7273E8178B22E700CE5D7E /* EmployeeTableViewCell.h */,
+				DB7273E9178B22E700CE5D7E /* EmployeeTableViewCell.m */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		DB7273EB178B2BF000CE5D7E /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DB7273EC178B2C0400CE5D7E /* EmployeeViewController.h */,
+				DB7273ED178B2C0400CE5D7E /* EmployeeViewController.m */,
+				DB7273EF178B2FF900CE5D7E /* EmployeeViewController.storyboard */,
+			);
+			name = "View Controller";
+			sourceTree = "<group>";
+		};
+		DB7273F1178B35D400CE5D7E /* Operation */ = {
+			isa = PBXGroup;
+			children = (
+				DB7273F2178B35EF00CE5D7E /* EmployeeFireOperation.h */,
+				DB7273F3178B35EF00CE5D7E /* EmployeeFireOperation.m */,
+			);
+			name = Operation;
+			sourceTree = "<group>";
+		};
 		DBBF5FD8177F7A0B008694F1 = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +226,7 @@
 				DBBF5FF3177F7A0B008694F1 /* AppDelegate.h */,
 				DBBF5FF4177F7A0B008694F1 /* AppDelegate.m */,
 				DB7273CD1781D06100CE5D7E /* Core Data */,
+				DB7273D91781DC1C00CE5D7E /* Employee */,
 				DB7273CB1781CFE400CE5D7E /* MainStoryboard.storyboard */,
 				DB7273C61781CFB800CE5D7E /* Root */,
 				DBBF5FEB177F7A0B008694F1 /* Supporting Files */,
@@ -257,6 +346,7 @@
 				DBBF5FF9177F7A0B008694F1 /* Default@2x.png in Resources */,
 				DBBF5FFB177F7A0B008694F1 /* Default-568h@2x.png in Resources */,
 				DB7273CC1781CFE400CE5D7E /* MainStoryboard.storyboard in Resources */,
+				DB7273F0178B2FF900CE5D7E /* EmployeeViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +361,12 @@
 				DBBF5FF5177F7A0B008694F1 /* AppDelegate.m in Sources */,
 				DB7273CA1781CFCC00CE5D7E /* RootViewController.m in Sources */,
 				DB7273D01781D07600CE5D7E /* StoreMadApp.xcdatamodeld in Sources */,
+				DB7273DC1781DC8000CE5D7E /* Employee.m in Sources */,
+				DB7273E11781DCAF00CE5D7E /* EmployeeController.m in Sources */,
+				DB7273E51781DDC000CE5D7E /* EmployeeTableViewController.m in Sources */,
+				DB7273EA178B22E700CE5D7E /* EmployeeTableViewCell.m in Sources */,
+				DB7273EE178B2C0400CE5D7E /* EmployeeViewController.m in Sources */,
+				DB7273F4178B35EF00CE5D7E /* EmployeeFireOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +454,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StoreMadApp/StoreMadApp-Prefix.pch";
 				INFOPLIST_FILE = "StoreMadApp/StoreMadApp-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -369,6 +466,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StoreMadApp/StoreMadApp-Prefix.pch";
 				INFOPLIST_FILE = "StoreMadApp/StoreMadApp-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

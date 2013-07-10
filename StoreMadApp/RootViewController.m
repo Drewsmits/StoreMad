@@ -8,12 +8,8 @@
 
 #import "RootViewController.h"
 
-@interface RootViewController ()
-
-@property (nonatomic, strong) SMStoreController *storeController;
-@property (nonatomic, strong) SMTableViewDataSource *storeMadDataSource;
-
-@end
+#import "Employee.h"
+#import "EmployeeController.h"
 
 @implementation RootViewController
 
@@ -23,55 +19,34 @@
     self.storeController = [[AppDelegate sharedInstance] storeController];
 }
 
-- (void)viewDidLoad
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidLoad];
-    
-    self.storeMadDataSource = [SMTableViewDataSource new];
-    
-    [self.storeMadDataSource setupWithFetchRequest:nil
-                                           context:self.storeController.managedObjectContext
-                                sectionNameKeyPath:nil
-                                         cacheName:nil];
-    
-    [self.storeMadDataSource performFetch];
+    [super viewDidAppear:animated];
+    [self performSelector:@selector(createEmployees)
+               withObject:nil
+               afterDelay:3.0];
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (void)createEmployees
 {
-    return self.storeMadDataSource.numberOfSections;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.storeMadDataSource numberOfItemsInSection:section];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    [self configureCell:cell atIndexPath:indexPath];
-    
-    return cell;
-}
-
-#pragma mark - SMTableViewController
-
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
-{
-    
-}
-
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
+    NSManagedObjectContext *context = self.storeController.managedObjectContext;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        
+        NSArray *firstNames = @[@"Poison", @"Clark", @"Bruce", @"Peter", @"Wonder"];
+        NSArray *lastNames = @[@"Ivy", @"Kent", @"Wayne", @"Parker", @"Woman"];
+        
+        [context performBlock:^{
+            // Create a lot of employees
+            [firstNames enumerateObjectsUsingBlock:^(NSString *firstName, NSUInteger idx, BOOL *stop) {
+                Employee *employee = [EmployeeController newEmployeeInContext:context];
+                employee.firstName = firstName;
+                employee.lastName = [lastNames objectAtIndex:idx];
+            }];
+            
+            // save
+            [context save];
+        }];
+    });
 }
 
 @end
