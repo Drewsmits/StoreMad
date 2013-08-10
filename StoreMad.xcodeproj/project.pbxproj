@@ -147,20 +147,15 @@
 		DB0DE4A515B9BB5F007F382F /* StoreMad */ = {
 			isa = PBXGroup;
 			children = (
+				DB9C002217B6FC0300F6042D /* Data Source */,
 				DB0DE55015B9CCEE007F382F /* NSManagedObject+StoreMad.h */,
 				DB0DE55115B9CCEF007F382F /* NSManagedObject+StoreMad.m */,
 				DB0DE55415B9CE1A007F382F /* NSManagedObjectContext+StoreMad.h */,
 				DB0DE55515B9CE1A007F382F /* NSManagedObjectContext+StoreMad.m */,
-				DB1F446B16D94D530017B23D /* SMCollectionViewDataSource.h */,
-				DB1F446C16D94D530017B23D /* SMCollectionViewDataSource.m */,
 				DBD77098161D302E00853D7C /* SMContextObserver.h */,
 				DBD77099161D302E00853D7C /* SMContextObserver.m */,
-				DB7273D41781D39E00CE5D7E /* SMDataSource.h */,
-				DB7273D51781D39E00CE5D7E /* SMDataSource.m */,
 				DB0DE4E415B9BDC6007F382F /* SMStoreController.h */,
 				DB0DE4E515B9BDC6007F382F /* SMStoreController.m */,
-				DB7BF647161E2E0400EAAE5E /* SMTableViewDataSource.h */,
-				DB7BF648161E2E0400EAAE5E /* SMTableViewDataSource.m */,
 				DB83D02016F516F000D6A980 /* StoreMad.h */,
 				DB0DE4A615B9BB5F007F382F /* Supporting Files */,
 			);
@@ -211,6 +206,19 @@
 				DB9A83801616609A00910CEB /* Employee.m */,
 			);
 			name = "Test Classes";
+			sourceTree = "<group>";
+		};
+		DB9C002217B6FC0300F6042D /* Data Source */ = {
+			isa = PBXGroup;
+			children = (
+				DB1F446B16D94D530017B23D /* SMCollectionViewDataSource.h */,
+				DB1F446C16D94D530017B23D /* SMCollectionViewDataSource.m */,
+				DB7273D41781D39E00CE5D7E /* SMDataSource.h */,
+				DB7273D51781D39E00CE5D7E /* SMDataSource.m */,
+				DB7BF647161E2E0400EAAE5E /* SMTableViewDataSource.h */,
+				DB7BF648161E2E0400EAAE5E /* SMTableViewDataSource.m */,
+			);
+			name = "Data Source";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

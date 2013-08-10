@@ -23,7 +23,7 @@
                   sectionNameKeyPath:(NSString *)sectionNameKeyPath
                            cacheName:(NSString *)cacheName
 {
-    BOOL tableViewConforms = [tableViewController conformsToProtocol:@protocol(SMTableViewController)];
+    BOOL tableViewConforms = [tableViewController conformsToProtocol:@protocol(SMDataSourceViewController)];
     NSAssert(tableViewConforms, @"TableViewController must conform to SMTableViewController protocol!");
     if (!tableViewConforms) return;
     
@@ -73,8 +73,8 @@
             [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
         case NSFetchedResultsChangeUpdate:
-            [(id<SMTableViewController>)self.tableViewController configureCell:[self.tableView cellForRowAtIndexPath:indexPath]
-                                                                   atIndexPath:indexPath];
+            [(id<SMDataSourceViewController>)self.tableViewController configureCell:[self.tableView cellForRowAtIndexPath:indexPath]
+                                                                        atIndexPath:indexPath];
             break;
         case NSFetchedResultsChangeMove:
             [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];

@@ -9,12 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "SMDataSource.h"
 
-@protocol SMTableViewController <NSObject>
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
-@optional
-- (void)fetchResultsDidChange;
-@end
-
 @interface SMTableViewDataSource : SMDataSource
 
 - (void)setupWithTableViewController:(UIViewController *)tableViewController

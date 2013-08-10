@@ -10,6 +10,12 @@
 
 @protocol SMDataSourceDelegate;
 
+@protocol SMDataSourceViewController <NSObject>
+- (void)configureCell:(id)cell atIndexPath:(NSIndexPath *)indexPath;
+@optional
+- (void)fetchResultsDidChange;
+@end
+
 @interface SMDataSource : NSObject <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
@@ -21,14 +27,19 @@
                     cacheName:(NSString *)cacheName;
 
 - (void)performFetch;
+
 - (void)performFetchWithNewFetchRequest:(NSFetchRequest *)fetchRequest;
 
 - (id)objectAtIndexPath:(NSIndexPath *)index;
 
 - (NSInteger)numberOfSections;
+
 - (NSInteger)numberOfItemsInSection:(NSInteger)section;
+
 - (NSString *)titleForHeaderInSection:(NSInteger)section;
+
 - (NSArray *)sectionIndexTitles;
+
 - (NSInteger)sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index;
 
 - (BOOL)isEmpty;
