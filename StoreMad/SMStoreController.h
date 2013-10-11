@@ -27,16 +27,14 @@
 
 @interface SMStoreController : NSObject
 
-@property (copy) NSURL *storeURL;
-@property (copy) NSURL *modelURL;
-@property (nonatomic, readonly) NSMutableSet *contextObservers;
+@property (nonatomic, strong, readonly) NSMutableSet *contextObservers;
 
 /**
  Initialized with NSMainQueueConcurrencyType.  Meant as the main thread store.
  */
-@property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, readonly) NSManagedObjectModel *managedObjectModel;
-@property (nonatomic, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong, readonly) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 + (SMStoreController *)storeControllerWithStoreURL:(NSURL *)storeURL 
                                        andModelURL:(NSURL *)modelURL;

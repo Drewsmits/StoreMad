@@ -31,13 +31,17 @@
 
 @interface SMStoreController ()
 
+@property (nonatomic, copy) NSURL *storeURL;
+@property (nonatomic, copy) NSURL *modelURL;
+
+@property (nonatomic, strong, readwrite) NSMutableSet *contextObservers;
+@property (nonatomic, strong, readwrite) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong, readwrite) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, strong, readwrite) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
 @end
 
 @implementation SMStoreController
-
-@synthesize managedObjectContext = _managedObjectContext,
-            managedObjectModel = _managedObjectModel,
-            persistentStoreCoordinator = _persistentStoreCoordinator;
 
 - (void)dealloc
 {
@@ -184,12 +188,12 @@
 
 - (NSManagedObjectContext *)managedObjectContext 
 {
-    if (_managedObjectContext != nil) {
+    if (_managedObjectContext) {
         return _managedObjectContext;
     }
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (coordinator != nil) {
+    if (coordinator) {
         _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
         [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
@@ -199,7 +203,7 @@
 
 - (NSManagedObjectModel *)managedObjectModel
 {
-    if (_managedObjectModel != nil) {
+    if (_managedObjectModel) {
         return _managedObjectModel;
     }
     
