@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EmployeeTableViewController : UITableViewController <SMTableViewController>
+@interface EmployeeTableViewController : UITableViewController <SMDataSourceViewController>
 
 @property (nonatomic, strong) SMStoreController *storeController;
 @property (nonatomic, strong) SMTableViewDataSource *storeMadDataSource;

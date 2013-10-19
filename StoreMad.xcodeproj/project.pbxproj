@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88EDD9C8180E21B80085463D /* SMStoreControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EDD9C7180E21B80085463D /* SMStoreControllerTests.m */; };
 		DB0DE4A415B9BB5F007F382F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0DE4A315B9BB5F007F382F /* Foundation.framework */; };
 		DB0DE4B215B9BB5F007F382F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0DE4B115B9BB5F007F382F /* SenTestingKit.framework */; };
 		DB0DE4B415B9BB5F007F382F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0DE4B315B9BB5F007F382F /* UIKit.framework */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		88EDD9C7180E21B80085463D /* SMStoreControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMStoreControllerTests.m; sourceTree = "<group>"; };
 		DB0DE4A015B9BB5F007F382F /* libStoreMad.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libStoreMad.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB0DE4A315B9BB5F007F382F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DB0DE4A715B9BB5F007F382F /* StoreMad-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StoreMad-Prefix.pch"; sourceTree = "<group>"; };
@@ -173,17 +175,18 @@
 		DB0DE4B915B9BB5F007F382F /* StoreMadTests */ = {
 			isa = PBXGroup;
 			children = (
-				DB9A837E1616607000910CEB /* Test Classes */,
+				88EDD9C7180E21B80085463D /* SMStoreControllerTests.m */,
 				DB9D043815DC082D0035FC30 /* StoreMadBaseTest.h */,
 				DB9D043915DC082D0035FC30 /* StoreMadBaseTest.m */,
-				DB9A837B16165FE000910CEB /* StoreMadObjectTests.h */,
-				DB9A837C16165FE000910CEB /* StoreMadObjectTests.m */,
-				DB9D043F15DC0DD70035FC30 /* StoreMadContextTests.h */,
-				DB9D044015DC0DD70035FC30 /* StoreMadContextTests.m */,
 				DB9343071624F1AD0084C6FC /* StoreMadContextObserverTests.h */,
 				DB9343081624F1AD0084C6FC /* StoreMadContextObserverTests.m */,
+				DB9D043F15DC0DD70035FC30 /* StoreMadContextTests.h */,
+				DB9D044015DC0DD70035FC30 /* StoreMadContextTests.m */,
+				DB9A837B16165FE000910CEB /* StoreMadObjectTests.h */,
+				DB9A837C16165FE000910CEB /* StoreMadObjectTests.m */,
 				DB9D043C15DC0B290035FC30 /* StoreMadTests.xcdatamodeld */,
 				DB0DE4BA15B9BB5F007F382F /* Supporting Files */,
+				DB9A837E1616607000910CEB /* Test Classes */,
 			);
 			path = StoreMadTests;
 			sourceTree = "<group>";
@@ -284,7 +287,7 @@
 		DB0DE49715B9BB5F007F382F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = eGraphs;
 			};
 			buildConfigurationList = DB0DE49A15B9BB5F007F382F /* Build configuration list for PBXProject "StoreMad" */;
@@ -358,6 +361,7 @@
 				DB9A83811616609A00910CEB /* Employee.m in Sources */,
 				DB9343091624F1AD0084C6FC /* StoreMadContextObserverTests.m in Sources */,
 				DBBF6015177F9B22008694F1 /* Department.m in Sources */,
+				88EDD9C8180E21B80085463D /* SMStoreControllerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,13 +387,14 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		DB0DE4C215B9BB60007F382F /* Debug */ = {
+		88EDD9D5180F645D0085463D /* Coverage */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -403,10 +408,85 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Coverage;
+		};
+		88EDD9D6180F645D0085463D /* Coverage */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				DSTROOT = /tmp/StoreMad.dst;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StoreMad/StoreMad-Prefix.pch";
+				GENERATE_PROFILING_CODE = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRIVATE_HEADERS_FOLDER_PATH = include/StoreMad/Private;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = include/StoreMad;
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "$(OBJROOT)/UninstalledProducts/include";
+			};
+			name = Coverage;
+		};
+		88EDD9D7180F645D0085463D /* Coverage */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StoreMad/StoreMad-Prefix.pch";
+				GENERATE_PROFILING_CODE = YES;
+				INFOPLIST_FILE = "StoreMadTests/StoreMadTests-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Coverage;
+		};
+		DB0DE4C215B9BB60007F382F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -415,17 +495,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				SDKROOT = iphoneos;
@@ -504,6 +588,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DB0DE4C215B9BB60007F382F /* Debug */,
+				88EDD9D5180F645D0085463D /* Coverage */,
 				DB0DE4C315B9BB60007F382F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -513,6 +598,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DB0DE4C515B9BB60007F382F /* Debug */,
+				88EDD9D6180F645D0085463D /* Coverage */,
 				DB0DE4C615B9BB60007F382F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -522,6 +608,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DB0DE4C815B9BB60007F382F /* Debug */,
+				88EDD9D7180F645D0085463D /* Coverage */,
 				DB0DE4C915B9BB60007F382F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;

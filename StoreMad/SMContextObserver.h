@@ -27,12 +27,37 @@ typedef void (^SMContextObserverBlock)(NSSet *updateObjects, NSSet *insertedOjec
 
 @interface SMContextObserver : NSObject
 
-@property (nonatomic, strong) NSManagedObjectContext *context;
-@property (nonatomic, strong) NSPredicate *predicate;
-@property (nonatomic, copy) NSString *notificationName;
-@property (nonatomic, copy) SMContextObserverBlock workBlock;
+@property (nonatomic, strong, readonly) NSManagedObjectContext *context;
+@property (nonatomic, strong, readonly) NSPredicate *predicate;
+@property (nonatomic, copy, readonly) NSString *notificationName;
+@property (nonatomic, copy, readonly) SMContextObserverBlock workBlock;
+
+/**
+ Creates a SMContextObserver. This observer will execute the workBlock every time
+ the contextNotification is fired by the given context. For instance, you could 
+ set a predicate to observe a specific object change in a given context every time
+ the context saves, firing a NSManagedObjectContextDidSaveNotification.
+ 
+ @param context The context to observe
+ @param predicate The predicate used to filter
+ @param notificationName The NSManagedObjectContext notifications. Valid values
+ include NSManagedObjectContextDidSaveNotification, NSManagedObjectContextDidSaveNotification,
+ and NSManagedObjectContextObjectsDidChangeNotification.
+ @param workBlock The work block to run on the updated, inserted, and deleted objects
+ involved in the notification.
+ */
++ (instancetype)observerInContext:(NSManagedObjectContext *)context
+                        predicate:(NSPredicate *)predicate
+              contextNotification:(NSString *)notificationName
+                        workBlock:(void (^)(NSSet *updateObjects,
+                                            NSSet *insertedOjects,
+                                            NSSet *deletedObjects))workBlock;
+
++ (instancetype)observerForChangesToObject:(NSManagedObject *)object
+                                 workBlock:(void (^)(NSManagedObject *object))workBlock;
 
 - (void)startObservingNotifications;
+
 - (void)stopObservingNotifications;
 
 @end

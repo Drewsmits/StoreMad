@@ -221,16 +221,6 @@
     return [self findAllFetchRequestForObjectNamed:NSStringFromClass(objectClass)];
 }
 
-- (NSFetchRequest *)fetchRequestForObject:(NSManagedObject *)object
-{
-    return [self fetchRequestForObjectNamed:object.entity.name];
-}
-
-- (NSFetchRequest *)findAllFetchRequestForObject:(NSManagedObject *)object
-{
-    return [self findAllFetchRequestForObjectNamed:object.description];
-}
-
 #pragma mark - Create
 
 - (NSManagedObject *)insertNewObjectForEntityNamed:(NSString *)entityName

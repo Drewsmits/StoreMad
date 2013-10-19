@@ -146,12 +146,6 @@
 - (NSFetchRequest *)findAllFetchRequestForObjectClass:(Class)objectClass;
 
 /**
- I'm not sure if the following are really all that useful…
- */
-- (NSFetchRequest *)fetchRequestForObject:(NSManagedObject *)object;
-- (NSFetchRequest *)findAllFetchRequestForObject:(NSManagedObject *)object;
-
-/**
  Inserts a new object for the entity name in the given context, returns said object if successful.
  */
 - (NSManagedObject *)insertNewObjectForEntityNamed:(NSString *)entityName;

@@ -27,12 +27,7 @@
 - (SMStoreController *)storeController
 {
     if (_storeController) return _storeController;
-    _storeController = [self newStoreController];
-    return _storeController;
-}
 
-- (SMStoreController *)newStoreController
-{
     // sqlite
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSURL *applicationDocDirectory = [[fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
@@ -49,8 +44,10 @@
     // Context saves when app changes state
     //
     [newStoreController shouldSaveOnAppStateChanges:YES];
-    
-    return newStoreController;
+  
+    _storeController = newStoreController;
+  
+    return _storeController;
 }
 
 @end

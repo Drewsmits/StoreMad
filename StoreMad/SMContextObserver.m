@@ -25,25 +25,128 @@
 
 #import "SMContextObserver.h"
 
-@implementation SMContextObserver
+@interface SMContextObserver ()
 
-@synthesize notificationName = _notificationName;
+@property (nonatomic, strong, readwrite) NSManagedObjectContext *context;
+@property (nonatomic, strong, readwrite) NSPredicate *predicate;
+@property (nonatomic, copy, readwrite) NSString *notificationName;
+@property (nonatomic, copy, readwrite) SMContextObserverBlock workBlock;
+
+@end
+
+@implementation SMContextObserver
 
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
++ (instancetype)observerInContext:(NSManagedObjectContext *)context
+                        predicate:(NSPredicate *)predicate
+              contextNotification:(NSString *)notificationName
+                        workBlock:(void (^)(NSSet *updateObjects,
+                                            NSSet *insertedOjects,
+                                            NSSet *deletedObjects))workBlock
+{
+    BOOL valid = [self isNotificationValid:notificationName];
+    NSAssert(valid, @"Notification name must be a valide NSManagedObjectContext notification type.");
+    if (!valid) return nil;
+
+    //
+    // Dissallow observing nil context
+    //
+    NSAssert(context, @"SMContextObserver requires a non-nil context");
+    if (!context) return nil;
+
+    SMContextObserver *observer = [SMContextObserver new];
+    observer.context            = context;
+    observer.notificationName   = notificationName;
+    observer.predicate          = predicate;
+    observer.workBlock          = workBlock;
+    
+    return observer;
+}
+
++ (instancetype)observerInContext:(NSManagedObjectContext *)context
+                  forObjectWithId:(NSManagedObjectID *)objectId
+              contextNotification:(NSString *)notificationName
+                        workBlock:(void (^)(NSManagedObject *object))workBlock
+{
+    // Search for the object we pushed in
+    NSPredicate *predicate  = [NSPredicate predicateWithFormat:@"objectID == %@", objectId];;
+    
+    SMContextObserverBlock newWorkBlock = ^(NSSet *updateObjects,
+                                            NSSet *insertedOjects,
+                                            NSSet *deletedObjects) {
+        NSManagedObject *object;
+        
+        if (updateObjects.count > 0) {
+            object = [updateObjects anyObject];
+        } else if (insertedOjects.count > 0) {
+            object = [insertedOjects anyObject];
+        } else if (deletedObjects.count > 0) {
+            object = [deletedObjects anyObject];
+        }
+        
+        if (workBlock) {
+            workBlock(object);
+        }
+    };
+    
+    id observer = [self observerInContext:context
+                                predicate:predicate
+                      contextNotification:notificationName
+                                workBlock:newWorkBlock];
+
+    return observer;
+}
+
++ (instancetype)observerForChangesToObject:(NSManagedObject *)object
+                                 workBlock:(void (^)(NSManagedObject *object))workBlock
+{
+    // Search for the object we pushed in
+    NSPredicate *predicate  = [NSPredicate predicateWithFormat:@"objectID == %@", object.objectID];;
+    
+    SMContextObserverBlock newWorkBlock = ^(NSSet *updateObjects,
+                                            NSSet *insertedOjects,
+                                            NSSet *deletedObjects) {
+        NSManagedObject *object;
+        
+        if (updateObjects.count > 0) {
+            object = [updateObjects anyObject];
+        } else if (insertedOjects.count > 0) {
+            object = [insertedOjects anyObject];
+        } else if (deletedObjects.count > 0) {
+            object = [deletedObjects anyObject];
+        }
+        
+        if (workBlock) {
+            workBlock(object);
+        }
+    };
+    
+    id observer = [self observerInContext:object.managedObjectContext
+                                predicate:predicate
+                      contextNotification:NSManagedObjectContextObjectsDidChangeNotification
+                                workBlock:newWorkBlock];
+    
+    return observer;
+}
+
++ (BOOL)isNotificationValid:(NSString *)notificationName
+{
+    // Only allow observation of standard context notifications
+    NSArray *validNotifications = @[NSManagedObjectContextWillSaveNotification,
+                                    NSManagedObjectContextDidSaveNotification,
+                                    NSManagedObjectContextObjectsDidChangeNotification];
+    
+    return [validNotifications containsObject:notificationName];
+}
+
+#pragma mark - API
+
 - (void)startObservingNotifications
 {
-    // Bail if no notifaction name
-    NSAssert(self.notificationName, @"SMContextObserver requires a non-nil notification name");
-    if (!self.notificationName) return;
-    
-    // Bail if no context
-    NSAssert(self.context, @"SMContextObserver requires a non-nil context");
-    if (!self.context) return;
-    
     // Standard notification center
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(processContextNotification:)
@@ -81,24 +184,6 @@
     
     // Perform work
     self.workBlock(updatedObjectsFiltered, insertedObjectsFiltered, deletedObjectsFiltered);
-}
-
-- (void)setNotificationName:(NSString *)notificationName
-{
-    // Only allow observation of standard context notifications
-    NSArray *validNotifications = @[NSManagedObjectContextWillSaveNotification,
-                                    NSManagedObjectContextDidSaveNotification,
-                                    NSManagedObjectContextObjectsDidChangeNotification];
-    
-    BOOL valid = [validNotifications containsObject:notificationName];
-    NSAssert(valid, @"Notification name must be a valide NSManagedObjectContext notification type.");
-    if (!valid) return;
-    _notificationName = [notificationName copy];
-}
-
-- (NSString *)notificationName
-{
-    return _notificationName;
 }
 
 @end

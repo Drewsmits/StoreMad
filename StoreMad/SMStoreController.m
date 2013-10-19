@@ -31,10 +31,9 @@
 
 @interface SMStoreController ()
 
-@property (nonatomic, copy) NSURL *storeURL;
-@property (nonatomic, copy) NSURL *modelURL;
+@property (nonatomic, copy, readwrite) NSURL *storeURL;
+@property (nonatomic, copy, readwrite) NSURL *modelURL;
 
-@property (nonatomic, strong, readwrite) NSMutableSet *contextObservers;
 @property (nonatomic, strong, readwrite) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong, readwrite) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, strong, readwrite) NSPersistentStoreCoordinator *persistentStoreCoordinator;
@@ -57,14 +56,6 @@
     return controller;
 }
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        _contextObservers = [NSMutableSet new];
-    }
-    return self;
-}
 
 #pragma mark
 
@@ -81,10 +72,6 @@
         
         // Rebuild
         [self managedObjectContext];
-        
-        // Observers
-        _contextObservers = nil;
-        _contextObservers = [NSMutableSet new];
     }
 }
 
@@ -101,89 +88,36 @@
     }
 }
 
-- (void)saveContext
+- (void)setSaveOnAppStateChange:(BOOL)saveOnAppStateChange
 {
-    [self.managedObjectContext queueBlockSaveAndWait];
-}
-
-- (void)shouldSaveOnAppStateChanges:(BOOL)shouldSave
-{
-    if (!shouldSave) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self 
+    _saveOnAppStateChange = saveOnAppStateChange;
+    
+    if (!saveOnAppStateChange) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self
                                                         name:UIApplicationDidEnterBackgroundNotification
                                                       object:nil];
         
-        [[NSNotificationCenter defaultCenter] removeObserver:self 
+        [[NSNotificationCenter defaultCenter] removeObserver:self
                                                         name:UIApplicationWillTerminateNotification
                                                       object:nil];
+    } else {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(saveContext)
+                                                     name:UIApplicationDidEnterBackgroundNotification
+                                                   object:nil];
         
-        return;
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(saveContext)
+                                                     name:UIApplicationWillTerminateNotification
+                                                   object:nil];
     }
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(saveContext)
-                                                 name:UIApplicationDidEnterBackgroundNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(saveContext) 
-                                                 name:UIApplicationWillTerminateNotification 
-                                               object:nil];
-}
-
-#pragma mark - Observer
-
-- (void)addContextObserver:(SMContextObserver *)contextObserver
-{
-    if (!contextObserver) return;
-    contextObserver.context = self.managedObjectContext;
-    [contextObserver startObservingNotifications];
-    [self.contextObservers addObject:contextObserver];
-}
-
-- (void)removeContextObserver:(SMContextObserver *)contextObserver
-{
-    if (!contextObserver) return;
-    [contextObserver stopObservingNotifications];
-    [self.contextObservers removeObject:contextObserver];
-}
-
-- (SMContextObserver *)addContextDidSaveObserverWithWorkBlock:(SMContextObserverBlock)workBlock
-{
-    SMContextObserver *observer = [SMContextObserver new];
-    observer.notificationName = NSManagedObjectContextDidSaveNotification;
-    observer.predicate = [NSPredicate predicateWithFormat:@"1 == 1"];
-    observer.workBlock = workBlock;
-    [self addContextObserver:observer];
-    return observer;
-}
-
-- (void)stopAllContextObservers
-{
-    [self.contextObservers enumerateObjectsUsingBlock:^(SMContextObserver *obj, BOOL *stop) {
-        [obj stopObservingNotifications];
-    }];
-}
-
-- (void)startAllContextObservers
-{
-    [self.contextObservers enumerateObjectsUsingBlock:^(SMContextObserver *obj, BOOL *stop) {
-        [obj startObservingNotifications];
-    }];
 }
 
 #pragma mark - CoreData Stack
 
-- (NSManagedObjectContext *)threadSafeManagedObjectContext
-{    
-    // Create new context with default concurrency type
-    NSManagedObjectContext *newContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-    [newContext setParentContext:self.managedObjectContext];
-    
-    // Optimization
-    [newContext setUndoManager:nil];
-    
-    return newContext;
+- (void)saveContext
+{
+    [self.managedObjectContext queueBlockSaveAndWait];
 }
 
 - (NSManagedObjectContext *)managedObjectContext 
@@ -267,12 +201,6 @@
     }    
     
     return _persistentStoreCoordinator;
-}
-
-#pragma mark - File Directories
-
-- (NSURL *)applicationDocumentsDirectory {
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 @end

@@ -27,7 +27,15 @@
 
 @interface SMStoreController : NSObject
 
-@property (nonatomic, strong, readonly) NSMutableSet *contextObservers;
+/**
+ The URL of the sqlite store, as set when initialized.
+ */
+@property (nonatomic, copy, readonly) NSURL *storeURL;
+
+/**
+ The URL of the model URL, as set when initialized.
+ */
+@property (nonatomic, copy, readonly) NSURL *modelURL;
 
 /**
  Initialized with NSMainQueueConcurrencyType.  Meant as the main thread store.
@@ -36,27 +44,24 @@
 @property (nonatomic, strong, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+/**
+ Set this to YES if you want the internal managedObjectContext to save when the
+ app moves to the background. Set to NO, if otherwise.
+ */
+@property (nonatomic, assign) BOOL saveOnAppStateChange;
+
 + (SMStoreController *)storeControllerWithStoreURL:(NSURL *)storeURL 
                                        andModelURL:(NSURL *)modelURL;
 
+/**
+ Delete's the local store and rebuilds it. This will nuke any data you have and
+ give you a fresh sqlite store. So yeah, be careful.
+ */
 - (void)reset;
-- (void)deleteStore;
-- (void)saveContext;
-- (void)shouldSaveOnAppStateChanges:(BOOL)shouldSave;
-
-- (void)addContextObserver:(SMContextObserver *)contextObserver;
-- (void)removeContextObserver:(SMContextObserver *)contextObserver;
-- (SMContextObserver *)addContextDidSaveObserverWithWorkBlock:(SMContextObserverBlock)workBlock;
-
-- (void)stopAllContextObservers;
-- (void)startAllContextObservers;
 
 /**
- Returns a new NSManagedObjectContext with a concurrency type of NSPrivateQueueConcurrencyType
- and the parent context set as the main managedObjectContext.
+ This will delete the sqlite store on file. So yeah, be careful.
  */
-- (NSManagedObjectContext *)threadSafeManagedObjectContext;
-
-- (NSURL *)applicationDocumentsDirectory;
+- (void)deleteStore;
 
 @end
