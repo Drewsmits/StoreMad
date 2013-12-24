@@ -104,33 +104,10 @@
 + (instancetype)observerForChangesToObject:(NSManagedObject *)object
                                  workBlock:(void (^)(NSManagedObject *object))workBlock
 {
-    // Search for the object we pushed in
-    NSPredicate *predicate  = [NSPredicate predicateWithFormat:@"objectID == %@", object.objectID];;
-    
-    SMContextObserverBlock newWorkBlock = ^(NSSet *updateObjects,
-                                            NSSet *insertedOjects,
-                                            NSSet *deletedObjects) {
-        NSManagedObject *object;
-        
-        if (updateObjects.count > 0) {
-            object = [updateObjects anyObject];
-        } else if (insertedOjects.count > 0) {
-            object = [insertedOjects anyObject];
-        } else if (deletedObjects.count > 0) {
-            object = [deletedObjects anyObject];
-        }
-        
-        if (workBlock) {
-            workBlock(object);
-        }
-    };
-    
-    id observer = [self observerInContext:object.managedObjectContext
-                                predicate:predicate
-                      contextNotification:NSManagedObjectContextObjectsDidChangeNotification
-                                workBlock:newWorkBlock];
-    
-    return observer;
+    return [self observerInContext:object.managedObjectContext
+                   forObjectWithId:object.objectID
+               contextNotification:NSManagedObjectContextObjectsDidChangeNotification
+                         workBlock:workBlock];
 }
 
 + (BOOL)isNotificationValid:(NSString *)notificationName

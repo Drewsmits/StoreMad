@@ -12,23 +12,40 @@
 
 @implementation StoreMadContextObserverTests
 
-//- (void)testSetNotificationName
-//{
-//    SMContextObserver *observer = [SMContextObserver new];
-//    NSString *invalidNotification = @"burrito";
-//    STAssertThrows([observer setNotificationName:invalidNotification], @"Setting invalid notification should assert");
-//
-//    STAssertNoThrow([observer setNotificationName:NSManagedObjectContextWillSaveNotification], @"Setting valid notification should not assert");
-//    STAssertNoThrow([observer setNotificationName:NSManagedObjectContextDidSaveNotification], @"Setting valid notification should not assert");
-//    STAssertNoThrow([observer setNotificationName:NSManagedObjectContextObjectsDidChangeNotification], @"Setting valid notification should not assert");
-//}
+- (void)testSetNotificationName
+{
+    STAssertThrows([SMContextObserver observerInContext:self.testContext
+                                              predicate:nil
+                                    contextNotification:@"burrito"
+                                              workBlock:nil],
+                   @"Setting invalid notification should assert");
 
-//- (void)testNilContext
-//{
-//    SMContextObserver *observer = [SMContextObserver new];
-//    observer.notificationName = NSManagedObjectContextDidSaveNotification;
-//    STAssertThrows([observer startObservingNotifications], @"Observing a nil context should assert");
-//}
+    STAssertNoThrow([SMContextObserver observerInContext:self.testContext
+                                               predicate:nil
+                                     contextNotification:NSManagedObjectContextWillSaveNotification
+                                               workBlock:nil],
+                    @"Setting valid notification should not assert");
+    
+    STAssertNoThrow([SMContextObserver observerInContext:self.testContext
+                                               predicate:nil
+                                     contextNotification:NSManagedObjectContextDidSaveNotification
+                                               workBlock:nil],
+                    @"Setting valid notification should not assert");
+    
+    STAssertNoThrow([SMContextObserver observerInContext:self.testContext
+                                               predicate:nil
+                                     contextNotification:NSManagedObjectContextObjectsDidChangeNotification
+                                               workBlock:nil],
+                   @"Setting valid notification should not assert");
+}
+
+- (void)testNilContext
+{
+    STAssertThrows([SMContextObserver observerInContext:nil
+                                              predicate:nil
+                                    contextNotification:NSManagedObjectContextDidSaveNotification
+                                              workBlock:nil], @"Observing a nil context should assert");
+}
 
 //- (void)testWorkBlock
 //{

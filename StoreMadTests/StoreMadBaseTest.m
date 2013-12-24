@@ -8,7 +8,7 @@
 
 #import "StoreMadBaseTest.h"
 
-extern void __gcov_flush(void);
+//extern void __gcov_flush(void);
 
 @implementation StoreMadBaseTest
 
@@ -25,7 +25,7 @@ extern void __gcov_flush(void);
 {
     [self.storeController reset];
     _storeController = nil;
-    __gcov_flush();
+//    __gcov_flush();
 }
 
 - (NSManagedObjectContext *)testContext
