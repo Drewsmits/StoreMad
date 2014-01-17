@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		889B8B051888CFFA0099C1A3 /* SMCollectionViewDataSource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB1F446B16D94D530017B23D /* SMCollectionViewDataSource.h */; };
+		889B8B061888CFFA0099C1A3 /* SMDataSource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB7273D41781D39E00CE5D7E /* SMDataSource.h */; };
+		889B8B071888CFFA0099C1A3 /* SMTableViewDataSource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB7BF647161E2E0400EAAE5E /* SMTableViewDataSource.h */; };
+		889B8B081888CFFA0099C1A3 /* NSManagedObject+StoreMad.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB0DE55015B9CCEE007F382F /* NSManagedObject+StoreMad.h */; };
+		889B8B091888CFFA0099C1A3 /* NSManagedObjectContext+StoreMad.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB0DE55415B9CE1A007F382F /* NSManagedObjectContext+StoreMad.h */; };
+		889B8B0A1888CFFA0099C1A3 /* SMContextObserver.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBD77098161D302E00853D7C /* SMContextObserver.h */; };
+		889B8B0B1888CFFA0099C1A3 /* SMStoreController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB0DE4E415B9BDC6007F382F /* SMStoreController.h */; };
+		889B8B0C1888CFFA0099C1A3 /* StoreMad.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB83D02016F516F000D6A980 /* StoreMad.h */; };
 		88EDD9C8180E21B80085463D /* SMStoreControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EDD9C7180E21B80085463D /* SMStoreControllerTests.m */; };
 		DB0DE4A415B9BB5F007F382F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0DE4A315B9BB5F007F382F /* Foundation.framework */; };
 		DB0DE4B215B9BB5F007F382F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0DE4B115B9BB5F007F382F /* SenTestingKit.framework */; };
@@ -14,20 +22,13 @@
 		DB0DE4B515B9BB5F007F382F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0DE4A315B9BB5F007F382F /* Foundation.framework */; };
 		DB0DE4B815B9BB5F007F382F /* libStoreMad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0DE4A015B9BB5F007F382F /* libStoreMad.a */; };
 		DB0DE4BE15B9BB60007F382F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DB0DE4BC15B9BB60007F382F /* InfoPlist.strings */; };
-		DB0DE4E615B9BDC6007F382F /* SMStoreController.h in Headers */ = {isa = PBXBuildFile; fileRef = DB0DE4E415B9BDC6007F382F /* SMStoreController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB0DE4E715B9BDC6007F382F /* SMStoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0DE4E515B9BDC6007F382F /* SMStoreController.m */; };
 		DB0DE4E915B9BDD4007F382F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0DE4E815B9BDD4007F382F /* CoreData.framework */; };
-		DB0DE55215B9CCEF007F382F /* NSManagedObject+StoreMad.h in Headers */ = {isa = PBXBuildFile; fileRef = DB0DE55015B9CCEE007F382F /* NSManagedObject+StoreMad.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB0DE55315B9CCEF007F382F /* NSManagedObject+StoreMad.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0DE55115B9CCEF007F382F /* NSManagedObject+StoreMad.m */; };
-		DB0DE55615B9CE1B007F382F /* NSManagedObjectContext+StoreMad.h in Headers */ = {isa = PBXBuildFile; fileRef = DB0DE55415B9CE1A007F382F /* NSManagedObjectContext+StoreMad.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB0DE55715B9CE1B007F382F /* NSManagedObjectContext+StoreMad.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0DE55515B9CE1A007F382F /* NSManagedObjectContext+StoreMad.m */; };
-		DB1F446D16D94D530017B23D /* SMCollectionViewDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = DB1F446B16D94D530017B23D /* SMCollectionViewDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB1F446E16D94D530017B23D /* SMCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DB1F446C16D94D530017B23D /* SMCollectionViewDataSource.m */; };
-		DB7273D61781D39E00CE5D7E /* SMDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = DB7273D41781D39E00CE5D7E /* SMDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB7273D71781D39E00CE5D7E /* SMDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7273D51781D39E00CE5D7E /* SMDataSource.m */; };
-		DB7BF649161E2E0400EAAE5E /* SMTableViewDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = DB7BF647161E2E0400EAAE5E /* SMTableViewDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB7BF64A161E2E0400EAAE5E /* SMTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7BF648161E2E0400EAAE5E /* SMTableViewDataSource.m */; };
-		DB83D02116F516F000D6A980 /* StoreMad.h in Headers */ = {isa = PBXBuildFile; fileRef = DB83D02016F516F000D6A980 /* StoreMad.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB9343091624F1AD0084C6FC /* StoreMadContextObserverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9343081624F1AD0084C6FC /* StoreMadContextObserverTests.m */; };
 		DB9A837D16165FE000910CEB /* StoreMadObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9A837C16165FE000910CEB /* StoreMadObjectTests.m */; };
 		DB9A83811616609A00910CEB /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9A83801616609A00910CEB /* Employee.m */; };
@@ -36,7 +37,6 @@
 		DB9D044115DC0DD70035FC30 /* StoreMadContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9D044015DC0DD70035FC30 /* StoreMadContextTests.m */; };
 		DB9D044215DC0E300035FC30 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0DE4E815B9BDD4007F382F /* CoreData.framework */; };
 		DBBF6015177F9B22008694F1 /* Department.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBF6014177F9B22008694F1 /* Department.m */; };
-		DBD7709A161D302E00853D7C /* SMContextObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = DBD77098161D302E00853D7C /* SMContextObserver.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DBD7709B161D302E00853D7C /* SMContextObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD77099161D302E00853D7C /* SMContextObserver.m */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +49,26 @@
 			remoteInfo = StoreMad;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		889B8B041888CFE10099C1A3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				889B8B051888CFFA0099C1A3 /* SMCollectionViewDataSource.h in CopyFiles */,
+				889B8B061888CFFA0099C1A3 /* SMDataSource.h in CopyFiles */,
+				889B8B071888CFFA0099C1A3 /* SMTableViewDataSource.h in CopyFiles */,
+				889B8B081888CFFA0099C1A3 /* NSManagedObject+StoreMad.h in CopyFiles */,
+				889B8B091888CFFA0099C1A3 /* NSManagedObjectContext+StoreMad.h in CopyFiles */,
+				889B8B0A1888CFFA0099C1A3 /* SMContextObserver.h in CopyFiles */,
+				889B8B0B1888CFFA0099C1A3 /* SMStoreController.h in CopyFiles */,
+				889B8B0C1888CFFA0099C1A3 /* StoreMad.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		88EDD9C7180E21B80085463D /* SMStoreControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMStoreControllerTests.m; sourceTree = "<group>"; };
@@ -226,24 +246,6 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		DB0DE49E15B9BB5F007F382F /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DB0DE4E615B9BDC6007F382F /* SMStoreController.h in Headers */,
-				DB0DE55215B9CCEF007F382F /* NSManagedObject+StoreMad.h in Headers */,
-				DB0DE55615B9CE1B007F382F /* NSManagedObjectContext+StoreMad.h in Headers */,
-				DBD7709A161D302E00853D7C /* SMContextObserver.h in Headers */,
-				DB7BF649161E2E0400EAAE5E /* SMTableViewDataSource.h in Headers */,
-				DB1F446D16D94D530017B23D /* SMCollectionViewDataSource.h in Headers */,
-				DB83D02116F516F000D6A980 /* StoreMad.h in Headers */,
-				DB7273D61781D39E00CE5D7E /* SMDataSource.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
 		DB0DE49F15B9BB5F007F382F /* StoreMad */ = {
 			isa = PBXNativeTarget;
@@ -251,7 +253,7 @@
 			buildPhases = (
 				DB0DE49C15B9BB5F007F382F /* Sources */,
 				DB0DE49D15B9BB5F007F382F /* Frameworks */,
-				DB0DE49E15B9BB5F007F382F /* Headers */,
+				889B8B041888CFE10099C1A3 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -431,11 +433,8 @@
 				GCC_PREFIX_HEADER = "StoreMad/StoreMad-Prefix.pch";
 				GENERATE_PROFILING_CODE = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRIVATE_HEADERS_FOLDER_PATH = include/StoreMad/Private;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = include/StoreMad;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(OBJROOT)/UninstalledProducts/include";
 			};
 			name = Coverage;
 		};
@@ -525,11 +524,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StoreMad/StoreMad-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
-				PRIVATE_HEADERS_FOLDER_PATH = include/StoreMad/Private;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = include/StoreMad;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(OBJROOT)/UninstalledProducts/include";
 			};
 			name = Debug;
 		};
@@ -541,11 +537,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StoreMad/StoreMad-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
-				PRIVATE_HEADERS_FOLDER_PATH = include/StoreMad/Private;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = include/StoreMad;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(OBJROOT)/UninstalledProducts/include";
 			};
 			name = Release;
 		};
