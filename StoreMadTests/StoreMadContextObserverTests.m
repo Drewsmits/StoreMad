@@ -14,25 +14,25 @@
 
 - (void)testSetNotificationName
 {
-    STAssertThrows([SMContextObserver observerInContext:self.testContext
+    XCTAssertThrows([SMContextObserver observerInContext:self.testContext
                                               predicate:nil
                                     contextNotification:@"burrito"
                                               workBlock:nil],
                    @"Setting invalid notification should assert");
 
-    STAssertNoThrow([SMContextObserver observerInContext:self.testContext
+    XCTAssertNoThrow([SMContextObserver observerInContext:self.testContext
                                                predicate:nil
                                      contextNotification:NSManagedObjectContextWillSaveNotification
                                                workBlock:nil],
                     @"Setting valid notification should not assert");
     
-    STAssertNoThrow([SMContextObserver observerInContext:self.testContext
+    XCTAssertNoThrow([SMContextObserver observerInContext:self.testContext
                                                predicate:nil
                                      contextNotification:NSManagedObjectContextDidSaveNotification
                                                workBlock:nil],
                     @"Setting valid notification should not assert");
     
-    STAssertNoThrow([SMContextObserver observerInContext:self.testContext
+    XCTAssertNoThrow([SMContextObserver observerInContext:self.testContext
                                                predicate:nil
                                      contextNotification:NSManagedObjectContextObjectsDidChangeNotification
                                                workBlock:nil],
@@ -41,7 +41,7 @@
 
 - (void)testNilContext
 {
-    STAssertThrows([SMContextObserver observerInContext:nil
+    XCTAssertThrows([SMContextObserver observerInContext:nil
                                               predicate:nil
                                     contextNotification:NSManagedObjectContextDidSaveNotification
                                               workBlock:nil], @"Observing a nil context should assert");
@@ -64,14 +64,14 @@
     [self.testContext insertNewObjectForEntityNamed:@"Employee"];
     [self.testContext queueBlockSaveAndWait];
     
-    STAssertTrue(wasNotified, @"Work block should run");
+    XCTAssertTrue(wasNotified, @"Work block should run");
     
     wasNotified = NO;
     
     [self.testContext insertNewObjectForEntityNamed:@"Department"];
     [self.testContext queueBlockSaveAndWait];
     
-    STAssertFalse(wasNotified, @"Work block should not run");
+    XCTAssertFalse(wasNotified, @"Work block should not run");
 }
 
 - (void)testStopObserver
@@ -91,7 +91,7 @@
     [self.testContext insertNewObjectForEntityNamed:@"Employee"];
     [self.testContext queueBlockSaveAndWait];
     
-    STAssertTrue(wasNotified, @"Work block should run");
+    XCTAssertTrue(wasNotified, @"Work block should run");
     
     [observer stopObservingNotifications];
     
@@ -100,7 +100,7 @@
     [self.testContext insertNewObjectForEntityNamed:@"Department"];
     [self.testContext queueBlockSaveAndWait];
     
-    STAssertFalse(wasNotified, @"Work block should not run");
+    XCTAssertFalse(wasNotified, @"Work block should not run");
 }
 
 - (void)testObserveSpecificObject
@@ -122,7 +122,7 @@
         [self.testContext save];
     }];
     
-    STAssertEquals(updatedObject, employee, @"Updated object should be employee");
+    XCTAssertEqual(updatedObject, employee, @"Updated object should be employee");
 }
 
 @end

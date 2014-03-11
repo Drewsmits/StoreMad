@@ -16,20 +16,20 @@
 {    
     NSManagedObject *employee        = [Employee createInContext:self.testContext];
     NSManagedObject *fetchedEmployee = [self.testContext objectForURI:employee.objectURI];
-    STAssertEqualObjects(employee, fetchedEmployee, @"Should be the same NSManagedObject!");
+    XCTAssertEqualObjects(employee, fetchedEmployee, @"Should be the same NSManagedObject!");
 }
 
 - (void)testObjectForNilURI
 {
     NSManagedObject *object = [self.testContext objectForURI:nil];
-    STAssertNil(object, @"Object should be nil!");
+    XCTAssertNil(object, @"Object should be nil!");
 }
 
 - (void)testDeleteObjectAtURI
 {
     NSManagedObject *employee = [Employee createInContext:self.testContext];
     [self.testContext deleteObjectAtURI:employee.objectURI];
-    STAssertTrue([employee hasBeenDeleted], @"Object should be deleted");
+    XCTAssertTrue([employee hasBeenDeleted], @"Object should be deleted");
 }
 
 - (void)testDeleteObject
@@ -37,7 +37,7 @@
     NSManagedObject *employee = [Employee createInContext:self.testContext];
     [self.testContext save];
     [self.testContext deleteObject:employee];
-    STAssertTrue([employee hasBeenDeleted], @"Object should be deleted");
+    XCTAssertTrue([employee hasBeenDeleted], @"Object should be deleted");
 }
 
 - (void)testDeleteObjects
@@ -48,9 +48,9 @@
 
     [self.testContext deleteObjects:@[employee1, employee2, employee3]];
 
-    STAssertTrue([employee1 hasBeenDeleted], @"Object should be deleted");
-    STAssertTrue([employee2 hasBeenDeleted], @"Object should be deleted");
-    STAssertTrue([employee3 hasBeenDeleted], @"Object should be deleted");
+    XCTAssertTrue([employee1 hasBeenDeleted], @"Object should be deleted");
+    XCTAssertTrue([employee2 hasBeenDeleted], @"Object should be deleted");
+    XCTAssertTrue([employee3 hasBeenDeleted], @"Object should be deleted");
 }
 
 - (void)testExecuteFetchRequest
@@ -69,13 +69,13 @@
     
     NSArray *fetchedBacons = [self.testContext executeFetchRequest:baconFetch];
     
-    STAssertEquals(fetchedBacons.count, 1U, @"Context should execute fetch request and return all the correct objects");
+    XCTAssertEqual(fetchedBacons.count, 1U, @"Context should execute fetch request and return all the correct objects");
     
     if (fetchedBacons.count < 1) return;
     NSManagedObject *fetchedBacon = [fetchedBacons objectAtIndex:0];
     
     BOOL same = ([employee1.objectID isEqual:fetchedBacon.objectID]);
-    STAssertTrue(same, @"Context should execute fetch request and return the correct object");
+    XCTAssertTrue(same, @"Context should execute fetch request and return the correct object");
 }
 
 - (void)testCountForFetchRequest
@@ -89,7 +89,7 @@
     NSFetchRequest *employeeFetch = [self.testContext fetchRequestForObjectClass:[Employee class]];
     NSArray *fetchedEmployees = [self.testContext executeFetchRequest:employeeFetch];
 
-    STAssertEquals(fetchedEmployees.count, 2U, @"Context should count the correct number of objects");
+    XCTAssertEqual(fetchedEmployees.count, 2U, @"Context should count the correct number of objects");
 }
 
 - (void)testAllValuesForPropertyFetchRequest
@@ -115,8 +115,8 @@
                       && [fetchedProperties containsObject:@(2)]
                       && [fetchedProperties containsObject:@(42)]);
     
-    STAssertEquals(fetchedProperties.count, 3U, @"Should have 3 properties");
-    STAssertTrue(hasAllIds, @"Should fetch all the ids that were previously set");
+    XCTAssertEqual(fetchedProperties.count, 3U, @"Should have 3 properties");
+    XCTAssertTrue(hasAllIds, @"Should fetch all the ids that were previously set");
 }
 
 @end

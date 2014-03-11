@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 eGraphs. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 #import "StoreMadBaseTest.h"
 
 @interface SMStoreControllerTests : StoreMadBaseTest
@@ -35,7 +35,7 @@
     
     BOOL equal = [context isEqual:self.storeController.managedObjectContext];
     
-    STAssertFalse(equal, @"Contexts should not be equal after reset");
+    XCTAssertFalse(equal, @"Contexts should not be equal after reset");
 }
 
 - (void)testDeleteStore
@@ -44,13 +44,13 @@
     
     BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[self.storeController.storeURL path]];
 
-    STAssertTrue(exists, @"Store should exist at URL before delete store");
+    XCTAssertTrue(exists, @"Store should exist at URL before delete store");
     
     [self.storeController deleteStore];
     
     exists = [[NSFileManager defaultManager] fileExistsAtPath:[self.storeController.storeURL path]];
 
-    STAssertFalse(exists, @"Store should not exist at URL after delete store");
+    XCTAssertFalse(exists, @"Store should not exist at URL after delete store");
 }
 
 @end

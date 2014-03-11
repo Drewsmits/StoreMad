@@ -15,34 +15,34 @@
 {
     Employee *object = [Employee createInContext:self.testContext];
     
-    STAssertFalse([object hasBeenDeleted], @"Object should not be deleted");
+    XCTAssertFalse([object hasBeenDeleted], @"Object should not be deleted");
     
     [self.testContext queueBlockSave];
     
-    STAssertFalse([object hasBeenDeleted], @"Object should not be deleted");
+    XCTAssertFalse([object hasBeenDeleted], @"Object should not be deleted");
     
     [self.testContext deleteObject:object];
     
-    STAssertTrue([object hasBeenDeleted], @"Object should be deleted");
+    XCTAssertTrue([object hasBeenDeleted], @"Object should be deleted");
 }
 
 - (void)testHasBeenSaved
 {
     Employee *object = [Employee createInContext:self.testContext];
     
-    STAssertFalse([object hasBeenSaved], @"Object should not be saved");
+    XCTAssertFalse([object hasBeenSaved], @"Object should not be saved");
     
     [self.testContext save:nil];
 
-    STAssertTrue([object hasBeenSaved], @"Object should be saved");
+    XCTAssertTrue([object hasBeenSaved], @"Object should be saved");
 }
 
 - (void)testCreateInContext
 {
     Employee *object = [Employee createInContext:self.testContext];
 
-    STAssertTrue([object isInserted], @"Object should be inserted");
-    STAssertFalse([object hasBeenSaved], @"Object should not be saved");
+    XCTAssertTrue([object isInserted], @"Object should be inserted");
+    XCTAssertFalse([object hasBeenSaved], @"Object should not be saved");
 }
 
 - (void)testExecuteFetchRequest

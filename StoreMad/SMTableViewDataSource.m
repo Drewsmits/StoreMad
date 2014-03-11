@@ -56,7 +56,7 @@
     [self.tableView beginUpdates];
     
     // Update sections
-    for (int i = self.tableView.numberOfSections; i < controller.sections.count; i++) {
+    for (NSInteger i = self.tableView.numberOfSections; i < controller.sections.count; i++) {
         [self.tableView insertSections:[NSIndexSet indexSetWithIndex:i]
                       withRowAnimation:UITableViewRowAnimationAutomatic];
     }

@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 Andrew B. Smith. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 #import "SMStoreController.h"
 #import "NSManagedObject+StoreMad.h"
 #import "NSManagedObjectContext+StoreMad.h"
 
-@interface StoreMadBaseTest : SenTestCase
+@interface StoreMadBaseTest : XCTestCase
 
 @property (nonatomic, strong) SMStoreController *storeController;
 @property (nonatomic, readonly) NSManagedObjectContext *testContext;
