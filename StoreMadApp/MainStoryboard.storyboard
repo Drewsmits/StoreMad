@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="1ij-Hl-uHW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="1ij-Hl-uHW">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Root View Controller - Employees-->
@@ -52,7 +52,18 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Employees" id="MvK-gI-quA"/>
+                    <navigationItem key="navigationItem" title="Employees" id="MvK-gI-quA">
+                        <barButtonItem key="leftBarButtonItem" title="Create" id="L2H-2x-BW5">
+                            <connections>
+                                <action selector="createEmployees:" destination="kTC-PH-1mn" id="syR-PI-blX"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Clear" id="GDi-Hq-46H">
+                            <connections>
+                                <action selector="reset:" destination="kTC-PH-1mn" id="3uU-jA-3NQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lgv-2k-4C9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

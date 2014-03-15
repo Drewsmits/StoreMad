@@ -13,20 +13,13 @@
 
 #pragma mark - Core Data
 
-+ (Employee *)newEmployeeInContext:(NSManagedObjectContext *)context
-{
-    Employee *newEmployee = [Employee createInContext:context];
-    newEmployee.hireDate = [NSDate date];
-    return newEmployee;
-}
-
 + (NSFetchRequest *)allEmployeesSortedFetchRequestInContext:(NSManagedObjectContext *)context
 {
     // Request
     NSFetchRequest *fetchRequest = [context fetchRequestForObjectClass:[Employee class]];
     
     // Sort
-    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"hireDate" ascending:YES]];
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"hireDate" ascending:NO]];
     
     return fetchRequest;
 }
@@ -34,8 +27,30 @@
 #pragma mark - Actions
 
 + (void)fireEmployee:(Employee *)employee
+          completion:(void (^)(void))completion
 {
-    
+    NSManagedObjectContext *context = employee.managedObjectContext;
+    [context performBlockAndWait:^{
+        employee.fireDate = [NSDate date];
+        [context save];
+        if (completion) completion ();
+    }];
+}
+
++ (void)hireEmployee:(Employee *)employee
+          completion:(void (^)(void))completion
+{
+    if (!employee.isFired) {
+        if (completion) completion();
+        return;
+    }
+    NSManagedObjectContext *context = employee.managedObjectContext;
+    [context performBlockAndWait:^{
+        employee.fireDate = nil;
+        employee.hireDate = [NSDate date];
+        [context save];
+        if (completion) completion ();
+    }];
 }
 
 @end

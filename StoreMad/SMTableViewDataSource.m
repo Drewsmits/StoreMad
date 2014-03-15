@@ -26,8 +26,6 @@
 
 @interface  SMTableViewDataSource ()
 
-@property (nonatomic, weak) UIViewController *tableViewController;
-
 @property (nonatomic, weak) UITableView *tableView;
 
 @end
@@ -89,7 +87,8 @@
                                        atIndexPath:indexPath];
             break;
         case NSFetchedResultsChangeMove:
-            [self.tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
+            [self.tableView moveRowAtIndexPath:indexPath
+                                   toIndexPath:newIndexPath];
             break;
     }
 }
@@ -121,8 +120,8 @@
 {
     [self.tableView endUpdates];
     
-    if ([self.tableViewController respondsToSelector:@selector(fetchResultsDidChange)]) {
-        [self.tableViewController performSelector:@selector(fetchResultsDidChange)];
+    if ([self.dataSourceDelegate respondsToSelector:@selector(fetchResultsDidChange)]) {
+        [self.dataSourceDelegate performSelector:@selector(fetchResultsDidChange)];
     }
 }
 

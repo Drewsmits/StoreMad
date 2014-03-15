@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Burgess. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <UIKit/UIKit.h>\
 
-@interface EmployeeTableViewController : UITableViewController <SMDataSourceViewController>
+@interface EmployeeTableViewController : UITableViewController
 
 @property (nonatomic, strong) SMStoreController *storeController;
 @property (nonatomic, strong) SMTableViewDataSource *storeMadDataSource;

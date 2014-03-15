@@ -6,8 +6,12 @@
 //  Copyright (c) 2012 eGraphs. All rights reserved.
 //
 
-#import "StoreMadObjectTests.h"
+#import "StoreMadBaseTest.h"
 #import "Employee.h"
+
+@interface StoreMadObjectTests : StoreMadBaseTest
+
+@end
 
 @implementation StoreMadObjectTests
 

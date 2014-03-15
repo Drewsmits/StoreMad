@@ -24,9 +24,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SMDataSource.h"
 
-@protocol SMCollectionViewDataSourceDelegate;
+#import "SMDataSource.h"
 
 @interface SMCollectionViewDataSource : SMDataSource
 

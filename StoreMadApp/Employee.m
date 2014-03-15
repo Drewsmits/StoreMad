@@ -18,7 +18,7 @@
 
 - (BOOL)isFired
 {
-    return !self.fireDate;
+    return (self.fireDate != nil);
 }
 
 @end

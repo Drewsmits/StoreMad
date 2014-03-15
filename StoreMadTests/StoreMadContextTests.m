@@ -6,9 +6,14 @@
 //  Copyright (c) 2012 Andrew B. Smith. All rights reserved.
 //
 
-#import "StoreMadContextTests.h"
 #import "Department.h"
 #import "Employee.h"
+
+#import "StoreMadBaseTest.h"
+
+@interface StoreMadContextTests : StoreMadBaseTest
+
+@end
 
 @implementation StoreMadContextTests
 

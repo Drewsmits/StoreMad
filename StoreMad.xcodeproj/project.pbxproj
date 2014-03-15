@@ -12,9 +12,11 @@
 		889B8B071888CFFA0099C1A3 /* SMTableViewDataSource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB7BF647161E2E0400EAAE5E /* SMTableViewDataSource.h */; };
 		889B8B081888CFFA0099C1A3 /* NSManagedObject+StoreMad.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB0DE55015B9CCEE007F382F /* NSManagedObject+StoreMad.h */; };
 		889B8B091888CFFA0099C1A3 /* NSManagedObjectContext+StoreMad.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB0DE55415B9CE1A007F382F /* NSManagedObjectContext+StoreMad.h */; };
-		889B8B0A1888CFFA0099C1A3 /* SMContextObserver.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBD77098161D302E00853D7C /* SMContextObserver.h */; };
 		889B8B0B1888CFFA0099C1A3 /* SMStoreController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB0DE4E415B9BDC6007F382F /* SMStoreController.h */; };
 		889B8B0C1888CFFA0099C1A3 /* StoreMad.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB83D02016F516F000D6A980 /* StoreMad.h */; };
+		889D834A18D27546006EE54D /* SMContextObserverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 889D834918D27546006EE54D /* SMContextObserverController.m */; };
+		889D835918D27F45006EE54D /* SMContextObserverControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 889D835818D27F45006EE54D /* SMContextObserverControllerTests.m */; };
+		889D835B18D37242006EE54D /* SMContextObserverController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 889D834818D27546006EE54D /* SMContextObserverController.h */; };
 		88C3B13818CF9F16007E89A0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88C3B13718CF9F16007E89A0 /* UIKit.framework */; };
 		88C3B13A18CF9F20007E89A0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88C3B13918CF9F20007E89A0 /* XCTest.framework */; };
 		88EDD9C8180E21B80085463D /* SMStoreControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EDD9C7180E21B80085463D /* SMStoreControllerTests.m */; };
@@ -29,7 +31,6 @@
 		DB1F446E16D94D530017B23D /* SMCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DB1F446C16D94D530017B23D /* SMCollectionViewDataSource.m */; };
 		DB7273D71781D39E00CE5D7E /* SMDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7273D51781D39E00CE5D7E /* SMDataSource.m */; };
 		DB7BF64A161E2E0400EAAE5E /* SMTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7BF648161E2E0400EAAE5E /* SMTableViewDataSource.m */; };
-		DB9343091624F1AD0084C6FC /* StoreMadContextObserverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9343081624F1AD0084C6FC /* StoreMadContextObserverTests.m */; };
 		DB9A837D16165FE000910CEB /* StoreMadObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9A837C16165FE000910CEB /* StoreMadObjectTests.m */; };
 		DB9A83811616609A00910CEB /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9A83801616609A00910CEB /* Employee.m */; };
 		DB9D043A15DC082D0035FC30 /* StoreMadBaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9D043915DC082D0035FC30 /* StoreMadBaseTest.m */; };
@@ -37,7 +38,6 @@
 		DB9D044115DC0DD70035FC30 /* StoreMadContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9D044015DC0DD70035FC30 /* StoreMadContextTests.m */; };
 		DB9D044215DC0E300035FC30 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0DE4E815B9BDD4007F382F /* CoreData.framework */; };
 		DBBF6015177F9B22008694F1 /* Department.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBF6014177F9B22008694F1 /* Department.m */; };
-		DBD7709B161D302E00853D7C /* SMContextObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD77099161D302E00853D7C /* SMContextObserver.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,12 +57,12 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				889D835B18D37242006EE54D /* SMContextObserverController.h in CopyFiles */,
 				889B8B051888CFFA0099C1A3 /* SMCollectionViewDataSource.h in CopyFiles */,
 				889B8B061888CFFA0099C1A3 /* SMDataSource.h in CopyFiles */,
 				889B8B071888CFFA0099C1A3 /* SMTableViewDataSource.h in CopyFiles */,
 				889B8B081888CFFA0099C1A3 /* NSManagedObject+StoreMad.h in CopyFiles */,
 				889B8B091888CFFA0099C1A3 /* NSManagedObjectContext+StoreMad.h in CopyFiles */,
-				889B8B0A1888CFFA0099C1A3 /* SMContextObserver.h in CopyFiles */,
 				889B8B0B1888CFFA0099C1A3 /* SMStoreController.h in CopyFiles */,
 				889B8B0C1888CFFA0099C1A3 /* StoreMad.h in CopyFiles */,
 			);
@@ -71,6 +71,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		889D834818D27546006EE54D /* SMContextObserverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMContextObserverController.h; sourceTree = "<group>"; };
+		889D834918D27546006EE54D /* SMContextObserverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMContextObserverController.m; sourceTree = "<group>"; };
+		889D835818D27F45006EE54D /* SMContextObserverControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMContextObserverControllerTests.m; sourceTree = "<group>"; };
 		88C3B13718CF9F16007E89A0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		88C3B13918CF9F20007E89A0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		88EDD9C7180E21B80085463D /* SMStoreControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMStoreControllerTests.m; sourceTree = "<group>"; };
@@ -95,21 +98,15 @@
 		DB7BF647161E2E0400EAAE5E /* SMTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTableViewDataSource.h; sourceTree = "<group>"; };
 		DB7BF648161E2E0400EAAE5E /* SMTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTableViewDataSource.m; sourceTree = "<group>"; };
 		DB83D02016F516F000D6A980 /* StoreMad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreMad.h; sourceTree = "<group>"; };
-		DB9343071624F1AD0084C6FC /* StoreMadContextObserverTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreMadContextObserverTests.h; sourceTree = "<group>"; };
-		DB9343081624F1AD0084C6FC /* StoreMadContextObserverTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreMadContextObserverTests.m; sourceTree = "<group>"; };
-		DB9A837B16165FE000910CEB /* StoreMadObjectTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreMadObjectTests.h; sourceTree = "<group>"; };
 		DB9A837C16165FE000910CEB /* StoreMadObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreMadObjectTests.m; sourceTree = "<group>"; };
 		DB9A837F1616609A00910CEB /* Employee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee.h; sourceTree = "<group>"; };
 		DB9A83801616609A00910CEB /* Employee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee.m; sourceTree = "<group>"; };
 		DB9D043815DC082D0035FC30 /* StoreMadBaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreMadBaseTest.h; sourceTree = "<group>"; };
 		DB9D043915DC082D0035FC30 /* StoreMadBaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreMadBaseTest.m; sourceTree = "<group>"; };
 		DB9D043D15DC0B290035FC30 /* StoreMadTests.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StoreMadTests.xcdatamodel; sourceTree = "<group>"; };
-		DB9D043F15DC0DD70035FC30 /* StoreMadContextTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreMadContextTests.h; sourceTree = "<group>"; };
 		DB9D044015DC0DD70035FC30 /* StoreMadContextTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreMadContextTests.m; sourceTree = "<group>"; };
 		DBBF6013177F9B22008694F1 /* Department.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Department.h; sourceTree = "<group>"; };
 		DBBF6014177F9B22008694F1 /* Department.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Department.m; sourceTree = "<group>"; };
-		DBD77098161D302E00853D7C /* SMContextObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMContextObserver.h; sourceTree = "<group>"; };
-		DBD77099161D302E00853D7C /* SMContextObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMContextObserver.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,8 +173,8 @@
 				DB0DE55115B9CCEF007F382F /* NSManagedObject+StoreMad.m */,
 				DB0DE55415B9CE1A007F382F /* NSManagedObjectContext+StoreMad.h */,
 				DB0DE55515B9CE1A007F382F /* NSManagedObjectContext+StoreMad.m */,
-				DBD77098161D302E00853D7C /* SMContextObserver.h */,
-				DBD77099161D302E00853D7C /* SMContextObserver.m */,
+				889D834818D27546006EE54D /* SMContextObserverController.h */,
+				889D834918D27546006EE54D /* SMContextObserverController.m */,
 				DB0DE4E415B9BDC6007F382F /* SMStoreController.h */,
 				DB0DE4E515B9BDC6007F382F /* SMStoreController.m */,
 				DB83D02016F516F000D6A980 /* StoreMad.h */,
@@ -197,14 +194,11 @@
 		DB0DE4B915B9BB5F007F382F /* StoreMadTests */ = {
 			isa = PBXGroup;
 			children = (
+				889D835818D27F45006EE54D /* SMContextObserverControllerTests.m */,
 				88EDD9C7180E21B80085463D /* SMStoreControllerTests.m */,
 				DB9D043815DC082D0035FC30 /* StoreMadBaseTest.h */,
 				DB9D043915DC082D0035FC30 /* StoreMadBaseTest.m */,
-				DB9343071624F1AD0084C6FC /* StoreMadContextObserverTests.h */,
-				DB9343081624F1AD0084C6FC /* StoreMadContextObserverTests.m */,
-				DB9D043F15DC0DD70035FC30 /* StoreMadContextTests.h */,
 				DB9D044015DC0DD70035FC30 /* StoreMadContextTests.m */,
-				DB9A837B16165FE000910CEB /* StoreMadObjectTests.h */,
 				DB9A837C16165FE000910CEB /* StoreMadObjectTests.m */,
 				DB9D043C15DC0B290035FC30 /* StoreMadTests.xcdatamodeld */,
 				DB0DE4BA15B9BB5F007F382F /* Supporting Files */,
@@ -346,9 +340,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB0DE4E715B9BDC6007F382F /* SMStoreController.m in Sources */,
+				889D834A18D27546006EE54D /* SMContextObserverController.m in Sources */,
 				DB0DE55315B9CCEF007F382F /* NSManagedObject+StoreMad.m in Sources */,
 				DB0DE55715B9CE1B007F382F /* NSManagedObjectContext+StoreMad.m in Sources */,
-				DBD7709B161D302E00853D7C /* SMContextObserver.m in Sources */,
 				DB7BF64A161E2E0400EAAE5E /* SMTableViewDataSource.m in Sources */,
 				DB1F446E16D94D530017B23D /* SMCollectionViewDataSource.m in Sources */,
 				DB7273D71781D39E00CE5D7E /* SMDataSource.m in Sources */,
@@ -360,11 +354,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB9D043A15DC082D0035FC30 /* StoreMadBaseTest.m in Sources */,
+				889D835918D27F45006EE54D /* SMContextObserverControllerTests.m in Sources */,
 				DB9D043E15DC0B290035FC30 /* StoreMadTests.xcdatamodeld in Sources */,
 				DB9D044115DC0DD70035FC30 /* StoreMadContextTests.m in Sources */,
 				DB9A837D16165FE000910CEB /* StoreMadObjectTests.m in Sources */,
 				DB9A83811616609A00910CEB /* Employee.m in Sources */,
-				DB9343091624F1AD0084C6FC /* StoreMadContextObserverTests.m in Sources */,
 				DBBF6015177F9B22008694F1 /* Department.m in Sources */,
 				88EDD9C8180E21B80085463D /* SMStoreControllerTests.m in Sources */,
 			);
@@ -430,8 +424,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				DSTROOT = /tmp/StoreMad.dst;
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StoreMad/StoreMad-Prefix.pch";
 				GENERATE_PROFILING_CODE = YES;
@@ -449,8 +441,6 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StoreMad/StoreMad-Prefix.pch";
 				GENERATE_PROFILING_CODE = YES;

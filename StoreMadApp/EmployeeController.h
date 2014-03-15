@@ -12,11 +12,11 @@
 
 @interface EmployeeController : NSObject
 
-+ (Employee *)newEmployeeInContext:(NSManagedObjectContext *)context;
-
 + (NSFetchRequest *)allEmployeesSortedFetchRequestInContext:(NSManagedObjectContext *)context;
 
 + (void)fireEmployee:(Employee *)employee
           completion:(void (^)(void))completion;
 
++ (void)hireEmployee:(Employee *)employee
+          completion:(void (^)(void))completion;
 @end

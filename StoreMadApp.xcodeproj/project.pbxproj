@@ -16,7 +16,6 @@
 		DB7273EA178B22E700CE5D7E /* EmployeeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7273E9178B22E700CE5D7E /* EmployeeTableViewCell.m */; };
 		DB7273EE178B2C0400CE5D7E /* EmployeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7273ED178B2C0400CE5D7E /* EmployeeViewController.m */; };
 		DB7273F0178B2FF900CE5D7E /* EmployeeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB7273EF178B2FF900CE5D7E /* EmployeeViewController.storyboard */; };
-		DB7273F4178B35EF00CE5D7E /* EmployeeFireOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7273F3178B35EF00CE5D7E /* EmployeeFireOperation.m */; };
 		DBBF5FE5177F7A0B008694F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBF5FE4177F7A0B008694F1 /* UIKit.framework */; };
 		DBBF5FE7177F7A0B008694F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBF5FE6177F7A0B008694F1 /* Foundation.framework */; };
 		DBBF5FE9177F7A0B008694F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBF5FE8177F7A0B008694F1 /* CoreGraphics.framework */; };
@@ -71,8 +70,6 @@
 		DB7273EC178B2C0400CE5D7E /* EmployeeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeeViewController.h; sourceTree = "<group>"; };
 		DB7273ED178B2C0400CE5D7E /* EmployeeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeeViewController.m; sourceTree = "<group>"; };
 		DB7273EF178B2FF900CE5D7E /* EmployeeViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EmployeeViewController.storyboard; sourceTree = "<group>"; };
-		DB7273F2178B35EF00CE5D7E /* EmployeeFireOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeeFireOperation.h; sourceTree = "<group>"; };
-		DB7273F3178B35EF00CE5D7E /* EmployeeFireOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeeFireOperation.m; sourceTree = "<group>"; };
 		DBBF5FE1177F7A0B008694F1 /* StoreMadApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreMadApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBBF5FE4177F7A0B008694F1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DBBF5FE6177F7A0B008694F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -129,7 +126,6 @@
 				DB7273E7178B22CE00CE5D7E /* Cell */,
 				DB7273DE1781DC9D00CE5D7E /* Controller */,
 				DB7273DD1781DC9800CE5D7E /* Model */,
-				DB7273F1178B35D400CE5D7E /* Operation */,
 				DB7273E61781DDC500CE5D7E /* Table View */,
 				DB7273EB178B2BF000CE5D7E /* View Controller */,
 			);
@@ -180,15 +176,6 @@
 				DB7273EF178B2FF900CE5D7E /* EmployeeViewController.storyboard */,
 			);
 			name = "View Controller";
-			sourceTree = "<group>";
-		};
-		DB7273F1178B35D400CE5D7E /* Operation */ = {
-			isa = PBXGroup;
-			children = (
-				DB7273F2178B35EF00CE5D7E /* EmployeeFireOperation.h */,
-				DB7273F3178B35EF00CE5D7E /* EmployeeFireOperation.m */,
-			);
-			name = Operation;
 			sourceTree = "<group>";
 		};
 		DBBF5FD8177F7A0B008694F1 = {
@@ -330,7 +317,8 @@
 		DBBF600A177F7A34008694F1 /* StoreMadTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = StoreMadTests.octest;
+			name = StoreMadTests.octest;
+			path = StoreMadTests.xctest;
 			remoteRef = DBBF6009177F7A34008694F1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -366,7 +354,6 @@
 				DB7273E51781DDC000CE5D7E /* EmployeeTableViewController.m in Sources */,
 				DB7273EA178B22E700CE5D7E /* EmployeeTableViewCell.m in Sources */,
 				DB7273EE178B2C0400CE5D7E /* EmployeeViewController.m in Sources */,
-				DB7273F4178B35EF00CE5D7E /* EmployeeFireOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

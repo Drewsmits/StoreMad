@@ -27,7 +27,7 @@
 #define StoreMad_StoreMad_h
 
 #import "SMStoreController.h"
-#import "SMContextObserver.h"
+#import "SMContextObserverController.h"
 #import "SMDataSource.h"
 #import "SMTableViewDataSource.h"
 #import "SMCollectionViewDataSource.h"

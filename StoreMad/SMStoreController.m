@@ -27,7 +27,6 @@
 
 #import <UIKit/UIApplication.h>
 #import "NSManagedObjectContext+StoreMad.h"
-#import "SMContextObserver.h"
 
 @interface SMStoreController ()
 
