@@ -83,6 +83,25 @@
     XCTAssertTrue(same, @"Context should execute fetch request and return the correct object");
 }
 
+- (void)testExecuteFetchForFirstObject
+{
+    Employee *employee1 = [Employee createInContext:self.testContext];
+    Employee *employee2 = [Employee createInContext:self.testContext];
+    
+    employee1.firstName = @"Kevin";
+    employee1.lastName = @"Bacon";
+    
+    employee2.firstName = @"Zazzle";
+    employee2.lastName = @"Zeesleson";
+    
+    NSFetchRequest *baconFetch = [self.testContext fetchRequestForObjectClass:[Employee class]];
+    [baconFetch setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES]]];
+    
+    NSManagedObject *fetchedBacon = [self.testContext executeFetchRequestAndReturnFirstObject:baconFetch];
+    
+    XCTAssertEqualObjects(employee1, fetchedBacon, @"Should fetch the correct employee");
+}
+
 - (void)testCountForFetchRequest
 {
     [Employee createInContext:self.testContext];
@@ -92,9 +111,9 @@
     [Department createInContext:self.testContext];
     
     NSFetchRequest *employeeFetch = [self.testContext fetchRequestForObjectClass:[Employee class]];
-    NSArray *fetchedEmployees = [self.testContext executeFetchRequest:employeeFetch];
+    NSUInteger count = [self.testContext countForFetchRequest:employeeFetch];
 
-    XCTAssertEqual(fetchedEmployees.count, 2U, @"Context should count the correct number of objects");
+    XCTAssertEqual(count, 2U, @"Context should count the correct number of objects");
 }
 
 - (void)testAllValuesForPropertyFetchRequest
