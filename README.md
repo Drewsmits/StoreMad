@@ -9,7 +9,6 @@ The SMStoreController is the main controller you use to add Core Data to your ap
 ```objective-c
 #import <StoreMad/StoreMad.h>
 
-
 - (SMStoreController *)storeController
 {
     if (_storeController) return _storeController;
@@ -42,6 +41,8 @@ The SMStoreController is the main controller you use to add Core Data to your ap
 This controller is intended to be used much the same way that you interact with `NSNotificationCenter`. An `NSManagedObjectContext` emits various notifications when it performs inserts, updates, and deletes. Using `SMContextObserverController`,  you can run a block on an object or set of objects of interest. This is an essential Core Data pattern for updating your UI, and decoupling your data and UI later.
 
 ## Observe an Object
+
+Here is a simple pattern for observing changes to an NSManagedObject. Note that whenever you add an observer, you must remove it when finished, just like NSNotificationCenter.
 
 ```objective-c
 #import <StoreMad/StoreMad.h>
@@ -80,5 +81,5 @@ This controller is intended to be used much the same way that you interact with 
 }
 
 @end
-```
+```
 
