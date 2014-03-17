@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88D00A9F18D3EA61003F7512 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D00A9E18D3EA61003F7512 /* MyViewController.m */; };
 		DB7273CA1781CFCC00CE5D7E /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7273C91781CFCC00CE5D7E /* RootViewController.m */; };
 		DB7273CC1781CFE400CE5D7E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB7273CB1781CFE400CE5D7E /* MainStoryboard.storyboard */; };
 		DB7273D01781D07600CE5D7E /* StoreMadApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB7273CE1781D07600CE5D7E /* StoreMadApp.xcdatamodeld */; };
@@ -54,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		88D00A9D18D3EA61003F7512 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
+		88D00A9E18D3EA61003F7512 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		DB7273C81781CFCC00CE5D7E /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		DB7273C91781CFCC00CE5D7E /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		DB7273CB1781CFE400CE5D7E /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -103,6 +106,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		88D00A9B18D3EA4C003F7512 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				88D00A9D18D3EA61003F7512 /* MyViewController.h */,
+				88D00A9E18D3EA61003F7512 /* MyViewController.m */,
+			);
+			name = Documentation;
+			sourceTree = "<group>";
+		};
 		DB7273C61781CFB800CE5D7E /* Root */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +222,7 @@
 		DBBF5FEA177F7A0B008694F1 /* StoreMadApp */ = {
 			isa = PBXGroup;
 			children = (
+				88D00A9B18D3EA4C003F7512 /* Documentation */,
 				DBBF5FF3177F7A0B008694F1 /* AppDelegate.h */,
 				DBBF5FF4177F7A0B008694F1 /* AppDelegate.m */,
 				DB7273CD1781D06100CE5D7E /* Core Data */,
@@ -349,6 +362,7 @@
 				DBBF5FF5177F7A0B008694F1 /* AppDelegate.m in Sources */,
 				DB7273CA1781CFCC00CE5D7E /* RootViewController.m in Sources */,
 				DB7273D01781D07600CE5D7E /* StoreMadApp.xcdatamodeld in Sources */,
+				88D00A9F18D3EA61003F7512 /* MyViewController.m in Sources */,
 				DB7273DC1781DC8000CE5D7E /* Employee.m in Sources */,
 				DB7273E11781DCAF00CE5D7E /* EmployeeController.m in Sources */,
 				DB7273E51781DDC000CE5D7E /* EmployeeTableViewController.m in Sources */,

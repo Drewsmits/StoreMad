@@ -1,6 +1,6 @@
 # StoreMad
 
-StoreMad is a collection of helpful categories and controllers that encourage a healthy relationship with Core Data.
+StoreMad is a collection of helpful categories and controllers that encourage a healthy relationship with Core Data. Your best bet it to sit down and learn Core Data, as you will be way better off in the long term. At the very least, there are some patterns that you may find helpful here.
 
 # Store Controller
 
@@ -37,4 +37,48 @@ The SMStoreController is the main controller you use to add Core Data to your ap
 }
 ```
 
+## SMContextObserverController
+
+This controller is intended to be used much the same way that you interact with `NSNotificationCenter`. An `NSManagedObjectContext` emits various notifications when it performs inserts, updates, and deletes. Using `SMContextObserverController`,  you can run a block on an object or set of objects of interest. This is an essential Core Data pattern for updating your UI, and decoupling your data and UI later.
+
+## Observe an Object
+
+```objective-c
+#import <StoreMad/StoreMad.h>
+
+@interface MyViewController ()
+
+@property (nonatomic, strong) id observer;
+
+@property (nonatomic, weak) IBOutlet UILabel *employmentStatusLabel;
+
+@end
+
+@implementation MyViewController
+
+- (void)dealloc
+{
+	[[SMContextObserverController defaultController] removeContextObserver:self.observer];
+}
+
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+	
+    Employee *employee = [Employee createInContext:context];
+    
+    __weak MyViewController *weakSelf = self;
+    self.observer = [[SMContextObserverController defaultController] addContextObserverForChangesToObject:employee
+                                                                                                workBlock:^(NSManagedObject *object) {
+                                                                                                    [weakSelf configureWithEmployee:object];
+                                                                                                }];
+}
+
+- (void)configureWithEmployee:(Employee *)employee
+{
+    _employmentStatusLabel.text = employee.isFired ? @"Fired" : "Hired";
+}
+
+@end
+```
 
