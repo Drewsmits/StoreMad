@@ -52,6 +52,10 @@
     SMStoreController *controller = [self new];
     controller.storeURL = storeURL;
     controller.modelURL = modelURL;
+    
+    // Force lazy load
+    [controller managedObjectContext];
+    
     return controller;
 }
 
@@ -61,13 +65,13 @@
 - (void)reset
 {
     @synchronized(self) {
-        // Delete SQlite
-        [self deleteStore];
-        
         // Nil local variables
         _managedObjectContext = nil;
         _managedObjectModel = nil;
         _persistentStoreCoordinator = nil;
+        
+        // Delete SQlite
+        [self deleteStore];
         
         // Rebuild
         [self managedObjectContext];
@@ -155,7 +159,11 @@
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:self.storeURL options:nil error:&error])
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+                                                   configuration:nil
+                                                             URL:self.storeURL
+                                                         options:nil
+                                                           error:&error])
     {
         /*
          Replace this implementation with code to handle the error appropriately.
@@ -189,16 +197,14 @@
         if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:self.storeURL options:options error:&error]) {
             
             // probably shouldn't do this??!
-            //[[NSFileManager defaultManager] removeItemAtURL:self.storeURL error:nil];
+            [[NSFileManager defaultManager] removeItemAtURL:self.storeURL error:nil];
 
             if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:self.storeURL options:options error:&error]) {
                 NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
                 abort();
             }
         }
-        
-    }    
-    
+    }
     return _persistentStoreCoordinator;
 }
 

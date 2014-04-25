@@ -8,6 +8,8 @@
 
 #import "SMContextObserverController.h"
 
+#import "NSManagedObject+StoreMad.h"
+
 #pragma mark - SMContextObserver
 
 typedef void (^SMContextObserverBlock)(NSSet *updateObjects, NSSet *insertedOjects, NSSet *deletedObjects);
@@ -193,6 +195,8 @@ typedef void (^SMContextObserverBlock)(NSSet *updateObjects, NSSet *insertedOjec
                                      queue:(NSOperationQueue *)queue
                                  workBlock:(void (^)(NSManagedObject *object))workBlock
 {
+    NSAssert(object.hasBeenSaved, @"Object must be saved first to observe. Right now it only has a temporary objectID");
+    
     //
     // Search for the object we pushed in
     //
@@ -204,18 +208,18 @@ typedef void (^SMContextObserverBlock)(NSSet *updateObjects, NSSet *insertedOjec
     SMContextObserverBlock newWorkBlock = ^(NSSet *updateObjects,
                                             NSSet *insertedOjects,
                                             NSSet *deletedObjects) {
-        NSManagedObject *object;
+        NSManagedObject *updatedObject;
         
         if (updateObjects.count > 0) {
-            object = [updateObjects anyObject];
+            updatedObject = [updateObjects anyObject];
         } else if (insertedOjects.count > 0) {
-            object = [insertedOjects anyObject];
+            updatedObject = [insertedOjects anyObject];
         } else if (deletedObjects.count > 0) {
-            object = [deletedObjects anyObject];
+            updatedObject = [deletedObjects anyObject];
         }
         
         if (workBlock) {
-            workBlock(object);
+            workBlock(updatedObject);
         }
     };
     

@@ -80,7 +80,7 @@
 		DB0DE4A015B9BB5F007F382F /* libStoreMad.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libStoreMad.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB0DE4A315B9BB5F007F382F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DB0DE4A715B9BB5F007F382F /* StoreMad-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StoreMad-Prefix.pch"; sourceTree = "<group>"; };
-		DB0DE4B015B9BB5F007F382F /* StoreMadTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = StoreMadTests.octest; path = StoreMadTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB0DE4B015B9BB5F007F382F /* StoreMadTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoreMadTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB0DE4B315B9BB5F007F382F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		DB0DE4BB15B9BB5F007F382F /* StoreMadTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StoreMadTests-Info.plist"; sourceTree = "<group>"; };
 		DB0DE4BD15B9BB60007F382F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				DB0DE4A015B9BB5F007F382F /* libStoreMad.a */,
-				DB0DE4B015B9BB5F007F382F /* StoreMadTests.octest */,
+				DB0DE4B015B9BB5F007F382F /* StoreMadTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -276,7 +276,7 @@
 			);
 			name = StoreMadTests;
 			productName = StoreMadTests;
-			productReference = DB0DE4B015B9BB5F007F382F /* StoreMadTests.octest */;
+			productReference = DB0DE4B015B9BB5F007F382F /* StoreMadTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */

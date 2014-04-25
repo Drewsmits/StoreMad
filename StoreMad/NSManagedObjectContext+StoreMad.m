@@ -168,6 +168,12 @@
     return count;
 }
 
+- (NSUInteger)countForObjectClass:(Class)objectClass
+{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass(objectClass)];
+    return [self countForFetchRequest:request];
+}
+
 - (NSArray *)allValuesForProperty:(NSString *)propertyName 
                       withRequest:(NSFetchRequest *)request
 {

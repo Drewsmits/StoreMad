@@ -101,6 +101,11 @@
 - (NSUInteger)countForFetchRequest:(NSFetchRequest *)request;
 
 /**
+ Handy wrapper around countForFetchRequest
+ */
+- (NSUInteger)countForObjectClass:(Class)objectClass;
+
+/**
  This will fetch a list of all properties of a given entity. For example, if you have a twitter app
  and you wanted all tweetId (Integer 64) property values on your Tweet object, you could use this method.
  
