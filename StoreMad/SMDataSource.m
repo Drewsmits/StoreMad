@@ -57,6 +57,11 @@
                                                                         managedObjectContext:self.fetchedResultsController.managedObjectContext
                                                                           sectionNameKeyPath:self.fetchedResultsController.sectionNameKeyPath
                                                                                    cacheName:self.fetchedResultsController.cacheName];
+    
+    // Respond to changes here
+    self.fetchedResultsController.delegate = self;
+
+    // Auto resend the fetch
     [self performFetch];
 }
 
