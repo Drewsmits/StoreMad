@@ -30,19 +30,11 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-	
-    Employee *employee = [Employee createInContext:context];
-    
-    __weak MyViewController *weakSelf = self;
-    self.observer = [[SMContextObserverController defaultController] addContextObserverForChangesToObject:employee
-                                                                                                workBlock:^(NSManagedObject *object) {
-                                                                                                    [weakSelf configureWithEmployee:object];
-                                                                                                }];
 }
 
 - (void)configureWithEmployee:(Employee *)employee
 {
-    _employmentStatusLabel.text = employee.isFired ? @"Fired" : "Hired";
+    _employmentStatusLabel.text = employee.isFired ? @"Fired" : @"Hired";
 }
 
 @end

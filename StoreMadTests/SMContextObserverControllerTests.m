@@ -142,6 +142,7 @@
 - (void)testObserveSpecificObject
 {
     Employee *employee = [Employee createInContext:self.testContext];
+    [employee.managedObjectContext save];
     
     __block NSManagedObject *updatedObject;
     void(^workBlock)(NSManagedObject *object) = ^(NSManagedObject *object) {
