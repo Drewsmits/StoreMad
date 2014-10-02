@@ -46,67 +46,67 @@
  
  Note: You have to allocate the threadSafeCopy on the thread you want to use it with.
  */
-- (NSManagedObjectContext *)threadSafeCopy;
+- (NSManagedObjectContext *)stm_threadSafeCopy;
 
 /**
  Standard save, but handles any errors with some (hopefully) usefull logging for you
  */
-- (void)save;
+- (void)stm_save;
 
 /**
  Adds performBlock wrapped save. Use this when you are outside of a performBlock to save right from
  the main thread.
  */
-- (void)queueBlockSave;
+- (void)stm_queueBlockSave;
 
 /**
  Adds a performBlock wrapped save and waits for it to finish. Use this to block the calling thread
  until the save is finished.
  */
-- (void)queueBlockSaveAndWait;
+- (void)stm_queueBlockSaveAndWait;
 
 /**
  If a parent context is present, queue a performBlock wrapped save on the parent context. This is
  useful if you are calling save from a background thread onto the main context.
  */
-- (void)queueBlockSaveOnParentContext;
+- (void)stm_queueBlockSaveOnParentContext;
 
 /**
  Returns the NSManagedObject for the corresponding URI. If the object cannot be fetched, or does 
  not exist, or cannot be faulted, this will return nil.
  */
-- (NSManagedObject *)objectForURI:(NSURL *)objectURI;
+- (NSManagedObject *)stm_objectForURI:(NSURL *)objectURI;
 
 /**
  Deletes the object at the given URI.
  */
-- (void)deleteObjectAtURI:(NSURL *)objectURI;
+- (void)stm_deleteObjectAtURI:(NSURL *)objectURI;
 
 /**
  Deletes and array of NSManagedObjects
  */
-- (void)deleteObjects:(NSArray *)objects;
+- (void)stm_deleteObjects:(NSArray *)objects;
 
 /**
  Handy wrapper around executeFetchRequest that handles errors nicely.
  */
-- (NSArray *)executeFetchRequest:(NSFetchRequest *)request;
+- (NSArray *)stm_executeFetchRequest:(NSFetchRequest *)request;
 
 /**
  Executes the fetch request and returns the first object of the result. Fetch limit is set to 1 for
  faster fetching.
  */
-- (NSManagedObject *)executeFetchRequestAndReturnFirstObject:(NSFetchRequest *)request;
+- (NSManagedObject *)stm_executeFetchRequestAndReturnFirstObject:(NSFetchRequest *)request;
 
 /**
  Handy wrapper around countForFetchRequest that handles errors nicely.
  */
-- (NSUInteger)countForFetchRequest:(NSFetchRequest *)request;
+- (NSUInteger)stm_countForFetchRequest:(NSFetchRequest *)request;
 
 /**
  Handy wrapper around countForFetchRequest
  */
-- (NSUInteger)countForObjectClass:(Class)objectClass;
+- (NSUInteger)stm_countForObjectClass:(Class)objectClass;
 
 /**
  This will fetch a list of all properties of a given entity. For example, if you have a twitter app
@@ -119,14 +119,14 @@
  
  NOTE: Fetched properties will only include properties of objects that have been saved.
  */
-- (NSArray *)allValuesForProperty:(NSString *)propertyName 
-                      withRequest:(NSFetchRequest *)request;
+- (NSArray *)stm_allValuesForProperty:(NSString *)propertyName
+                          withRequest:(NSFetchRequest *)request;
 
 /**
  Returns a fetch request for the object name. Returns nil if context has no object registered with
  the given name.
  */
-- (NSFetchRequest *)fetchRequestForObjectNamed:(NSString *)objectName;
+- (NSFetchRequest *)stm_fetchRequestForObjectNamed:(NSString *)objectName;
 
 /**
  Returns a fetch request that will find all of the objects of the given name. Adds a predicate that
@@ -136,12 +136,12 @@
  requires a predicate for it's fetch request, so use this instead of fetchRequestForObjectNamed with
  no predicate.
  */
-- (NSFetchRequest *)findAllFetchRequestForObjectNamed:(NSString *)objectName;
+- (NSFetchRequest *)stm_findAllFetchRequestForObjectNamed:(NSString *)objectName;
 
 /**
  Returns a fetch request for the object matching the provided class name.
  */
-- (NSFetchRequest *)fetchRequestForObjectClass:(Class)objectClass;
+- (NSFetchRequest *)stm_fetchRequestForObjectClass:(Class)objectClass;
 
 /**
  Returns a fetch request that will find all of the objects of the given name. Adds a predicate that
@@ -151,11 +151,11 @@
  requires a predicate for it's fetch request, so use this instead of fetchRequestForObjectNamed with
  no predicate.
  */
-- (NSFetchRequest *)findAllFetchRequestForObjectClass:(Class)objectClass;
+- (NSFetchRequest *)stm_findAllFetchRequestForObjectClass:(Class)objectClass;
 
 /**
  Inserts a new object for the entity name in the given context, returns said object if successful.
  */
-- (NSManagedObject *)insertNewObjectForEntityNamed:(NSString *)entityName;
+- (NSManagedObject *)stm_insertNewObjectForEntityNamed:(NSString *)entityName;
 
 @end

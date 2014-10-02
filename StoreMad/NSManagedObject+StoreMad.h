@@ -35,7 +35,7 @@
  FAD: "An NSURL object containing a URI that provides an archiveable reference to the
  object which the receiver represents."
  */
-@property (nonatomic, readonly) NSURL *objectURI;
+@property (nonatomic, readonly) NSURL *stm_objectURI;
 
 /**
  Sometimes CoreData will fault a particular instance, while there is still
@@ -46,7 +46,7 @@
  particularly after the object has been deleted. The immediacy with which
  it will stop returning YES depends on where the object is in the process of being deleted."
  */
-@property (nonatomic, readonly) BOOL hasBeenDeleted;
+@property (nonatomic, readonly) BOOL stm_hasBeenDeleted;
 
 /**
  Checks the objectID to see if it is permanent.
@@ -54,11 +54,11 @@
  FAD: "New objects inserted into a managed object context are assigned a temporary ID
  which is replaced with a permanent one once the object gets saved to a persistent store."
  */
-@property (nonatomic, readonly) BOOL hasBeenSaved;
+@property (nonatomic, readonly) BOOL stm_hasBeenSaved;
 
 /**
  Inserts an object of the same type as the calling class name into the context.
  */
-+ (id)createInContext:(NSManagedObjectContext *)context;
++ (id)stm_createInContext:(NSManagedObjectContext *)context;
 
 @end

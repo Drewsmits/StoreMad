@@ -17,36 +17,36 @@
 
 - (void)testHasBeenDeleted
 {
-    Employee *object = [Employee createInContext:self.testContext];
+    Employee *object = [Employee stm_createInContext:self.testContext];
     
-    XCTAssertFalse([object hasBeenDeleted], @"Object should not be deleted");
+    XCTAssertFalse([object stm_hasBeenDeleted], @"Object should not be deleted");
     
-    [self.testContext queueBlockSave];
+    [self.testContext stm_queueBlockSave];
     
-    XCTAssertFalse([object hasBeenDeleted], @"Object should not be deleted");
+    XCTAssertFalse([object stm_hasBeenDeleted], @"Object should not be deleted");
     
     [self.testContext deleteObject:object];
     
-    XCTAssertTrue([object hasBeenDeleted], @"Object should be deleted");
+    XCTAssertTrue([object stm_hasBeenDeleted], @"Object should be deleted");
 }
 
 - (void)testHasBeenSaved
 {
-    Employee *object = [Employee createInContext:self.testContext];
+    Employee *object = [Employee stm_createInContext:self.testContext];
     
-    XCTAssertFalse([object hasBeenSaved], @"Object should not be saved");
+    XCTAssertFalse([object stm_hasBeenSaved], @"Object should not be saved");
     
     [self.testContext save:nil];
 
-    XCTAssertTrue([object hasBeenSaved], @"Object should be saved");
+    XCTAssertTrue([object stm_hasBeenSaved], @"Object should be saved");
 }
 
 - (void)testCreateInContext
 {
-    Employee *object = [Employee createInContext:self.testContext];
+    Employee *object = [Employee stm_createInContext:self.testContext];
 
     XCTAssertTrue([object isInserted], @"Object should be inserted");
-    XCTAssertFalse([object hasBeenSaved], @"Object should not be saved");
+    XCTAssertFalse([object stm_hasBeenSaved], @"Object should not be saved");
 }
 
 - (void)testExecuteFetchRequest

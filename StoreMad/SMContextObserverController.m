@@ -212,7 +212,7 @@ typedef void (^SMContextObserverBlock)(NSSet *updateObjects, NSSet *insertedOjec
                                      queue:(NSOperationQueue *)queue
                                  workBlock:(void (^)(NSManagedObject *object))workBlock
 {
-    NSAssert(object.hasBeenSaved, @"Object must be saved first to observe. Right now it only has a temporary objectID");
+    NSAssert(object.stm_hasBeenSaved, @"Object must be saved first to observe. Right now it only has a temporary objectID");
     
     //
     // Search for the object we pushed in

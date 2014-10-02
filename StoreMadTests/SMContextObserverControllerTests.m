@@ -50,15 +50,15 @@
                                             wasNotified = YES;
                                         }];
     
-    [self.testContext insertNewObjectForEntityNamed:@"Employee"];
-    [self.testContext queueBlockSaveAndWait];
+    [self.testContext stm_insertNewObjectForEntityNamed:@"Employee"];
+    [self.testContext stm_queueBlockSaveAndWait];
     
     XCTAssertTrue(wasNotified, @"Work block should run");
     
     wasNotified = NO;
     
-    [self.testContext insertNewObjectForEntityNamed:@"Department"];
-    [self.testContext queueBlockSaveAndWait];
+    [self.testContext stm_insertNewObjectForEntityNamed:@"Department"];
+    [self.testContext stm_queueBlockSaveAndWait];
     
     XCTAssertFalse(wasNotified, @"Work block should not run");
 }
@@ -122,8 +122,8 @@
                                                       }];
     
     
-    [self.testContext insertNewObjectForEntityNamed:@"Employee"];
-    [self.testContext queueBlockSaveAndWait];
+    [self.testContext stm_insertNewObjectForEntityNamed:@"Employee"];
+    [self.testContext stm_queueBlockSaveAndWait];
     
     XCTAssertTrue(wasNotified, @"Work block should run");
     
@@ -131,8 +131,8 @@
     
     wasNotified = NO;
     
-    [self.testContext insertNewObjectForEntityNamed:@"Department"];
-    [self.testContext queueBlockSaveAndWait];
+    [self.testContext stm_insertNewObjectForEntityNamed:@"Department"];
+    [self.testContext stm_queueBlockSaveAndWait];
     
     XCTAssertFalse(wasNotified, @"Work block should not run");
     
@@ -141,8 +141,8 @@
 
 - (void)testObserveSpecificObject
 {
-    Employee *employee = [Employee createInContext:self.testContext];
-    [employee.managedObjectContext save];
+    Employee *employee = [Employee stm_createInContext:self.testContext];
+    [employee.managedObjectContext stm_save];
     
     __block NSManagedObject *updatedObject;
     void(^workBlock)(NSManagedObject *object) = ^(NSManagedObject *object) {
@@ -154,7 +154,7 @@
     
     [self.testContext performBlockAndWait:^{
         employee.firstName = @"Bob";
-        [self.testContext save];
+        [self.testContext stm_save];
     }];
     
     XCTAssertEqual(updatedObject, employee, @"Updated object should be employee");

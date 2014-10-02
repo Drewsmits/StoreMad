@@ -28,12 +28,12 @@
 
 @implementation NSManagedObject (StoreMad)
 
-- (NSURL *)objectURI
+- (NSURL *)stm_objectURI
 {
     return self.objectID.URIRepresentation;
 }
 
-- (BOOL)hasBeenDeleted 
+- (BOOL)stm_hasBeenDeleted
 {
     NSManagedObjectID *objectID           = [self objectID];
     NSManagedObject   *managedObjectClone = [[self managedObjectContext] existingObjectWithID:objectID
@@ -46,14 +46,14 @@
     }
 }
 
-- (BOOL)hasBeenSaved
+- (BOOL)stm_hasBeenSaved
 {
     return !self.objectID.isTemporaryID;
 }
 
-+ (id)createInContext:(NSManagedObjectContext *)context
++ (id)stm_createInContext:(NSManagedObjectContext *)context
 {
-    return [context insertNewObjectForEntityNamed:[self description]];
+    return [context stm_insertNewObjectForEntityNamed:[self description]];
 }
 
 @end

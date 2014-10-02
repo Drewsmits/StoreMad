@@ -120,7 +120,7 @@
 
 - (void)saveContext
 {
-    [self.managedObjectContext queueBlockSaveAndWait];
+    [self.managedObjectContext stm_queueBlockSaveAndWait];
 }
 
 - (NSManagedObjectContext *)managedObjectContext 

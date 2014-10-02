@@ -55,7 +55,7 @@
 
 #pragma mark - Thread
 
-- (NSManagedObjectContext *)threadSafeCopy
+- (NSManagedObjectContext *)stm_threadSafeCopy
 {    
     //
     // Create new context with default concurrency type
@@ -73,37 +73,37 @@
 
 #pragma mark - Save
 
-- (void)save
+- (void)stm_save
 {
     NSError *error;
     [self save:&error];
     [self handleErrors:error];
 }
 
-- (void)queueBlockSave
+- (void)stm_queueBlockSave
 {
     [self performBlock:^{
-        [self save];
+        [self stm_save];
     }];
 }
 
-- (void)queueBlockSaveAndWait
+- (void)stm_queueBlockSaveAndWait
 {
     [self performBlockAndWait:^{
-        [self save];
+        [self stm_save];
     }];
 }
 
-- (void)queueBlockSaveOnParentContext
+- (void)stm_queueBlockSaveOnParentContext
 {
     [self.parentContext performBlock:^{
-        [self.parentContext save];
+        [self.parentContext stm_save];
     }];
 }
 
 #pragma mark - URI Helpers
 
-- (NSManagedObject *)objectForURI:(NSURL *)objectURI
+- (NSManagedObject *)stm_objectForURI:(NSURL *)objectURI
 {
     NSManagedObjectID *objectID = [[self persistentStoreCoordinator] managedObjectIDForURIRepresentation:objectURI];
     if (!objectID) return nil;
@@ -120,23 +120,23 @@
 
 #pragma mark - Delete
 
-- (void)deleteObjects:(NSArray *)objects 
+- (void)stm_deleteObjects:(NSArray *)objects
 {
     for (NSManagedObject *object in objects) {
         [self deleteObject:object];
     }
 }
 
-- (void)deleteObjectAtURI:(NSURL *)objectURI
+- (void)stm_deleteObjectAtURI:(NSURL *)objectURI
 {
-    NSManagedObject *object = [self objectForURI:objectURI];
+    NSManagedObject *object = [self stm_objectForURI:objectURI];
     if (!object) return;
     [self deleteObject:object];
 }
 
 #pragma mark - Fetching
      
-- (NSArray *)executeFetchRequest:(NSFetchRequest *)request
+- (NSArray *)stm_executeFetchRequest:(NSFetchRequest *)request
 {    
     NSError *error;
     NSArray *results = [self executeFetchRequest:request error:&error];
@@ -146,15 +146,15 @@
     return results;
 }
 
-- (NSManagedObject *)executeFetchRequestAndReturnFirstObject:(NSFetchRequest *)request
+- (NSManagedObject *)stm_executeFetchRequestAndReturnFirstObject:(NSFetchRequest *)request
 {
     [request setFetchLimit:1];
-    NSArray *results = [self executeFetchRequest:request];
+    NSArray *results = [self stm_executeFetchRequest:request];
     if (results.count < 1) return nil;
     return [results objectAtIndex:0];
 }
 
-- (NSUInteger)countForFetchRequest:(NSFetchRequest *)request
+- (NSUInteger)stm_countForFetchRequest:(NSFetchRequest *)request
 {
     // Optimization?  I'd imagine it doesn't include these when counting, but
     // should test.
@@ -168,14 +168,14 @@
     return count;
 }
 
-- (NSUInteger)countForObjectClass:(Class)objectClass
+- (NSUInteger)stm_countForObjectClass:(Class)objectClass
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass(objectClass)];
-    return [self countForFetchRequest:request];
+    return [self stm_countForFetchRequest:request];
 }
 
-- (NSArray *)allValuesForProperty:(NSString *)propertyName 
-                      withRequest:(NSFetchRequest *)request
+- (NSArray *)stm_allValuesForProperty:(NSString *)propertyName
+                          withRequest:(NSFetchRequest *)request
 {
     // This could be really slow.  Use carefully.
     NSDictionary *properties = request.entity.propertiesByName;
@@ -184,7 +184,7 @@
     
     [request setPropertiesToFetch:@[property]];
     [request setResultType:NSDictionaryResultType];
-    NSArray *results = [self executeFetchRequest:request];
+    NSArray *results = [self stm_executeFetchRequest:request];
     
     NSMutableArray *propertyValuesList = [NSMutableArray arrayWithCapacity:results.count];
     for (NSManagedObject *object in results) {
@@ -196,7 +196,7 @@
 
 #pragma mark - Fetch Requests
 
-- (NSFetchRequest *)fetchRequestForObjectNamed:(NSString *)objectName
+- (NSFetchRequest *)stm_fetchRequestForObjectNamed:(NSString *)objectName
 {
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:objectName 
                                                          inManagedObjectContext:self];
@@ -210,26 +210,26 @@
     return request;
 }
 
-- (NSFetchRequest *)findAllFetchRequestForObjectNamed:(NSString *)objectName
+- (NSFetchRequest *)stm_findAllFetchRequestForObjectNamed:(NSString *)objectName
 {
-    NSFetchRequest *request = [self fetchRequestForObjectNamed:objectName];
+    NSFetchRequest *request = [self stm_fetchRequestForObjectNamed:objectName];
     [request setPredicate:[NSPredicate predicateWithFormat:@"1 = 1"]];
     return request;  
 }
 
-- (NSFetchRequest *)fetchRequestForObjectClass:(Class)objectClass;
+- (NSFetchRequest *)stm_fetchRequestForObjectClass:(Class)objectClass;
 {
-    return [self fetchRequestForObjectNamed:NSStringFromClass(objectClass)];
+    return [self stm_fetchRequestForObjectNamed:NSStringFromClass(objectClass)];
 }
 
-- (NSFetchRequest *)findAllFetchRequestForObjectClass:(Class)objectClass 
+- (NSFetchRequest *)stm_findAllFetchRequestForObjectClass:(Class)objectClass
 {
-    return [self findAllFetchRequestForObjectNamed:NSStringFromClass(objectClass)];
+    return [self stm_findAllFetchRequestForObjectNamed:NSStringFromClass(objectClass)];
 }
 
 #pragma mark - Create
 
-- (NSManagedObject *)insertNewObjectForEntityNamed:(NSString *)entityName
+- (NSManagedObject *)stm_insertNewObjectForEntityNamed:(NSString *)entityName
 {
     // If entity is nil, initWithEntity will cause a crash. So make sure to bail.
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName

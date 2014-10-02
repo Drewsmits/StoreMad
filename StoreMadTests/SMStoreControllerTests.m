@@ -40,7 +40,7 @@
 
 - (void)testDeleteStore
 {
-    [self.storeController.managedObjectContext save];
+    [self.storeController.managedObjectContext stm_save];
     
     BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[self.storeController.storeURL path]];
 
