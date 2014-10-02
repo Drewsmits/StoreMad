@@ -225,18 +225,18 @@ typedef void (^SMContextObserverBlock)(NSSet *updateObjects, NSSet *insertedOjec
     SMContextObserverBlock newWorkBlock = ^(NSSet *updateObjects,
                                             NSSet *insertedOjects,
                                             NSSet *deletedObjects) {
-        NSManagedObject *updatedObject;
+        NSManagedObject *fetchedObject;
         
         if (updateObjects.count > 0) {
-            updatedObject = [updateObjects anyObject];
+            fetchedObject = [updateObjects anyObject];
         } else if (insertedOjects.count > 0) {
-            updatedObject = [insertedOjects anyObject];
+            fetchedObject = [insertedOjects anyObject];
         } else if (deletedObjects.count > 0) {
-            updatedObject = [deletedObjects anyObject];
+            fetchedObject = [deletedObjects anyObject];
         }
         
         if (workBlock) {
-            workBlock(updatedObject);
+            workBlock(fetchedObject);
         }
     };
     

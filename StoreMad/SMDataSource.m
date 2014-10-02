@@ -88,6 +88,9 @@
 - (NSInteger)numberOfItemsInSection:(NSInteger)section
 {
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+
+    [self.dataSourceDelegate dataSource:self isEmpty:self.isEmpty];
+
     return [sectionInfo numberOfObjects];
 }
 
